@@ -18,7 +18,7 @@ const offerings = [
 
 export default function WhatWeBring() {
   return (
-    <section id="what-we-bring" className="section-wrap" style={{ background: "#0a0a0a" }}>
+    <section id="what-we-bring" className="section-wrap overflow-hidden" style={{ background: "#0a0a0a" }}>
       <div className="section-inner">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Left */}
@@ -51,12 +51,14 @@ export default function WhatWeBring() {
             </p>
           </div>
 
-          {/* Right – orbit */}
-          <div className="reveal-right flex items-center justify-center">
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
-              <div className="absolute inset-0 rounded-full border" style={{ borderColor: "rgba(168,85,247,0.15)", animation: "spin-slow 20s linear infinite" }} />
-              <div className="absolute inset-8 rounded-full border" style={{ borderColor: "rgba(168,85,247,0.1)", animation: "spin-slow 15s linear infinite reverse" }} />
+          {/* Right – orbit (no reveal class — reveal resets transform and breaks orbit positions) */}
+          <div className="flex items-center justify-center">
+            <div className="relative" style={{ width: 384, height: 384 }}>
+              {/* Orbit rings */}
+              <div className="absolute inset-0 rounded-full border" style={{ borderColor: "rgba(168,85,247,0.25)", animation: "spin-slow 20s linear infinite" }} />
+              <div className="absolute inset-8 rounded-full border" style={{ borderColor: "rgba(168,85,247,0.15)", animation: "spin-slow 15s linear infinite reverse" }} />
 
+              {/* Center icon */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-24 h-24 rounded-3xl flex items-center justify-center animate-float" style={{ background: "linear-gradient(135deg,#a855f7,#7c3aed)", boxShadow: "0 20px 60px rgba(168,85,247,0.5)" }}>
                   <svg viewBox="0 0 40 40" fill="none" className="w-12 h-12">
@@ -68,23 +70,37 @@ export default function WhatWeBring() {
                 </div>
               </div>
 
-              {orbitingIcons.map((item, i) => (
-                <div
-                  key={i}
-                  className="absolute w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
-                  style={{
-                    top: "50%", left: "50%",
-                    margin: "-24px 0 0 -24px",
-                    background: "rgba(255,255,255,0.08)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    transform: `rotate(${item.angle}deg) translateX(130px) rotate(-${item.angle}deg)`,
-                    animation: `float ${3 + i * 0.4}s ease-in-out infinite`,
-                    animationDelay: `${i * 0.3}s`,
-                  }}
-                >
-                  {item.emoji}
-                </div>
-              ))}
+              {/* Orbiting emoji icons — outer div positions, inner div floats */}
+              {orbitingIcons.map((item, i) => {
+                const rad = (item.angle * Math.PI) / 180;
+                const radius = 160;
+                const x = Math.round(Math.cos(rad) * radius * 1000) / 1000;
+                const y = Math.round(Math.sin(rad) * radius * 1000) / 1000;
+                return (
+                  <div
+                    key={i}
+                    className="absolute"
+                    style={{
+                      top: "50%", left: "50%",
+                      marginTop: -24, marginLeft: -24,
+                      transform: `translate(${x}px, ${y}px)`,
+                    }}
+                  >
+                    <div
+                      className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
+                      style={{
+                        background: "rgba(168,85,247,0.25)",
+                        border: "1px solid rgba(168,85,247,0.5)",
+                        boxShadow: "0 4px 20px rgba(168,85,247,0.3)",
+                        animation: `float ${3 + i * 0.4}s ease-in-out infinite`,
+                        animationDelay: `${Math.round(i * 0.3 * 10) / 10}s`,
+                      }}
+                    >
+                      {item.emoji}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
