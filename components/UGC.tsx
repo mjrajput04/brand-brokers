@@ -1,5 +1,7 @@
 "use client";
 
+import { Clapperboard, TrendingUp } from "lucide-react";
+
 const offerings = [
   { title: "STRATEGIC SCRIPTING", desc: "Brand aligned messaging tailored to platform guidelines and audience preferences" },
   { title: "CREATOR SOURCING", desc: "Talent matching aligned with your target demographic and brand identity" },
@@ -21,13 +23,17 @@ export default function UGC() {
             <p className="text-gray-600 leading-relaxed">High performance, platform native video content designed to drive trust and conversions. We deliver end-to-end UGC creative production, from strategic concept to final asset.</p>
           </div>
           <div className="reveal-right flex justify-center">
-            <div className="w-40 h-40 rounded-3xl flex items-center justify-center text-7xl animate-float" style={{ background: "#0a0a0a", boxShadow: "0 30px 80px rgba(0,0,0,0.3)" }}>🎬</div>
+            <div className="w-40 h-40 rounded-3xl flex items-center justify-center animate-float" style={{ background: "#0a0a0a", boxShadow: "0 30px 80px rgba(0,0,0,0.3)" }}>
+              <Clapperboard className="w-20 h-20 text-purple-500" strokeWidth={1.5} />
+            </div>
           </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
           <div className="reveal-left order-2 md:order-1 flex justify-center">
-            <div className="w-40 h-40 rounded-3xl flex items-center justify-center text-7xl animate-float" style={{ background: "linear-gradient(135deg,#3b82f6,#06b6d4)", boxShadow: "0 30px 80px rgba(59,130,246,0.3)", animationDelay: "1s" }}>📈</div>
+            <div className="w-40 h-40 rounded-3xl flex items-center justify-center animate-float" style={{ background: "linear-gradient(135deg,#3b82f6,#06b6d4)", boxShadow: "0 30px 80px rgba(59,130,246,0.3)", animationDelay: "1s" }}>
+              <TrendingUp className="w-20 h-20 text-white" strokeWidth={1.5} />
+            </div>
           </div>
           <div className="reveal-right order-1 md:order-2">
             <h2 className="section-heading">FROM CONCEPT TO CONVERSION</h2>

@@ -1,12 +1,14 @@
 "use client";
 
+import { Monitor, Sparkles, Gamepad2, Dumbbell, Utensils, Music } from "lucide-react";
+
 const creators = [
-  { handle: "@techwithalex", niche: "Tech & Gadgets", followers: "2.4M", emoji: "💻" },
-  { handle: "@lifewithsara", niche: "Lifestyle & Beauty", followers: "1.8M", emoji: "✨" },
-  { handle: "@gamingwithkai", niche: "Gaming & Esports", followers: "3.1M", emoji: "🎮" },
-  { handle: "@fitnessbyjordan", niche: "Health & Fitness", followers: "980K", emoji: "💪" },
-  { handle: "@foodiemaya", niche: "Food & Travel", followers: "1.2M", emoji: "🍜" },
-  { handle: "@musicbyryan", niche: "Music & Entertainment", followers: "2.7M", emoji: "🎵" },
+  { handle: "@techwithalex", niche: "Tech & Gadgets", followers: "2.4M", Icon: Monitor },
+  { handle: "@lifewithsara", niche: "Lifestyle & Beauty", followers: "1.8M", Icon: Sparkles },
+  { handle: "@gamingwithkai", niche: "Gaming & Esports", followers: "3.1M", Icon: Gamepad2 },
+  { handle: "@fitnessbyjordan", niche: "Health & Fitness", followers: "980K", Icon: Dumbbell },
+  { handle: "@foodiemaya", niche: "Food & Travel", followers: "1.2M", Icon: Utensils },
+  { handle: "@musicbyryan", niche: "Music & Entertainment", followers: "2.7M", Icon: Music },
 ];
 
 export default function Roster() {
@@ -30,10 +32,10 @@ export default function Roster() {
             >
               <div className="flex items-center gap-4 mb-4">
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0"
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
                   style={{ background: "rgba(168,85,247,0.15)" }}
                 >
-                  {c.emoji}
+                  <c.Icon className="w-7 h-7 text-purple-400" strokeWidth={1.5} />
                 </div>
                 <div>
                   <p className="font-black text-white text-sm tracking-wide">{c.handle}</p>

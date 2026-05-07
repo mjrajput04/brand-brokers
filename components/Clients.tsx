@@ -1,10 +1,10 @@
 "use client";
 
 const clients = [
-  "🔥 Rooter", "🎮 Gamerji", "📱 Infinix", "📊 IQ Option",
-  "⚔️ Mobile Legends", "🏆 Rooter", "📺 WePlay", "🎯 Indus Battle Royale",
-  "💰 BigCash", "🌟 Samsung", "🎭 STAN", "🤖 MetaSpace",
-  "👑 Jackaroo King", "🎪 MS5",
+  "Rooter", "Gamerji", "Infinix", "IQ Option",
+  "Mobile Legends", "Rooter", "WePlay", "Indus Battle Royale",
+  "BigCash", "Samsung", "STAN", "MetaSpace",
+  "Jackaroo King", "MS5",
 ];
 
 const row2 = [...clients].reverse();

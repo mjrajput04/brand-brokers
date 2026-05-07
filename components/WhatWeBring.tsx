@@ -1,19 +1,21 @@
 "use client";
 
+import { Camera, Play, Music, Gamepad2, Smartphone, Tv, Globe, BarChart3, Cloud, Handshake } from "lucide-react";
+
 const orbitingIcons = [
-  { emoji: "📸", angle: 0 },
-  { emoji: "▶️", angle: 72 },
-  { emoji: "🎵", angle: 144 },
-  { emoji: "🎮", angle: 216 },
-  { emoji: "📱", angle: 288 },
+  { Icon: Camera, angle: 0 },
+  { Icon: Play, angle: 72 },
+  { Icon: Music, angle: 144 },
+  { Icon: Gamepad2, angle: 216 },
+  { Icon: Smartphone, angle: 288 },
 ];
 
 const offerings = [
-  { icon: "📺", title: "OEM & CTV Ads Expertise" },
-  { icon: "🌐", title: "Dedicated Creator Network Across Multiple Niches" },
-  { icon: "📊", title: "Measurable, Outcome Driven Approach" },
-  { icon: "☁️", title: "Pre-Install & Cloud Install Capabilities" },
-  { icon: "🤝", title: "Integrated Influencer + Performance Execution" },
+  { Icon: Tv, title: "OEM & CTV Ads Expertise" },
+  { Icon: Globe, title: "Dedicated Creator Network Across Multiple Niches" },
+  { Icon: BarChart3, title: "Measurable, Outcome Driven Approach" },
+  { Icon: Cloud, title: "Pre-Install & Cloud Install Capabilities" },
+  { Icon: Handshake, title: "Integrated Influencer + Performance Execution" },
 ];
 
 export default function WhatWeBring() {
@@ -38,8 +40,8 @@ export default function WhatWeBring() {
                   className="reveal flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 hover:border-purple-500 hover:bg-purple-500/5 cursor-default"
                   style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0" style={{ background: "rgba(168,85,247,0.15)" }}>
-                    {o.icon}
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(168,85,247,0.15)" }}>
+                    <o.Icon className="w-6 h-6 text-purple-400" strokeWidth={1.5} />
                   </div>
                   <span className="font-semibold text-white">{o.title}</span>
                 </div>
@@ -70,7 +72,7 @@ export default function WhatWeBring() {
                 </div>
               </div>
 
-              {/* Orbiting emoji icons — outer div positions, inner div floats */}
+              {/* Orbiting icons — outer div positions, inner div floats */}
               {orbitingIcons.map((item, i) => {
                 const rad = (item.angle * Math.PI) / 180;
                 const radius = 160;
@@ -87,7 +89,7 @@ export default function WhatWeBring() {
                     }}
                   >
                     <div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
+                      className="w-12 h-12 rounded-2xl flex items-center justify-center"
                       style={{
                         background: "rgba(168,85,247,0.25)",
                         border: "1px solid rgba(168,85,247,0.5)",
@@ -96,7 +98,7 @@ export default function WhatWeBring() {
                         animationDelay: `${Math.round(i * 0.3 * 10) / 10}s`,
                       }}
                     >
-                      {item.emoji}
+                      <item.Icon className="w-6 h-6 text-purple-300" strokeWidth={1.5} />
                     </div>
                   </div>
                 );

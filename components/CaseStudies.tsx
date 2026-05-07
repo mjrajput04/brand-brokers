@@ -1,5 +1,7 @@
 "use client";
 
+import { Eye, IndianRupee, ThumbsUp, Download, Star, Mic2 } from "lucide-react";
+
 const cases = [
   {
     num: "01", brand: "WEPLAY", color: "#a855f7",
@@ -7,10 +9,10 @@ const cases = [
     strategy: "Activated top performing gaming channels with relatable short-form content to spark curiosity & maximize reach.",
     execution: ["Multiple creator led short videos", "Audience specific hooks focusing on gameplay experience", "Momentum based posting to maintain buzz"],
     stats: [
-      { value: "200K+", label: "Views", icon: "👁️" },
-      { value: "₹0.15", label: "CPV", icon: "💰" },
-      { value: "20K+", label: "Likes", icon: "👍" },
-      { value: "2K+", label: "Installs", icon: "📲" },
+      { value: "200K+", label: "Views", Icon: Eye },
+      { value: "₹0.15", label: "CPV", Icon: IndianRupee },
+      { value: "20K+", label: "Likes", Icon: ThumbsUp },
+      { value: "2K+", label: "Installs", Icon: Download },
     ],
   },
   {
@@ -19,9 +21,9 @@ const cases = [
     strategy: "Partnered with high-engagement gaming creators to drive credibility & showcase real in-game performance.",
     execution: ["Product-focused short videos & gameplay sequences", "Authentic creator opinions", "Barter collaboration to maximize ROI"],
     stats: [
-      { value: "3.6M+", label: "Views", icon: "👁️" },
-      { value: "200K+", label: "Likes", icon: "👍" },
-      { value: "4", label: "Influencers", icon: "🌟" },
+      { value: "3.6M+", label: "Views", Icon: Eye },
+      { value: "200K+", label: "Likes", Icon: ThumbsUp },
+      { value: "4", label: "Influencers", Icon: Star },
     ],
   },
   {
@@ -30,8 +32,8 @@ const cases = [
     strategy: "Used gaming creators to push Shorts, Reels, Stories, and community posts promoting the podcast.",
     execution: ["Community driven engagement", "Positioning the podcast as a 'must-watch' for gaming enthusiasts transitioning to Web3"],
     stats: [
-      { value: "1M+", label: "Views", icon: "👁️" },
-      { value: "100K+", label: "Podcast Views", icon: "🎙️" },
+      { value: "1M+", label: "Views", Icon: Eye },
+      { value: "100K+", label: "Podcast Views", Icon: Mic2 },
     ],
   },
 ];
@@ -81,7 +83,7 @@ export default function CaseStudies() {
                 <div className="grid grid-cols-2 gap-4">
                   {c.stats.map((s, j) => (
                     <div key={j} className="flex flex-col items-center p-4 rounded-2xl" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                      <span className="text-2xl mb-1">{s.icon}</span>
+                      <s.Icon className="w-6 h-6 mb-2" style={{ color: c.color }} strokeWidth={1.5} />
                       <span className="font-black text-white text-2xl">{s.value}</span>
                       <span className="text-xs mt-1" style={{ color: "#888" }}>{s.label}</span>
                     </div>

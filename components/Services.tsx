@@ -1,20 +1,22 @@
 "use client";
 
+import { Users, BarChart3, Star } from "lucide-react";
+
 const services = [
   {
-    icon: "👥",
+    Icon: Users,
     title: "INFLUENCER MARKETING",
     items: ["End to end creator management", "Data driven shortlisting", "Strategic content planning", "Performance tracking"],
     color: "#a855f7",
   },
   {
-    icon: "📈",
+    Icon: BarChart3,
     title: "PERFORMANCE MARKETING",
     items: ["OEM Ads", "Preload Installs", "CTV Advertising"],
     color: "#7c3aed",
   },
   {
-    icon: "🌟",
+    Icon: Star,
     title: "TALENT MANAGEMENT",
     items: ["Talent growth & development", "Brand collaboration management", "Dedicated support & deal flow"],
     color: "#6d28d9",
@@ -52,10 +54,10 @@ export default function Services() {
               <div className="relative p-8 flex flex-col gap-6 flex-1">
                 {/* Icon */}
                 <div
-                  className="w-16 h-16 flex items-center justify-center text-3xl rounded-2xl flex-shrink-0"
+                  className="w-16 h-16 flex items-center justify-center rounded-2xl flex-shrink-0"
                   style={{ background: `${s.color}22`, border: `1px solid ${s.color}44` }}
                 >
-                  {s.icon}
+                  <s.Icon className="w-8 h-8" style={{ color: s.color }} strokeWidth={1.5} />
                 </div>
 
                 {/* Title */}

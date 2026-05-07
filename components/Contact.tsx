@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Mail, Globe, ArrowRight } from "lucide-react";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -27,7 +28,9 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-6 stagger max-w-2xl mx-auto">
           <div className="reveal card-hover group p-8 rounded-3xl cursor-pointer text-left" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,85,247,0.2)" }} onClick={() => copy("founders@brandbrokers.in")}>
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl" style={{ background: "rgba(168,85,247,0.2)" }}>✉️</div>
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: "rgba(168,85,247,0.2)" }}>
+                <Mail className="w-6 h-6 text-purple-400" strokeWidth={1.5} />
+              </div>
               <span className="text-purple-400 font-bold text-sm uppercase tracking-widest">Email</span>
             </div>
             <p className="text-white font-bold text-lg group-hover:text-purple-400 transition-colors">founders@brandbrokers.in</p>
@@ -36,7 +39,9 @@ export default function Contact() {
 
           <a href="https://brandbrokers.in" target="_blank" rel="noopener noreferrer" className="reveal card-hover group p-8 rounded-3xl text-left block" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,85,247,0.2)" }}>
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl" style={{ background: "rgba(168,85,247,0.2)" }}>🌐</div>
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: "rgba(168,85,247,0.2)" }}>
+                <Globe className="w-6 h-6 text-purple-400" strokeWidth={1.5} />
+              </div>
               <span className="text-purple-400 font-bold text-sm uppercase tracking-widest">Website</span>
             </div>
             <p className="text-white font-bold text-lg group-hover:text-purple-400 transition-colors">brandbrokers.in</p>
@@ -46,7 +51,7 @@ export default function Contact() {
 
         <div className="reveal mt-12 text-center">
           <a href="mailto:founders@brandbrokers.in" className="inline-flex items-center gap-3 px-10 py-5 rounded-full font-black text-white text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl" style={{ background: "linear-gradient(135deg, #a855f7, #7c3aed)", boxShadow: "0 8px 40px rgba(168,85,247,0.5)" }}>
-            Start a Campaign <span className="text-2xl">→</span>
+            Start a Campaign <ArrowRight className="w-6 h-6" />
           </a>
         </div>
 

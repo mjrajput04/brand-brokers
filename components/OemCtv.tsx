@@ -1,5 +1,7 @@
 "use client";
 
+import { Cloud } from "lucide-react";
+
 const partners = ["Mi", "POCO", "realme", "OPPO", "Infinix", "TECNO"];
 const stats = [
   { label: "OEM India", value: "350M+" },
@@ -71,7 +73,9 @@ export default function OemCtv() {
             <p className="text-gray-300 leading-relaxed">A cloud managed distribution model where apps are pre installed at the factory or via cloud push before first device use, ensuring instant reach, zero CPI wastage, high visibility, and fraud free user acquisition.</p>
           </div>
           <div className="reveal-right flex justify-center">
-            <div className="w-32 h-32 rounded-3xl flex items-center justify-center text-6xl animate-float" style={{ background: "linear-gradient(135deg,#3b82f6,#1d4ed8)", boxShadow: "0 20px 60px rgba(59,130,246,0.4)" }}>☁️</div>
+            <div className="w-32 h-32 rounded-3xl flex items-center justify-center animate-float" style={{ background: "linear-gradient(135deg,#3b82f6,#1d4ed8)", boxShadow: "0 20px 60px rgba(59,130,246,0.4)" }}>
+              <Cloud className="w-16 h-16 text-white" strokeWidth={1.5} />
+            </div>
           </div>
         </div>
       </div>
