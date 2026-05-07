@@ -15,7 +15,7 @@ export default function WhyUs() {
     <section id="why-us" className="section-wrap" style={{ background: "#0a0a0a" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
-          <span className="section-label text-purple-400">Our Edge</span>
+          <span className="section-label text-white">Our Edge</span>
           <h2 className="section-heading text-white">WHY BRANDS CHOOSE US</h2>
         </div>
 
@@ -25,7 +25,7 @@ export default function WhyUs() {
             <path 
               id="curve-path"
               d="M 100,32 C 200,32 200,128 300,128 S 400,32 500,32 S 600,128 700,128 S 800,32 900,32" 
-              stroke="rgba(168,85,247,0.3)" 
+              stroke="rgba(255,255,255,0.2)" 
               strokeWidth="2" 
               fill="none" 
               strokeDasharray="6 6"
@@ -33,7 +33,7 @@ export default function WhyUs() {
             />
             <motion.circle
               r="6"
-              fill="#a855f7"
+              fill="#ffffff"
               initial={{ offsetDistance: "0%" }}
               animate={{ offsetDistance: "100%" }}
               transition={{
@@ -43,7 +43,7 @@ export default function WhyUs() {
               }}
               style={{
                 offsetPath: "path('M 100,32 C 200,32 200,128 300,128 S 400,32 500,32 S 600,128 700,128 S 800,32 900,32')",
-                filter: "drop-shadow(0 0 8px rgba(168,85,247,0.8))"
+                filter: "drop-shadow(0 0 8px rgba(255,255,255,0.8))"
               }}
             />
           </svg>
@@ -55,9 +55,9 @@ export default function WhyUs() {
                   animate={{
                     scale: [1, 1.3, 1],
                     boxShadow: [
-                      "0 0 0px rgba(168,85,247,0)",
-                      "0 0 50px rgba(168,85,247,0.9), 0 0 20px #fff",
-                      "0 0 0px rgba(168,85,247,0)"
+                      "0 0 0px rgba(255,255,255,0)",
+                      "0 0 50px rgba(255,255,255,0.4), 0 0 20px #fff",
+                      "0 0 0px rgba(255,255,255,0)"
                     ],
                   }}
                   transition={{
@@ -68,9 +68,9 @@ export default function WhyUs() {
                     ease: "easeInOut"
                   }}
                   style={{
-                    background: i % 2 === 0 ? "linear-gradient(135deg,#a855f7,#7c3aed)" : "rgba(168,85,247,0.15)",
-                    color: "#fff",
-                    border: "2px solid #a855f7",
+                    background: i % 2 === 0 ? "linear-gradient(135deg,#ffffff,#9ca3af)" : "rgba(255,255,255,0.1)",
+                    color: i % 2 === 0 ? "#000" : "#fff",
+                    border: "2px solid #ffffff",
                   }}
                 >
                   {r.num}
@@ -85,8 +85,8 @@ export default function WhyUs() {
         {/* Mobile */}
         <div className="md:hidden flex flex-col gap-6 stagger">
           {reasons.map((r) => (
-            <div key={r.num} className="reveal flex gap-5 p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(168,85,247,0.2)" }}>
-              <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-lg flex-shrink-0" style={{ background: "linear-gradient(135deg,#a855f7,#7c3aed)", color: "#fff" }}>
+            <div key={r.num} className="reveal flex gap-5 p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.2)" }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-lg flex-shrink-0" style={{ background: "linear-gradient(135deg,#ffffff,#9ca3af)", color: "#000" }}>
                 {r.num}
               </div>
               <div>

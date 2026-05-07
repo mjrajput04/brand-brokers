@@ -16,7 +16,7 @@ export default function Roster() {
     <section id="roster" className="section-wrap" style={{ background: "#0a0a0a" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-14">
-          <span className="section-label text-purple-400">Creator Network</span>
+          <span className="section-label text-white">Creator Network</span>
           <h2 className="section-heading text-white">OUR ROSTER</h2>
           <p className="mt-4 text-lg max-w-2xl mx-auto" style={{ color: "#aaa" }}>
             A curated network of high-impact creators across every major niche, ready to amplify your brand.
@@ -27,15 +27,15 @@ export default function Roster() {
           {creators.map((c) => (
             <div
               key={c.handle}
-              className="reveal p-6 rounded-2xl border transition-all duration-300 hover:border-purple-500 hover:bg-purple-500/5 cursor-default"
+              className="reveal p-6 rounded-2xl border transition-all duration-300 hover:border-white hover:bg-white/5 cursor-default"
               style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}
             >
               <div className="flex items-center gap-4 mb-4">
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                  style={{ background: "rgba(168,85,247,0.15)" }}
+                  style={{ background: "rgba(255,255,255,0.1)" }}
                 >
-                  <c.Icon className="w-7 h-7 text-purple-400" strokeWidth={1.5} />
+                  <c.Icon className="w-7 h-7 text-white" strokeWidth={1.5} />
                 </div>
                 <div>
                   <p className="font-black text-white text-sm tracking-wide">{c.handle}</p>
@@ -44,14 +44,14 @@ export default function Roster() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-xs font-medium tracking-widest uppercase" style={{ color: "#666" }}>Followers</span>
-                <span className="font-black text-lg" style={{ color: "#a855f7" }}>{c.followers}</span>
+                <span className="font-black text-lg text-white">{c.followers}</span>
               </div>
             </div>
           ))}
         </div>
 
         <div className="reveal mt-12 text-center">
-          <p className="font-medium tracking-wide" style={{ color: "#a855f7" }}>
+          <p className="font-medium tracking-wide text-white">
             500+ CREATORS ACROSS 20+ NICHES — AND GROWING.
           </p>
         </div>

@@ -7,29 +7,29 @@ const services = [
     Icon: Users,
     title: "INFLUENCER MARKETING",
     items: ["End to end creator management", "Data driven shortlisting", "Strategic content planning", "Performance tracking"],
-    color: "#a855f7",
+    color: "#ffffff",
   },
   {
     Icon: BarChart3,
     title: "PERFORMANCE MARKETING",
     items: ["OEM Ads", "Preload Installs", "CTV Advertising"],
-    color: "#7c3aed",
+    color: "#e5e7eb",
   },
   {
     Icon: Star,
     title: "TALENT MANAGEMENT",
     items: ["Talent growth & development", "Brand collaboration management", "Dedicated support & deal flow"],
-    color: "#6d28d9",
+    color: "#d1d5db",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="section-wrap" style={{ background: "#f0ede8" }}>
+    <section id="services" className="section-wrap" style={{ background: "#0a0a0a" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
-          <span className="section-label text-purple-500">What We Do</span>
-          <h2 className="section-heading">OUR SERVICES</h2>
+          <span className="section-label text-white">What We Do</span>
+          <h2 className="section-heading text-white">OUR SERVICES</h2>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -74,7 +74,7 @@ export default function Services() {
                     <li key={j} className="flex items-center gap-3 text-gray-300 text-sm">
                       <span
                         className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-black"
-                        style={{ background: s.color, color: "#fff" }}
+                        style={{ background: s.color, color: "#000" }}
                       >
                         {j + 1}
                       </span>

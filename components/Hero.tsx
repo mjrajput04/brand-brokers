@@ -107,7 +107,7 @@ export default function Hero() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(168,85,247,${p.alpha})`;
+        ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
         ctx.fill();
       });
 
@@ -121,7 +121,7 @@ export default function Hero() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(168,85,247,${0.1 * (1 - d / 120)})`;
+            ctx.strokeStyle = `rgba(255,255,255,${0.1 * (1 - d / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -142,18 +142,18 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ background: "#f0ede8" }}
+      style={{ background: "#0a0a0a" }}
     >
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ opacity: 0.6 }} />
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ opacity: 0.3 }} />
 
       {/* Floating orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute rounded-full animate-float"
-          style={{ width: 400, height: 400, top: "-10%", left: "-8%", background: "radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)", animationDuration: "7s" }} />
+          style={{ width: 400, height: 400, top: "-10%", left: "-8%", background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)", animationDuration: "7s" }} />
         <div className="absolute rounded-full animate-float"
-          style={{ width: 300, height: 300, bottom: "5%", right: "-5%", background: "radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%)", animationDuration: "9s", animationDelay: "1s" }} />
+          style={{ width: 300, height: 300, bottom: "5%", right: "-5%", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)", animationDuration: "9s", animationDelay: "1s" }} />
         <div className="absolute rounded-full animate-float"
-          style={{ width: 200, height: 200, top: "40%", right: "10%", background: "radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%)", animationDuration: "6s", animationDelay: "2s" }} />
+          style={{ width: 200, height: 200, top: "40%", right: "10%", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)", animationDuration: "6s", animationDelay: "2s" }} />
       </div>
 
       {/* BB watermark — magnetic */}
@@ -161,7 +161,7 @@ export default function Hero() {
         <span
           ref={bbRef}
           className="font-black text-center leading-none"
-          style={{ fontSize: "clamp(80px, 18vw, 280px)", color: "transparent", WebkitTextStroke: "1px rgba(0,0,0,0.04)", letterSpacing: "-0.02em", transition: "transform 0.1s ease", willChange: "transform" }}
+          style={{ fontSize: "clamp(80px, 18vw, 280px)", color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.03)", letterSpacing: "-0.02em", transition: "transform 0.1s ease", willChange: "transform" }}
         >
           BB
         </span>
@@ -174,14 +174,14 @@ export default function Hero() {
           <div className="relative flex justify-center mb-8 animate-fade-in">
             {logoPulsed && (
               <>
-                <span className="absolute inset-0 m-auto rounded-full" style={{ width: 80, height: 80, background: "rgba(168,85,247,0.2)", animation: "pulse-ring 1.5s ease-out forwards" }} />
-                <span className="absolute inset-0 m-auto rounded-full" style={{ width: 80, height: 80, background: "rgba(168,85,247,0.1)", animation: "pulse-ring 1.5s ease-out 0.4s forwards" }} />
+                <span className="absolute inset-0 m-auto rounded-full" style={{ width: 80, height: 80, background: "rgba(255,255,255,0.1)", animation: "pulse-ring 1.5s ease-out forwards" }} />
+                <span className="absolute inset-0 m-auto rounded-full" style={{ width: 80, height: 80, background: "rgba(255,255,255,0.05)", animation: "pulse-ring 1.5s ease-out 0.4s forwards" }} />
               </>
             )}
-            <img src="/logo/logo-black.png" alt="Brand Brokers" className="w-20 h-20 object-contain relative z-10 animate-float" style={{ animationDuration: "5s" }} />
+            <img src="/logo/logo-white.png" alt="Brand Brokers" className="w-20 h-20 object-contain relative z-10 animate-float" style={{ animationDuration: "5s" }} />
           </div>
 
-          {/* Heading — spotlight purple reveal on hover */}
+          {/* Heading — spotlight reveal on hover */}
           <h1
             ref={h1Ref}
             className="font-black leading-none mb-6 animate-fade-up relative"
@@ -189,14 +189,15 @@ export default function Hero() {
             onMouseEnter={() => setH1Hovered(true)}
             onMouseLeave={() => setH1Hovered(false)}
           >
-            {/* Base black text */}
-            <span style={{ color: "#0a0a0a", display: "block" }}>BRAND</span>
-            <span style={{ color: "#0a0a0a", display: "block" }}>BROKERS</span>
+            {/* Base text */}
+            <span style={{ color: "#ffffff", display: "block" }}>BRAND</span>
+            <span style={{ color: "#ffffff", display: "block" }}>BROKERS</span>
 
-            {/* Purple overlay — masked to cursor radius */}
+            {/* Reveal overlay — masked to cursor radius */}
             <div
               ref={overlayRef}
               aria-hidden
+              className="absolute inset-0 select-none pointer-events-none"
               style={{
                 position: "absolute", inset: 0,
                 WebkitMaskImage: h1Hovered ? "radial-gradient(circle 120px at var(--mx, -9999px) var(--my, -9999px), black 0%, transparent 100%)" : "radial-gradient(circle 0px at -9999px -9999px, black 0%, transparent 100%)",
@@ -204,17 +205,17 @@ export default function Hero() {
                 pointerEvents: "none",
               }}
             >
-              <span style={{ color: "transparent", display: "block", background: "linear-gradient(135deg, #a855f7, #7c3aed)", WebkitBackgroundClip: "text", backgroundClip: "text" }}>BRAND</span>
-              <span style={{ color: "transparent", display: "block", background: "linear-gradient(135deg, #a855f7, #7c3aed)", WebkitBackgroundClip: "text", backgroundClip: "text" }}>BROKERS</span>
+              <span style={{ color: "transparent", display: "block", background: "linear-gradient(135deg, #ffffff, #9ca3af)", WebkitBackgroundClip: "text", backgroundClip: "text" }}>BRAND</span>
+              <span style={{ color: "transparent", display: "block", background: "linear-gradient(135deg, #ffffff, #9ca3af)", WebkitBackgroundClip: "text", backgroundClip: "text" }}>BROKERS</span>
             </div>
           </h1>
 
           {/* Typewriter tagline */}
-          <p className="font-medium tracking-[0.3em] text-sm md:text-base mb-4 animate-fade-up delay-200" style={{ color: "#555", minHeight: "1.5em" }}>
-            {typed}<span className="inline-block w-0.5 h-4 ml-0.5 align-middle animate-pulse" style={{ background: "#a855f7" }} />
+          <p className="font-medium tracking-[0.3em] text-sm md:text-base mb-4 animate-fade-up delay-200" style={{ color: "#aaa", minHeight: "1.5em" }}>
+            {typed}<span className="inline-block w-0.5 h-4 ml-0.5 align-middle animate-pulse" style={{ background: "#ffffff" }} />
           </p>
 
-          <p className="text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 animate-fade-up delay-300" style={{ color: "#333", letterSpacing: "0.05em" }}>
+          <p className="text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 animate-fade-up delay-300" style={{ color: "#888", letterSpacing: "0.05em" }}>
             WHERE CREATORS MEET PERFORMANCE.<br />
             WHERE BRANDS MEET RESULTS.
           </p>
@@ -223,15 +224,15 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-400">
             <button
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 rounded-full font-bold text-white text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-              style={{ background: "linear-gradient(135deg, #a855f7, #7c3aed)", boxShadow: "0 8px 30px rgba(168,85,247,0.4)" }}
+              className="px-8 py-4 rounded-full font-bold text-black text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              style={{ background: "linear-gradient(135deg, #ffffff, #d1d5db)", boxShadow: "0 8px 30px rgba(255,255,255,0.2)" }}
             >
               Let's Build Together →
             </button>
             <button
               onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 rounded-full font-bold text-lg border-2 transition-all duration-300 hover:scale-105 hover:bg-black hover:text-white"
-              style={{ borderColor: "#0a0a0a", color: "#0a0a0a", background: "transparent" }}
+              className="px-8 py-4 rounded-full font-bold text-lg border-2 transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black"
+              style={{ borderColor: "#ffffff", color: "#ffffff", background: "transparent" }}
             >
               Explore Services
             </button>
@@ -241,9 +242,9 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in delay-800">
-        <span className="text-xs tracking-widest" style={{ color: "#888" }}>SCROLL</span>
-        <div className="w-px h-12 relative overflow-hidden" style={{ background: "rgba(0,0,0,0.1)" }}>
-          <div className="absolute top-0 left-0 w-full" style={{ height: "40%", background: "linear-gradient(to bottom, #a855f7, transparent)", animation: "fadeUp 1.5s ease infinite" }} />
+        <span className="text-xs tracking-widest" style={{ color: "#666" }}>SCROLL</span>
+        <div className="w-px h-12 relative overflow-hidden" style={{ background: "rgba(255,255,255,0.1)" }}>
+          <div className="absolute top-0 left-0 w-full" style={{ height: "40%", background: "linear-gradient(to bottom, #ffffff, transparent)", animation: "fadeUp 1.5s ease infinite" }} />
         </div>
       </div>
     </section>

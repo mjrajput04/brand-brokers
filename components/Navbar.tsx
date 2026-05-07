@@ -24,7 +24,7 @@ export default function Navbar() {
       style={{
         background: scrolled ? "rgba(10,10,10,0.95)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(168,85,247,0.2)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.1)" : "none",
         padding: scrolled ? "12px var(--section-pad-x)" : "20px var(--section-pad-x)",
       }}
     >
@@ -32,13 +32,12 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <img
-            src={scrolled ? "/logo/logo-white.png" : "/logo/logo-black.png"}
+            src="/logo/logo-white.png"
             alt="Brand Brokers Logo"
             className="w-10 h-10 object-contain transition-all duration-500"
           />
           <span
-            className="font-black text-xl tracking-tight"
-            style={{ color: scrolled ? "#fff" : "#0a0a0a" }}
+            className="font-black text-xl tracking-tight text-white"
           >
             BRAND BROKERS
           </span>
@@ -50,23 +49,22 @@ export default function Navbar() {
             <button
               key={l}
               onClick={() => scrollTo(l)}
-              className="text-sm font-medium tracking-wide transition-all duration-200 hover:text-purple-500 relative group"
-              style={{ color: scrolled ? "#ccc" : "#0a0a0a" }}
+              className="text-sm font-medium tracking-wide transition-all duration-200 hover:text-white relative group text-white"
             >
               {l}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
             </button>
           ))}
           <div className="ml-4 relative">
-            <span className="absolute inset-0 rounded-full" style={{ animation: "navbar-pulse 2s ease-out infinite", background: "rgba(168,85,247,0.4)", zIndex: 0 }} />
-            <span className="absolute inset-0 rounded-full" style={{ animation: "navbar-pulse 2s ease-out infinite", animationDelay: "0.6s", background: "rgba(168,85,247,0.25)", zIndex: 0 }} />
+            <span className="absolute inset-0 rounded-full" style={{ animation: "navbar-pulse 2s ease-out infinite", background: "rgba(255,255,255,0.2)", zIndex: 0 }} />
+            <span className="absolute inset-0 rounded-full" style={{ animation: "navbar-pulse 2s ease-out infinite", animationDelay: "0.6s", background: "rgba(255,255,255,0.1)", zIndex: 0 }} />
             <button
               onClick={() => scrollTo("Contact")}
               className="relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105"
               style={{
-                background: "linear-gradient(135deg, #a855f7, #7c3aed)",
-                color: "#fff",
-                boxShadow: "0 4px 24px rgba(168,85,247,0.6)",
+                background: "linear-gradient(135deg, #ffffff, #d1d5db)",
+                color: "#000",
+                boxShadow: "0 4px 24px rgba(255,255,255,0.2)",
               }}
             >
               Let's Talk
@@ -79,9 +77,8 @@ export default function Navbar() {
           {[0,1,2].map(i => (
             <span
               key={i}
-              className="block w-6 h-0.5 transition-all duration-300"
+              className="block w-6 h-0.5 transition-all duration-300 bg-white"
               style={{
-                background: scrolled ? "#fff" : "#0a0a0a",
                 transform: open && i === 0 ? "rotate(45deg) translate(5px,5px)" : open && i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none",
                 opacity: open && i === 1 ? 0 : 1,
               }}
@@ -97,7 +94,7 @@ export default function Navbar() {
       >
         <div className="flex flex-col gap-4 px-6 py-6" style={{ background: "rgba(10,10,10,0.98)" }}>
           {links.map(l => (
-            <button key={l} onClick={() => scrollTo(l)} className="text-white text-left text-lg font-medium hover:text-purple-400 transition-colors">
+            <button key={l} onClick={() => scrollTo(l)} className="text-white text-left text-lg font-medium hover:text-gray-400 transition-colors">
               {l}
             </button>
           ))}
