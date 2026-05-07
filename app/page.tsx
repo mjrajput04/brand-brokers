@@ -8,6 +8,7 @@ import WhyUs from "@/components/WhyUs";
 import CaseStudies from "@/components/CaseStudies";
 import OemCtv from "@/components/OemCtv";
 import UGC from "@/components/UGC";
+import Roster from "@/components/Roster";
 import Clients from "@/components/Clients";
 import Team from "@/components/Team";
 import Contact from "@/components/Contact";
@@ -26,6 +27,7 @@ export default function Home() {
         <CaseStudies />
         <OemCtv />
         <UGC />
+        <Roster />
         <Clients />
         <Team />
         <Contact />

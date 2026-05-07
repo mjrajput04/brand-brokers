@@ -207,17 +207,16 @@ body::before {
   pointer-events: none;
   z-index: 99999;
   transition: transform 0.1s ease;
-  mix-blend-mode: multiply;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
 }
 .custom-cursor-ring {
   width: 36px; height: 36px;
-  border: 2px solid #a855f7;
+  border: 1.5px solid rgba(168, 85, 247, 0.6);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 99998;
   transition: transform 0.15s ease, width 0.2s, height 0.2s;
-  mix-blend-mode: multiply;
 }
 
 /* Scrollbar */

@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const reasons = [
   { num: "01", title: "ADVERTISING EXPERTISE", desc: "Strong OEM & CTV advertising across various platforms." },
   { num: "02", title: "ROI DRIVEN", desc: "Planning on every campaign, ensuring measurable outcomes." },
@@ -19,23 +21,60 @@ export default function WhyUs() {
 
         {/* Desktop */}
         <div className="hidden md:block relative">
-          <svg className="absolute w-full" style={{ height: "4px", top: "50%", transform: "translateY(-50%)" }} viewBox="0 0 1000 4" preserveAspectRatio="none">
-            <path d="M0 2 Q500 2 1000 2" stroke="rgba(168,85,247,0.3)" strokeWidth="2" fill="none" strokeDasharray="8 4" />
+          <svg className="absolute w-full pointer-events-none" style={{ height: "160px", top: "0" }} viewBox="0 0 1000 160" preserveAspectRatio="none">
+            <path 
+              id="curve-path"
+              d="M 100,32 C 200,32 200,128 300,128 S 400,32 500,32 S 600,128 700,128 S 800,32 900,32" 
+              stroke="rgba(168,85,247,0.3)" 
+              strokeWidth="2" 
+              fill="none" 
+              strokeDasharray="6 6"
+              vectorEffect="non-scaling-stroke"
+            />
+            <motion.circle
+              r="6"
+              fill="#a855f7"
+              initial={{ offsetDistance: "0%" }}
+              animate={{ offsetDistance: "100%" }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{
+                offsetPath: "path('M 100,32 C 200,32 200,128 300,128 S 400,32 500,32 S 600,128 700,128 S 800,32 900,32')",
+                filter: "drop-shadow(0 0 8px rgba(168,85,247,0.8))"
+              }}
+            />
           </svg>
           <div className="grid grid-cols-5 gap-4 relative z-10">
             {reasons.map((r, i) => (
               <div key={r.num} className={`reveal flex flex-col items-center text-center ${i % 2 === 0 ? "" : "mt-24"}`} style={{ transitionDelay: `${i * 0.15}s` }}>
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center font-black text-xl mb-4 transition-all duration-300 hover:scale-110"
+                <motion.div
+                  className="w-16 h-16 rounded-full flex items-center justify-center font-black text-xl mb-4 relative z-10"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    boxShadow: [
+                      "0 0 0px rgba(168,85,247,0)",
+                      "0 0 50px rgba(168,85,247,0.9), 0 0 20px #fff",
+                      "0 0 0px rgba(168,85,247,0)"
+                    ],
+                  }}
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                    repeatDelay: 13.2,
+                    delay: i * 3.75 - 0.9,
+                    ease: "easeInOut"
+                  }}
                   style={{
                     background: i % 2 === 0 ? "linear-gradient(135deg,#a855f7,#7c3aed)" : "rgba(168,85,247,0.15)",
                     color: "#fff",
                     border: "2px solid #a855f7",
-                    boxShadow: i % 2 === 0 ? "0 0 30px rgba(168,85,247,0.5)" : "none",
                   }}
                 >
                   {r.num}
-                </div>
+                </motion.div>
                 <h4 className="font-black text-white text-xs tracking-widest mb-2">{r.title}</h4>
                 <p className="text-xs leading-relaxed" style={{ color: "#888" }}>{r.desc}</p>
               </div>
