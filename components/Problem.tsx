@@ -42,11 +42,29 @@ export default function Problem() {
               <div className="absolute inset-0 rounded-full" style={{ background: "conic-gradient(#ffffff 0deg 180deg, #333 180deg 360deg)", animation: "spin-slow 20s linear infinite" }} />
               <div className="absolute inset-2 rounded-full" style={{ background: "conic-gradient(#ffffff 0deg 180deg, #0a0a0a 180deg 360deg)" }} />
               <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="text-center">
-                  <div className="font-black text-2xl text-white">BRAND</div>
-                  <div className="flex justify-center text-xs font-bold mt-1 gap-2">
-                    <span className="text-white">WANT</span>
-                    <span className="text-gray-500">GETS</span>
+                <div className="relative text-center" style={{ width: 120 }}>
+                  {/* White text — visible on dark half */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ clipPath: "inset(0 50% 0 0)" }}>
+                    <div className="font-black text-2xl text-white leading-tight">BRAND</div>
+                    <div className="flex gap-3 text-xs font-bold mt-2">
+                      <span className="text-white">WANT</span>
+                      <span className="text-gray-400">GETS</span>
+                    </div>
+                  </div>
+                  {/* Black text — visible on white half */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ clipPath: "inset(0 0 0 50%)" }}>
+                    <div className="font-black text-2xl text-black leading-tight">BRAND</div>
+                    <div className="flex gap-3 text-xs font-bold mt-2">
+                      <span className="text-black">WANT</span>
+                      <span className="text-gray-600">GETS</span>
+                    </div>
+                  </div>
+                  {/* Invisible spacer for layout */}
+                  <div className="invisible">
+                    <div className="font-black text-2xl leading-tight">BRAND</div>
+                    <div className="flex gap-3 text-xs font-bold mt-2">
+                      <span>WANT</span><span>GETS</span>
+                    </div>
                   </div>
                 </div>
               </div>
