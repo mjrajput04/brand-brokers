@@ -5,11 +5,11 @@ import { LayoutDashboard, Briefcase, BookOpen, Users, Building2, Star, LogOut } 
 
 const nav = [
   { label: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
-  { label: "Services", href: "/admin/dashboard/services", icon: Briefcase },
-  { label: "Case Studies", href: "/admin/dashboard/case-studies", icon: BookOpen },
-  { label: "Team", href: "/admin/dashboard/team", icon: Users },
-  { label: "Clients", href: "/admin/dashboard/clients", icon: Building2 },
-  { label: "Roster", href: "/admin/dashboard/roster", icon: Star },
+  { label: "Services", href: "/admin/services", icon: Briefcase },
+  { label: "Case Studies", href: "/admin/case-studies", icon: BookOpen },
+  { label: "Team", href: "/admin/team", icon: Users },
+  { label: "Clients", href: "/admin/clients", icon: Building2 },
+  { label: "Roster", href: "/admin/roster", icon: Star },
 ];
 
 export default function AdminSidebar() {
