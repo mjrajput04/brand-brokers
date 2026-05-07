@@ -13,7 +13,7 @@ const creators = [
 
 export default function Roster() {
   return (
-    <section id="roster" className="section-wrap" style={{ background: "#0a0a0a" }}>
+    <section id="roster" className="section-wrap" style={{ background: "#0f0f0f" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-14">
           <span className="section-label text-white">Creator Network</span>

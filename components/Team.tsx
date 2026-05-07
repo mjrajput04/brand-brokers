@@ -10,7 +10,7 @@ const team = [
 
 export default function Team() {
   return (
-    <section id="team" className="section-wrap" style={{ background: "#0a0a0a" }}>
+    <section id="team" className="section-wrap" style={{ background: "#141414" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label text-white">The People</span>

@@ -11,7 +11,7 @@ const stats = [
 
 export default function OemCtv() {
   return (
-    <section id="oem-&-ctv" className="section-wrap" style={{ background: "#0a0a0a" }}>
+    <section id="oem-&-ctv" className="section-wrap" style={{ background: "#141414" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label text-white">Inventory</span>

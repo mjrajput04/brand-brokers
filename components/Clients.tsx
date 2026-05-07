@@ -18,7 +18,7 @@ const statsBar = [
 
 export default function Clients() {
   return (
-    <section id="clients" className="section-wrap" style={{ background: "#0a0a0a" }}>
+    <section id="clients" className="section-wrap" style={{ background: "#111111" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label text-purple-400">Our Work</span>

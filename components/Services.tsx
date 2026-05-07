@@ -25,7 +25,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="section-wrap" style={{ background: "#0a0a0a" }}>
+    <section id="services" className="section-wrap" style={{ background: "#141414" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label text-white">What We Do</span>

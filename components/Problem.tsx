@@ -11,7 +11,7 @@ const problems = [
 
 export default function Problem() {
   return (
-    <section id="problem" className="section-wrap" style={{ background: "#0a0a0a" }}>
+    <section id="problem" className="section-wrap" style={{ background: "#111111" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label text-white">The Challenge</span>
