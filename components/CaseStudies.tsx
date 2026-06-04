@@ -94,7 +94,7 @@ export default function CaseStudies() {
 
   return (
     <>
-      <section id="case-studies" className="section-wrap" style={{ background: "#111111" }}>
+      <section id="case-studies" className="section-wrap" style={{ background: "#111111", overflowX: "hidden" }}>
         <div className="section-inner">
           <div className="reveal text-center mb-16">
             <span className="section-label text-white">Proof of Work</span>
@@ -122,7 +122,7 @@ export default function CaseStudies() {
               {/* Hover glow */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ background: `radial-gradient(ellipse at 0% 50%, ${c.color}0f, transparent 60%)` }} />
 
-              <div className="relative grid md:grid-cols-2 gap-8 items-start p-8 md:p-10">
+              <div className="relative grid md:grid-cols-2 gap-6 items-start p-6 md:p-10">
                 {/* LEFT */}
                 <div>
                   <div className="flex items-center gap-4 mb-5">
@@ -175,14 +175,14 @@ export default function CaseStudies() {
 
               {/* Bottom nav bar — inside the card */}
               <div
-                className="flex items-center justify-between px-8 py-4"
+                className="flex items-center justify-between px-5 py-4"
                 style={{ borderTop: `1px solid ${c.color}22`, background: `${c.color}08` }}
                 onClick={e => e.stopPropagation()}
               >
                 <button
                   onClick={prev}
-                  className="flex items-center gap-2 text-sm font-bold transition-all duration-200 hover:opacity-100 opacity-60 hover:opacity-100"
-                  style={{ color: c.color }}
+                  className="flex items-center gap-2 text-sm font-bold transition-all duration-200 hover:opacity-100 min-h-[44px] px-2"
+                  style={{ color: c.color, opacity: 0.8 }}
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Prev
@@ -212,10 +212,10 @@ export default function CaseStudies() {
 
                 <button
                   onClick={next}
-                  className="flex items-center gap-2 text-sm font-bold transition-all duration-200"
-                  style={{ color: c.color, opacity: 0.6 }}
+                  className="flex items-center gap-2 text-sm font-bold transition-all duration-200 min-h-[44px] px-2"
+                  style={{ color: c.color, opacity: 0.8 }}
                   onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
-                  onMouseLeave={e => (e.currentTarget.style.opacity = "0.6")}
+                  onMouseLeave={e => (e.currentTarget.style.opacity = "0.8")}
                 >
                   Next
                   <ChevronRight className="w-4 h-4" />
@@ -232,21 +232,21 @@ export default function CaseStudies() {
           <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl" style={{ background: "#0d0d0d", border: `1px solid ${active.color}33`, boxShadow: `0 0 0 1px ${active.color}18, 0 50px 120px rgba(0,0,0,0.9)` }} onClick={e => e.stopPropagation()}>
             <div className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl" style={{ background: `linear-gradient(90deg, ${active.color}, ${active.accentLight}, ${active.color})` }} />
             <div className="absolute top-0 left-0 right-0 h-48 rounded-t-3xl pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 0%, ${active.color}18, transparent 70%)` }} />
-            <button onClick={() => setActive(null)} className="absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center rounded-full" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
+            <button onClick={() => setActive(null)} className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
               <X className="w-4 h-4 text-white" />
             </button>
-            <div className="relative p-8 md:p-12">
-              <div className="mb-8">
+            <div className="relative p-6 md:p-12">
+              <div className="mb-6">
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="font-black text-7xl select-none leading-none" style={{ color: `${active.color}22` }}>{active.num}</span>
+                  <span className="font-black text-5xl md:text-7xl select-none leading-none" style={{ color: `${active.color}22` }}>{active.num}</span>
                   <div>
                     <p className="text-xs font-bold tracking-widest uppercase" style={{ color: active.color }}>{active.category}</p>
-                    <h2 className="font-black text-white text-3xl md:text-4xl">{active.brand}</h2>
+                    <h2 className="font-black text-white text-2xl md:text-4xl">{active.brand}</h2>
                   </div>
                 </div>
                 <p className="text-gray-500 text-sm leading-relaxed max-w-xl">{active.objective}</p>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
                 {active.stats.map((s, j) => (
                   <div key={j} className="flex flex-col items-center py-4 px-3 rounded-2xl" style={{ background: `${active.color}0f`, border: `1px solid ${active.color}28` }}>
                     <s.Icon className="w-5 h-5 mb-2" style={{ color: active.color }} strokeWidth={1.5} />
@@ -255,15 +255,15 @@ export default function CaseStudies() {
                   </div>
                 ))}
               </div>
-              <div className="mb-8" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }} />
+              <div className="mb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }} />
               {[
                 { Icon: Target,   title: "BACKGROUND AND CHALLENGE", text: active.fullDetail.background },
                 { Icon: Lightbulb, title: "OUR APPROACH",             text: active.fullDetail.approach },
                 { Icon: Zap,      title: "RESULTS",                   text: active.fullDetail.results },
               ].map(({ Icon, title, text }) => (
-                <div key={title} className="flex gap-4 mb-8">
-                  <div className="w-10 h-10 flex items-center justify-center rounded-xl flex-shrink-0" style={{ background: `${active.color}18`, border: `1px solid ${active.color}33` }}>
-                    <Icon className="w-5 h-5" style={{ color: active.color }} />
+                <div key={title} className="flex gap-3 mb-6">
+                  <div className="w-9 h-9 flex items-center justify-center rounded-xl flex-shrink-0" style={{ background: `${active.color}18`, border: `1px solid ${active.color}33` }}>
+                    <Icon className="w-4 h-4" style={{ color: active.color }} />
                   </div>
                   <div>
                     <h4 className="font-black text-xs tracking-widest uppercase mb-2" style={{ color: active.color }}>{title}</h4>
@@ -271,7 +271,7 @@ export default function CaseStudies() {
                   </div>
                 </div>
               ))}
-              <div className="flex flex-col gap-3 mb-8">
+              <div className="flex flex-col gap-3 mb-6">
                 <h4 className="font-black text-xs tracking-widest uppercase" style={{ color: active.color }}>EXECUTION BREAKDOWN</h4>
                 {active.execution.map((ex, i) => (
                   <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
@@ -280,15 +280,15 @@ export default function CaseStudies() {
                   </div>
                 ))}
               </div>
-              <div className="rounded-2xl p-6 mb-8" style={{ background: `${active.color}0a`, border: `1px solid ${active.color}22` }}>
+              <div className="rounded-2xl p-5 mb-6" style={{ background: `${active.color}0a`, border: `1px solid ${active.color}22` }}>
                 <p className="text-xs font-black tracking-widest uppercase mb-2" style={{ color: active.color }}>KEY LEARNING</p>
                 <p className="text-gray-300 text-sm leading-relaxed italic">&ldquo;{active.fullDetail.learnings}&rdquo;</p>
               </div>
-              <div className="flex gap-4">
-                <a href="#contact" onClick={() => setActive(null)} className="flex items-center gap-2 px-6 py-3 rounded-xl font-black text-sm hover:opacity-90 transition-opacity" style={{ background: active.color, color: "#000" }}>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href="#contact" onClick={() => setActive(null)} className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-sm hover:opacity-90 transition-opacity min-h-[48px]" style={{ background: active.color, color: "#000" }}>
                   Work With Us <ArrowRight className="w-4 h-4" />
                 </a>
-                <button onClick={() => setActive(null)} className="px-6 py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-colors" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <button onClick={() => setActive(null)} className="flex items-center justify-center px-6 py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-colors min-h-[48px]" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
                   Close
                 </button>
               </div>

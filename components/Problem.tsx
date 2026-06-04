@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 
 const rows = [
-  { want: "Real Performance",    get: "Vanity Metrics",       pct: 23 },
-  { want: "Authentic Creators",  get: "Fake Influence",        pct: 31 },
-  { want: "Measurable ROI",      get: "Black-Box Spend",       pct: 18 },
+  { want: "Real Performance",    get: "Vanity Metrics",   pct: 23 },
+  { want: "Authentic Creators",  get: "Fake Influence",   pct: 31 },
+  { want: "Measurable ROI",      get: "Black-Box Spend",  pct: 18 },
 ];
 
 function Bar({ pct, active }: { pct: number; active: boolean }) {
@@ -51,16 +51,10 @@ export default function Problem() {
 
   return (
     <section id="problem" className="section-wrap" style={{ background: "#111", position: "relative", overflow: "hidden", paddingTop: "clamp(3rem,6vw,5rem)", paddingBottom: "clamp(3rem,6vw,5rem)" }}>
-
-      {/* bg grid */}
       <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse at 50% 50%,black 30%,transparent 75%)" }} />
-
-      {/* scanline */}
       <div aria-hidden style={{ position: "absolute", left: 0, right: 0, top: `${scan}%`, height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.06) 40%,rgba(255,255,255,0.06) 60%,transparent)", pointerEvents: "none" }} />
 
       <div className="section-inner" style={{ position: "relative", zIndex: 1 }}>
-
-        {/* heading */}
         <div className="reveal text-center mb-10">
           <span className="section-label text-white">The Challenge</span>
           <h2 className="section-heading text-white" style={{ fontSize: "clamp(2rem,5vw,3.5rem)" }}>THE PROBLEM</h2>
@@ -69,15 +63,14 @@ export default function Problem() {
           </p>
         </div>
 
-        {/* header row */}
-        <div className="reveal grid gap-3 mb-3" style={{ gridTemplateColumns: "1fr 32px 1fr auto" }}>
+        {/* Desktop header — hidden on mobile */}
+        <div className="reveal hidden sm:grid gap-3 mb-3" style={{ gridTemplateColumns: "1fr 32px 1fr auto" }}>
           <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.28em", textTransform: "uppercase", color: "#6b7280", textAlign: "center" }}>✓ want</div>
           <div />
           <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.28em", textTransform: "uppercase", color: "#ef4444", textAlign: "center" }}>✗ get</div>
           <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.28em", textTransform: "uppercase", color: "#374151", textAlign: "center", minWidth: 60 }}>score</div>
         </div>
 
-        {/* rows */}
         <div className="reveal flex flex-col gap-2">
           {rows.map((r, i) => {
             const on = active === i;
@@ -86,9 +79,9 @@ export default function Problem() {
                 key={i}
                 onMouseEnter={() => setActive(i)}
                 onMouseLeave={() => setActive(null)}
+                onTouchStart={() => setActive(i)}
+                onTouchEnd={() => setTimeout(() => setActive(null), 600)}
                 style={{
-                  display: "grid", gridTemplateColumns: "1fr 32px 1fr auto",
-                  alignItems: "center", gap: 0,
                   borderRadius: 14,
                   border: `1px solid ${on ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.06)"}`,
                   background: on ? "rgba(255,255,255,0.03)" : "transparent",
@@ -97,53 +90,58 @@ export default function Problem() {
                   transitionDuration: "0.25s", transitionTimingFunction: "ease",
                 }}
               >
-                {/* top shimmer line */}
-                <div style={{ gridColumn: "1/-1", height: 1, background: on ? "linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)" : "transparent", transitionProperty: "background", transitionDuration: "0.25s", transitionTimingFunction: "ease" }} />
+                <div style={{ height: 1, background: on ? "linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)" : "transparent", transitionProperty: "background", transitionDuration: "0.25s", transitionTimingFunction: "ease" }} />
 
-                {/* want */}
-                <div style={{ padding: "14px 18px" }}>
-                  <div style={{ fontWeight: 900, fontSize: 13, color: on ? "#fff" : "#9ca3af", letterSpacing: "-0.01em", transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }}>{r.want}</div>
-                  <Bar pct={100} active={false} />
-                </div>
-
-                {/* arrow */}
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <ArrowRight style={{ width: 12, height: 12, color: on ? "#ef4444" : "#374151", transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }} />
-                </div>
-
-                {/* get */}
-                <div style={{ padding: "14px 18px" }}>
-                  <div className={on ? "glitch" : ""} data-text={r.get} style={{ fontWeight: 900, fontSize: 13, color: on ? "#f87171" : "#4b5563", letterSpacing: "-0.01em", transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }}>{r.get}</div>
+                {/* Mobile layout */}
+                <div className="sm:hidden" style={{ padding: "14px 16px" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+                    <div style={{ fontWeight: 900, fontSize: 13, color: on ? "#fff" : "#9ca3af" }}>{r.want}</div>
+                    <div style={{ fontWeight: 900, fontSize: 16, color: on ? "#fff" : "#374151" }}>{r.pct}%</div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
+                    <ArrowRight style={{ width: 10, height: 10, color: on ? "#ef4444" : "#374151", flexShrink: 0 }} />
+                    <div className={on ? "glitch" : ""} data-text={r.get} style={{ fontWeight: 900, fontSize: 12, color: on ? "#f87171" : "#4b5563" }}>{r.get}</div>
+                  </div>
                   <Bar pct={r.pct} active={on} />
                 </div>
 
-                {/* score */}
-                <div style={{ padding: "14px 18px", minWidth: 60, textAlign: "center" }}>
-                  <div style={{ fontWeight: 900, fontSize: 20, color: on ? "#fff" : "#374151", lineHeight: 1, transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }}>{r.pct}%</div>
-                  <div style={{ fontSize: 9, color: "#374151", marginTop: 3, textTransform: "uppercase", letterSpacing: "0.1em" }}>satisfied</div>
+                {/* Desktop layout */}
+                <div className="hidden sm:grid" style={{ gridTemplateColumns: "1fr 32px 1fr auto", alignItems: "center", gap: 0 }}>
+                  <div style={{ padding: "14px 18px" }}>
+                    <div style={{ fontWeight: 900, fontSize: 13, color: on ? "#fff" : "#9ca3af", letterSpacing: "-0.01em", transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }}>{r.want}</div>
+                    <Bar pct={100} active={false} />
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <ArrowRight style={{ width: 12, height: 12, color: on ? "#ef4444" : "#374151", transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }} />
+                  </div>
+                  <div style={{ padding: "14px 18px" }}>
+                    <div className={on ? "glitch" : ""} data-text={r.get} style={{ fontWeight: 900, fontSize: 13, color: on ? "#f87171" : "#4b5563", letterSpacing: "-0.01em", transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }}>{r.get}</div>
+                    <Bar pct={r.pct} active={on} />
+                  </div>
+                  <div style={{ padding: "14px 18px", minWidth: 60, textAlign: "center" }}>
+                    <div style={{ fontWeight: 900, fontSize: 20, color: on ? "#fff" : "#374151", lineHeight: 1, transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }}>{r.pct}%</div>
+                    <div style={{ fontSize: 9, color: "#374151", marginTop: 3, textTransform: "uppercase", letterSpacing: "0.1em" }}>satisfied</div>
+                  </div>
                 </div>
-
               </div>
             );
           })}
         </div>
 
-        {/* bottom bar */}
-        <div className="reveal mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
-          <p style={{ fontWeight: 900, fontSize: 15, color: "#fff", margin: 0 }}>
+        <div className="reveal mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-5 py-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+          <p style={{ fontWeight: 900, fontSize: 15, color: "#fff", margin: 0, textAlign: "center" }}>
             Brand Brokers closes every gap.
           </p>
           <a
             href="#services"
             onClick={e => { e.preventDefault(); document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }); }}
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 22px", borderRadius: 10, fontWeight: 900, fontSize: 12, color: "#000", background: "linear-gradient(135deg,#fff,#d1d5db)", textDecoration: "none", flexShrink: 0 }}
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "12px 22px", borderRadius: 10, fontWeight: 900, fontSize: 12, color: "#000", background: "linear-gradient(135deg,#fff,#d1d5db)", textDecoration: "none", flexShrink: 0, minHeight: 44 }}
             onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
             onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
           >
             See How <ArrowRight style={{ width: 14, height: 14 }} />
           </a>
         </div>
-
       </div>
     </section>
   );

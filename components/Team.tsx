@@ -10,7 +10,7 @@ const team = [
 
 export default function Team() {
   return (
-    <section id="team" className="section-wrap" style={{ background: "#141414" }}>
+    <section id="team" className="section-wrap" style={{ background: "#141414", overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label text-white">The People</span>
@@ -39,9 +39,9 @@ export default function Team() {
         </div>
 
         <div className="reveal mt-12 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-            <Zap className="w-6 h-6 text-white" fill="currentColor" />
-            <span className="font-bold text-white">Young · Agile · Transparent · Performance Driven</span>
+          <div className="inline-flex flex-wrap items-center justify-center gap-3 px-6 py-3 rounded-full" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+            <Zap className="w-5 h-5 text-white flex-shrink-0" fill="currentColor" />
+            <span className="font-bold text-white text-sm text-center">Young · Agile · Transparent · Performance Driven</span>
           </div>
         </div>
       </div>

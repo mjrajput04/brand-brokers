@@ -83,7 +83,7 @@ export default function UGC() {
 
   return (
     <>
-      <section id="ugc" className="section-wrap" style={{ background: "#0a0a0a" }}>
+      <section id="ugc" className="section-wrap" style={{ background: "#0a0a0a", overflowX: "hidden" }}>
         <div className="section-inner">
 
           {/* Top split */}
@@ -99,10 +99,10 @@ export default function UGC() {
             </div>
             <div className="reveal-right flex justify-center">
               <div
-                className="w-40 h-40 rounded-3xl flex items-center justify-center animate-float"
+                className="w-28 h-28 sm:w-40 sm:h-40 rounded-3xl flex items-center justify-center animate-float"
                 style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 80px rgba(255,255,255,0.05)" }}
               >
-                <Clapperboard className="w-20 h-20 text-white" strokeWidth={1.5} />
+                <Clapperboard className="w-14 h-14 sm:w-20 sm:h-20 text-white" strokeWidth={1.5} />
               </div>
             </div>
           </div>
@@ -111,10 +111,10 @@ export default function UGC() {
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div className="reveal-left order-2 md:order-1 flex justify-center">
               <div
-                className="w-40 h-40 rounded-3xl flex items-center justify-center animate-float"
+                className="w-28 h-28 sm:w-40 sm:h-40 rounded-3xl flex items-center justify-center animate-float"
                 style={{ background: "linear-gradient(135deg,#ffffff,#9ca3af)", boxShadow: "0 30px 80px rgba(255,255,255,0.1)", animationDelay: "1s" }}
               >
-                <TrendingUp className="w-20 h-20 text-black" strokeWidth={1.5} />
+                <TrendingUp className="w-14 h-14 sm:w-20 sm:h-20 text-black" strokeWidth={1.5} />
               </div>
             </div>
             <div className="reveal-right order-1 md:order-2">
@@ -250,23 +250,23 @@ export default function UGC() {
               <X className="w-4 h-4 text-white" />
             </button>
 
-            <div className="relative p-8 md:p-10">
+            <div className="relative p-6 md:p-10">
               {/* Header */}
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-4 mb-6">
                 <div
-                  className="w-14 h-14 flex items-center justify-center rounded-xl flex-shrink-0"
+                  className="w-12 h-12 flex items-center justify-center rounded-xl flex-shrink-0"
                   style={{ background: `${active.color}18`, border: `1px solid ${active.color}33` }}
                 >
-                  <active.icon className="w-7 h-7" style={{ color: active.color }} strokeWidth={1.5} />
+                  <active.icon className="w-6 h-6" style={{ color: active.color }} strokeWidth={1.5} />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p
                     className="text-xs font-black tracking-widest uppercase mb-0.5"
                     style={{ color: active.color }}
                   >
                     UGC Production
                   </p>
-                  <h2 className="font-black text-white text-2xl leading-tight">{active.title}</h2>
+                  <h2 className="font-black text-white text-xl leading-tight">{active.title}</h2>
                 </div>
               </div>
 
@@ -331,18 +331,18 @@ export default function UGC() {
               </div>
 
               {/* Actions */}
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <a
                   href="#contact"
                   onClick={() => setActive(null)}
-                  className="flex items-center gap-2 px-5 py-3 rounded-xl font-black text-sm hover:opacity-90 transition-opacity"
+                  className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-black text-sm hover:opacity-90 transition-opacity min-h-[48px]"
                   style={{ background: active.color, color: "#000" }}
                 >
                   Get Started <ArrowRight className="w-4 h-4" />
                 </a>
                 <button
                   onClick={() => setActive(null)}
-                  className="px-5 py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center justify-center px-5 py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-colors min-h-[48px]"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
                 >
                   Close

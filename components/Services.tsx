@@ -89,7 +89,7 @@ export default function Services() {
 
   return (
     <>
-      <section id="services" className="section-wrap" style={{ background: "#141414" }}>
+      <section id="services" className="section-wrap" style={{ background: "#141414", overflowX: "hidden" }}>
         <div className="section-inner">
 
           {/* Heading */}
@@ -245,15 +245,15 @@ export default function Services() {
               <X className="w-4 h-4 text-white" />
             </button>
 
-            <div className="relative p-8 md:p-12">
+            <div className="relative p-6 md:p-12">
               {/* Modal header */}
-              <div className="flex items-start gap-5 mb-10">
-                <div className="w-16 h-16 flex items-center justify-center rounded-2xl flex-shrink-0" style={{ background: `${active.color}18`, border: `1px solid ${active.color}33` }}>
-                  <active.Icon className="w-8 h-8" style={{ color: active.color }} strokeWidth={1.5} />
+              <div className="flex items-start gap-4 mb-8">
+                <div className="w-14 h-14 flex items-center justify-center rounded-2xl flex-shrink-0" style={{ background: `${active.color}18`, border: `1px solid ${active.color}33` }}>
+                  <active.Icon className="w-7 h-7" style={{ color: active.color }} strokeWidth={1.5} />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <span className="text-xs font-black tracking-widest uppercase" style={{ color: active.color }}>Our Service</span>
-                  <h2 className="font-black text-white text-2xl md:text-3xl leading-tight whitespace-pre-line mt-1">{active.title}</h2>
+                  <h2 className="font-black text-white text-xl md:text-3xl leading-tight whitespace-pre-line mt-1">{active.title}</h2>
                   <p className="text-gray-500 text-sm mt-1">{active.tagline}</p>
                 </div>
               </div>
@@ -300,18 +300,18 @@ export default function Services() {
               </div>
 
               {/* Actions */}
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <a
                   href="#contact"
                   onClick={() => setActive(null)}
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl font-black text-sm hover:opacity-90 transition-opacity"
+                  className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-sm hover:opacity-90 transition-opacity min-h-[48px]"
                   style={{ background: active.color, color: "#000" }}
                 >
                   Get Started <ArrowRight className="w-4 h-4" />
                 </a>
                 <button
                   onClick={() => setActive(null)}
-                  className="px-6 py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-colors"
+                  className="flex items-center justify-center px-6 py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-colors min-h-[48px]"
                   style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
                 >
                   Close

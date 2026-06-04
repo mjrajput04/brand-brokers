@@ -11,19 +11,19 @@ const stats = [
 
 export default function OemCtv() {
   return (
-    <section id="oem-&-ctv" className="section-wrap" style={{ background: "#141414" }}>
+    <section id="oem-&-ctv" className="section-wrap" style={{ background: "#141414", overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label text-white">Inventory</span>
           <h2 className="section-heading text-white">OEM & CTV ADS INVENTORY</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-16 items-center mb-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
           <div className="reveal-left">
             <h3 className="font-black text-white text-xl mb-8 tracking-widest uppercase">Partners:</h3>
             <div className="grid grid-cols-3 gap-4">
               {partners.map((p, i) => (
-                <div key={p} className="reveal card-hover p-4 rounded-2xl flex items-center justify-center font-black text-lg" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", color: "#fff", transitionDelay: `${i * 0.1}s` }}>
+                <div key={p} className="reveal card-hover p-4 rounded-2xl flex items-center justify-center font-black text-lg min-h-[56px]" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", color: "#fff", transitionDelay: `${i * 0.1}s` }}>
                   {p}
                 </div>
               ))}
@@ -39,7 +39,7 @@ export default function OemCtv() {
           </div>
 
           {/* Right — Reach visualization */}
-          <div className="reveal-right flex flex-col gap-4">
+          <div className="reveal-right flex flex-col gap-4 w-full">
             {/* Big reach number */}
             <div
               className="p-6 rounded-3xl"
@@ -96,7 +96,7 @@ export default function OemCtv() {
 
         <div className="reveal p-8 md:p-12 rounded-3xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
           <h3 className="font-black text-white text-xl tracking-widest uppercase mb-8 text-center">CUMULATIVE REACH – WW & INDIA</h3>
-          <div className="grid grid-cols-3 gap-6 stagger">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 stagger">
             {stats.map((s) => (
               <div key={s.label} className="reveal-scale text-center">
                 <p className="text-gray-500 text-xs font-bold tracking-widest uppercase mb-2">{s.label}</p>

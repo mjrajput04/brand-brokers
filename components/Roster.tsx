@@ -33,7 +33,7 @@ export default function Roster() {
   ];
 
   return (
-    <section id="roster" className="section-wrap" style={{ background: "#0f0f0f" }}>
+    <section id="roster" className="section-wrap" style={{ background: "#0f0f0f", overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-14">
           <span className="section-label text-white">Creator Network</span>
@@ -44,12 +44,12 @@ export default function Roster() {
         </div>
 
         {/* Carousel */}
-        <div className="relative flex items-center justify-center gap-0" style={{ minHeight: 320 }}>
+        <div className="relative flex items-center justify-center gap-0" style={{ minHeight: 280 }}>
 
           {/* Prev button */}
           <button
             onClick={prev}
-            className="absolute left-0 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+            className="absolute left-0 z-10 w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
             style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}
             aria-label="Previous"
           >
@@ -57,7 +57,8 @@ export default function Roster() {
           </button>
 
           {/* 3 cards */}
-          <div className="flex items-center justify-center gap-4 w-full px-16">
+          <div style={{ overflow: "hidden", width: "100%" }} className="px-12 md:px-16">
+          <div className="flex items-center justify-center gap-2 md:gap-4 w-full">
             {indices.map((ci, pos) => {
               const creator = creators[ci];
               const { scale, opacity, zIndex } = sizes[pos];
@@ -67,7 +68,7 @@ export default function Roster() {
                   key={ci}
                   onClick={() => !isCenter && (pos === 0 ? prev() : next())}
                   style={{
-                    flex: isCenter ? "0 0 340px" : "0 0 260px",
+                    flex: isCenter ? "0 0 clamp(200px, 44vw, 340px)" : "0 0 clamp(120px, 28vw, 260px)",
                     transform: `scale(${scale})`,
                     opacity,
                     zIndex,
@@ -78,7 +79,7 @@ export default function Roster() {
                   }}
                 >
                   <div
-                    className="p-7 rounded-3xl"
+                    className="p-4 md:p-7 rounded-3xl"
                     style={{
                       background: isCenter ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.02)",
                       border: `1px solid ${isCenter ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.07)"}`,
@@ -89,12 +90,12 @@ export default function Roster() {
                     }}
                   >
                     {/* Icon + handle */}
-                    <div className="flex items-center gap-4 mb-6">
+                    <div className="flex items-center gap-3 mb-4 md:gap-4 md:mb-6">
                       <div
                         className="rounded-2xl flex items-center justify-center flex-shrink-0"
                         style={{
-                          width: isCenter ? 64 : 52,
-                          height: isCenter ? 64 : 52,
+                          width: isCenter ? "clamp(44px,8vw,64px)" : "clamp(36px,6vw,52px)",
+                          height: isCenter ? "clamp(44px,8vw,64px)" : "clamp(36px,6vw,52px)",
                           background: isCenter ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.07)",
                           transitionProperty: "width, height, background",
                           transitionDuration: "0.4s",
@@ -102,24 +103,24 @@ export default function Roster() {
                         }}
                       >
                         <creator.Icon
-                          style={{ width: isCenter ? 30 : 24, height: isCenter ? 30 : 24, color: "#ffffff", strokeWidth: 1.5, transitionProperty: "width, height", transitionDuration: "0.4s" }}
+                          style={{ width: isCenter ? "clamp(20px,4vw,30px)" : "clamp(16px,3vw,24px)", height: isCenter ? "clamp(20px,4vw,30px)" : "clamp(16px,3vw,24px)", color: "#ffffff", strokeWidth: 1.5 }}
                         />
                       </div>
-                      <div>
-                        <p className="font-black text-white" style={{ fontSize: isCenter ? 15 : 13 }}>{creator.handle}</p>
-                        <p className="text-xs mt-0.5" style={{ color: "#666" }}>{creator.niche}</p>
+                      <div className="min-w-0">
+                        <p className="font-black text-white truncate" style={{ fontSize: isCenter ? "clamp(11px,2.5vw,15px)" : "clamp(10px,2vw,13px)" }}>{creator.handle}</p>
+                        <p className="text-xs mt-0.5 truncate" style={{ color: "#666", fontSize: "clamp(9px,1.5vw,11px)" }}>{creator.niche}</p>
                       </div>
                     </div>
 
                     {/* Followers */}
                     <div className="flex items-end justify-between">
-                      <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "#555" }}>Followers</span>
-                      <span className="font-black text-white" style={{ fontSize: isCenter ? 28 : 22 }}>{creator.followers}</span>
+                      <span className="font-bold tracking-widest uppercase hidden sm:block" style={{ color: "#555", fontSize: "clamp(8px,1.2vw,10px)" }}>Followers</span>
+                      <span className="font-black text-white" style={{ fontSize: isCenter ? "clamp(18px,4vw,28px)" : "clamp(14px,3vw,22px)" }}>{creator.followers}</span>
                     </div>
 
                     {isCenter && (
-                      <div className="mt-4 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-                        <p className="text-xs text-center font-bold tracking-widest uppercase" style={{ color: "#555" }}>
+                      <div className="mt-3 pt-3 md:mt-4 md:pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                        <p className="text-center font-bold tracking-widest uppercase" style={{ color: "#555", fontSize: "clamp(8px,1.5vw,10px)" }}>
                           Available for brand deals
                         </p>
                       </div>
@@ -129,11 +130,12 @@ export default function Roster() {
               );
             })}
           </div>
+          </div>
 
           {/* Next button */}
           <button
             onClick={next}
-            className="absolute right-0 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+            className="absolute right-0 z-10 w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
             style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}
             aria-label="Next"
           >

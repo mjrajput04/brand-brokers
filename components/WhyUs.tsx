@@ -12,7 +12,7 @@ const reasons = [
 
 export default function WhyUs() {
   return (
-    <section id="why-us" className="section-wrap" style={{ background: "#0f0f0f" }}>
+    <section id="why-us" className="section-wrap" style={{ background: "#0f0f0f", overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label text-white">Our Edge</span>

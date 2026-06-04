@@ -34,7 +34,7 @@ function MagneticHeading({ mouseRef }: { mouseRef: React.RefObject<{ x: number; 
   let idx = 0;
   return (
     <h1 className="font-black leading-none animate-fade-up relative select-none"
-      style={{ fontSize: "clamp(42px,10vw,120px)", letterSpacing: "-0.03em" }}>
+      style={{ fontSize: "clamp(32px,9vw,120px)", letterSpacing: "-0.03em" }}>
       {lines.map((line, li) => (
         <div key={li} style={{ display: "block" }}>
           {Array.from(line).map((char) => {
@@ -187,7 +187,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ background: "#0a0a0a" }}>
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden w-full" style={{ background: "#0a0a0a", maxWidth: "100vw" }}>
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ opacity: 0.3 }} />
 
       {/* Floating orbs */}
@@ -198,9 +198,9 @@ export default function Hero() {
       </div>
 
       {/* BB watermark */}
-      <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none overflow-hidden" style={{ maxWidth: "100vw" }}>
         <span ref={bbRef} className="font-black text-center leading-none"
-          style={{ fontSize: "clamp(80px,18vw,280px)", color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.03)", letterSpacing: "-0.02em", willChange: "transform" }}>
+          style={{ fontSize: "clamp(60px,18vw,280px)", color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.03)", letterSpacing: "-0.02em", willChange: "transform", maxWidth: "100vw" }}>
           BB
         </span>
       </div>
@@ -218,7 +218,7 @@ export default function Hero() {
             )}
             <video src="/logo/logo-anim.webm" autoPlay loop muted playsInline
               className="relative z-10 animate-float"
-              style={{ width: 220, height: 220, objectFit: "contain", mixBlendMode: "screen", animationDuration: "6s", marginBottom: "-24px" }} />
+              style={{ width: "clamp(140px, 18vw, 220px)", height: "clamp(140px, 18vw, 220px)", objectFit: "contain", mixBlendMode: "screen", animationDuration: "6s", marginBottom: "-24px" }} />
             <MagneticHeading mouseRef={mouseRef} />
           </div>
 
@@ -240,14 +240,14 @@ export default function Hero() {
           </p>
 
           {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-400">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-400 w-full px-4 sm:px-0">
             <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 rounded-full font-bold text-black text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-black text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl min-h-[52px]"
               style={{ background: "linear-gradient(135deg,#ffffff,#d1d5db)", boxShadow: "0 8px 30px rgba(255,255,255,0.2)" }}>
               Let's Build Together →
             </button>
             <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 rounded-full font-bold text-lg border-2 transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black"
+              className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-lg border-2 transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black min-h-[52px]"
               style={{ borderColor: "#ffffff", color: "#ffffff", background: "transparent" }}>
               Explore Services
             </button>
