@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 52">
+  <!-- Nodwin Gaming: India's top esports company, yellow/black -->
+  <rect x="4" y="8" width="36" height="36" rx="8" fill="#FBBF24"/>
+  <!-- Lightning bolt -->
+  <polygon points="22,14 14,28 20,28 16,40 28,24 22,24" fill="#1a1a1a"/>
+  <!-- Name -->
+  <text x="48" y="25" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="13" fill="#FBBF24" letter-spacing="0.5">NODWIN</text>
+  <text x="48" y="41" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="10" fill="#ffffff" letter-spacing="1">GAMING</text>
+</svg>

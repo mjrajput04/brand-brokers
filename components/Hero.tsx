@@ -1,16 +1,105 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
+/* ── Per-letter interactive heading ── */
+function MagneticHeading({ mouseRef }: { mouseRef: React.RefObject<{ x: number; y: number }> }) {
+  const lines = ["BRAND", "BROKERS"];
+  const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const allChars = lines.flatMap(l => Array.from(l));
+  const [colors, setColors] = useState<string[]>(() => allChars.map(() => "#ffffff"));
+  const rafRef = useRef<number>(0);
+  const palette = ["#ffffff", "#f1f5f9", "#e0e7ff", "#c7d2fe", "#a5b4fc", "#818cf8", "#6366f1", "#4f46e5"];
+
+  useEffect(() => {
+    const tick = () => {
+      const mx = mouseRef.current!.x;
+      const my = mouseRef.current!.y;
+      const next = letterRefs.current.map((el) => {
+        if (!el) return "#ffffff";
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dist = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
+        if (dist > 180) return "#ffffff";
+        const t = 1 - dist / 180;
+        return palette[Math.round(t * (palette.length - 1))];
+      });
+      setColors(next);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  let idx = 0;
+  return (
+    <h1 className="font-black leading-none animate-fade-up relative select-none"
+      style={{ fontSize: "clamp(42px,10vw,120px)", letterSpacing: "-0.03em" }}>
+      {lines.map((line, li) => (
+        <div key={li} style={{ display: "block" }}>
+          {Array.from(line).map((char) => {
+            const i = idx++;
+            return (
+              <span key={i} ref={el => { letterRefs.current[i] = el; }}
+                style={{ color: colors[i] ?? "#ffffff", display: "inline-block",
+                  transitionProperty: "color", transitionDuration: "0.12s", transitionTimingFunction: "ease" }}>
+                {char}
+              </span>
+            );
+          })}
+        </div>
+      ))}
+    </h1>
+  );
+}
+
+/* ── Per-letter interactive tagline ── */
+function MagneticTagline({ mouseRef, text }: { mouseRef: React.RefObject<{ x: number; y: number }>; text: string }) {
+  const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [colors, setColors] = useState<string[]>(() => Array.from(text).map(() => "#888888"));
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    const tick = () => {
+      const mx = mouseRef.current!.x;
+      const my = mouseRef.current!.y;
+      const next = letterRefs.current.map((el) => {
+        if (!el) return "#888888";
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dist = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
+        if (dist > 140) return "#888888";
+        const t = 1 - dist / 140;
+        const v = Math.round(136 + t * (255 - 136));
+        return `rgb(${v},${v},${v})`;
+      });
+      setColors(next);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  return (
+    <span>
+      {Array.from(text).map((char, i) => (
+        <span key={i} ref={el => { letterRefs.current[i] = el; }}
+          style={{ color: colors[i] ?? "#888888", display: "inline-block", whiteSpace: "pre",
+            transitionProperty: "color", transitionDuration: "0.1s", transitionTimingFunction: "ease" }}>
+          {char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const bbRef = useRef<HTMLSpanElement>(null);
-  const h1Ref = useRef<HTMLHeadingElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
   const [typed, setTyped] = useState("");
   const [logoPulsed, setLogoPulsed] = useState(false);
-  const [h1Hovered, setH1Hovered] = useState(false);
-
   const tagline = "FOR THE CREATORS, BY THE CREATORS";
 
   // Typewriter
@@ -23,26 +112,15 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  // Logo pulse trigger
+  // Logo pulse
   useEffect(() => {
     const t = setTimeout(() => setLogoPulsed(true), 300);
     return () => clearTimeout(t);
   }, []);
 
-  // Mouse tracking + spotlight on h1
+  // Mouse tracking
   useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-      const overlay = overlayRef.current;
-      const h1 = h1Ref.current;
-      if (overlay && h1) {
-        const rect = h1.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        overlay.style.setProperty("--mx", `${x}px`);
-        overlay.style.setProperty("--my", `${y}px`);
-      }
-    };
+    const onMove = (e: MouseEvent) => { mouseRef.current = { x: e.clientX, y: e.clientY }; };
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
   }, []);
@@ -66,103 +144,63 @@ export default function Hero() {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Canvas particles with mouse repel
+  // Canvas particles
   useEffect(() => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
     let W = (canvas.width = window.innerWidth);
     let H = (canvas.height = window.innerHeight);
-
     const particles: { x: number; y: number; ox: number; oy: number; vx: number; vy: number; r: number; alpha: number }[] = [];
     for (let i = 0; i < 220; i++) {
       const x = Math.random() * W, y = Math.random() * H;
-      particles.push({
-        x, y, ox: x, oy: y,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 4 + 1.5,
-        alpha: Math.random() * 0.6 + 0.15,
-      });
+      particles.push({ x, y, ox: x, oy: y, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, r: Math.random() * 4 + 1.5, alpha: Math.random() * 0.6 + 0.15 });
     }
-
     let raf: number;
     const draw = () => {
       ctx.clearRect(0, 0, W, H);
       const mx = mouseRef.current.x, my = mouseRef.current.y;
-
       particles.forEach(p => {
-        // repel from mouse
         const dx = p.x - mx, dy = p.y - my;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          const force = (100 - dist) / 100;
-          p.vx += (dx / dist) * force * 0.8;
-          p.vy += (dy / dist) * force * 0.8;
-        }
-        // drift back to origin
-        p.vx += (p.ox - p.x) * 0.003;
-        p.vy += (p.oy - p.y) * 0.003;
-        p.vx *= 0.95; p.vy *= 0.95;
-        p.x += p.vx; p.y += p.vy;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
-        ctx.fill();
+        if (dist < 100) { const f = (100 - dist) / 100; p.vx += (dx / dist) * f * 0.8; p.vy += (dy / dist) * f * 0.8; }
+        p.vx += (p.ox - p.x) * 0.003; p.vy += (p.oy - p.y) * 0.003;
+        p.vx *= 0.95; p.vy *= 0.95; p.x += p.vx; p.y += p.vy;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${p.alpha})`; ctx.fill();
       });
-
-      // connection lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
+          const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
           const d = Math.sqrt(dx * dx + dy * dy);
           if (d < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(255,255,255,${0.1 * (1 - d / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(255,255,255,${0.1 * (1 - d / 120)})`; ctx.lineWidth = 0.5; ctx.stroke();
           }
         }
       }
       raf = requestAnimationFrame(draw);
     };
     draw();
-
-    const onResize = () => {
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    };
+    const onResize = () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; };
     window.addEventListener("resize", onResize);
     return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); };
   }, []);
 
   return (
-    <section
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ background: "#0a0a0a" }}
-    >
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ background: "#0a0a0a" }}>
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ opacity: 0.3 }} />
 
       {/* Floating orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute rounded-full animate-float"
-          style={{ width: 400, height: 400, top: "-10%", left: "-8%", background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)", animationDuration: "7s" }} />
-        <div className="absolute rounded-full animate-float"
-          style={{ width: 300, height: 300, bottom: "5%", right: "-5%", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)", animationDuration: "9s", animationDelay: "1s" }} />
-        <div className="absolute rounded-full animate-float"
-          style={{ width: 200, height: 200, top: "40%", right: "10%", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)", animationDuration: "6s", animationDelay: "2s" }} />
+        <div className="absolute rounded-full animate-float" style={{ width: 400, height: 400, top: "-10%", left: "-8%", background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)", animationDuration: "7s" }} />
+        <div className="absolute rounded-full animate-float" style={{ width: 300, height: 300, bottom: "5%", right: "-5%", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)", animationDuration: "9s", animationDelay: "1s" }} />
+        <div className="absolute rounded-full animate-float" style={{ width: 200, height: 200, top: "40%", right: "10%", background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)", animationDuration: "6s", animationDelay: "2s" }} />
       </div>
 
-      {/* BB watermark — magnetic */}
+      {/* BB watermark */}
       <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none overflow-hidden">
-        <span
-          ref={bbRef}
-          className="font-black text-center leading-none"
-          style={{ fontSize: "clamp(80px, 18vw, 280px)", color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.03)", letterSpacing: "-0.02em", transition: "transform 0.1s ease", willChange: "transform" }}
-        >
+        <span ref={bbRef} className="font-black text-center leading-none"
+          style={{ fontSize: "clamp(80px,18vw,280px)", color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.03)", letterSpacing: "-0.02em", willChange: "transform" }}>
           BB
         </span>
       </div>
@@ -170,49 +208,30 @@ export default function Hero() {
       <div className="section-wrap relative z-10 w-full flex flex-col items-center text-center">
         <div className="section-inner flex flex-col items-center">
 
-          {/* Logo with pulse ring */}
-          <div className="relative flex justify-center mb-8 animate-fade-in">
+          {/* Logo + Heading */}
+          <div className="relative flex flex-col items-center animate-fade-in" style={{ marginBottom: "1.5rem" }}>
             {logoPulsed && (
               <>
-                <span className="absolute inset-0 m-auto rounded-full" style={{ width: 80, height: 80, background: "rgba(255,255,255,0.1)", animation: "pulse-ring 1.5s ease-out forwards" }} />
-                <span className="absolute inset-0 m-auto rounded-full" style={{ width: 80, height: 80, background: "rgba(255,255,255,0.05)", animation: "pulse-ring 1.5s ease-out 0.4s forwards" }} />
+                <span className="absolute rounded-full pointer-events-none" style={{ width: 220, height: 220, top: 0, left: "50%", transform: "translateX(-50%)", background: "rgba(255,255,255,0.05)", animation: "pulse-ring 1.8s ease-out forwards" }} />
+                <span className="absolute rounded-full pointer-events-none" style={{ width: 220, height: 220, top: 0, left: "50%", transform: "translateX(-50%)", background: "rgba(255,255,255,0.03)", animation: "pulse-ring 1.8s ease-out 0.5s forwards" }} />
               </>
             )}
-            <img src="/logo/logo-white.png" alt="Brand Brokers" className="w-20 h-20 object-contain relative z-10 animate-float" style={{ animationDuration: "5s" }} />
+            <video src="/logo/logo-anim.webm" autoPlay loop muted playsInline
+              className="relative z-10 animate-float"
+              style={{ width: 220, height: 220, objectFit: "contain", mixBlendMode: "screen", animationDuration: "6s", marginBottom: "-24px" }} />
+            <MagneticHeading mouseRef={mouseRef} />
           </div>
 
-          {/* Heading — spotlight reveal on hover */}
-          <h1
-            ref={h1Ref}
-            className="font-black leading-none mb-6 animate-fade-up relative"
-            style={{ fontSize: "clamp(42px, 10vw, 120px)", letterSpacing: "-0.03em" }}
-            onMouseEnter={() => setH1Hovered(true)}
-            onMouseLeave={() => setH1Hovered(false)}
-          >
-            {/* Base text */}
-            <span style={{ color: "#ffffff", display: "block" }}>BRAND</span>
-            <span style={{ color: "#ffffff", display: "block" }}>BROKERS</span>
-
-            {/* Reveal overlay — masked to cursor radius */}
-            <div
-              ref={overlayRef}
-              aria-hidden
-              className="absolute inset-0 select-none pointer-events-none"
-              style={{
-                position: "absolute", inset: 0,
-                WebkitMaskImage: h1Hovered ? "radial-gradient(circle 120px at var(--mx, -9999px) var(--my, -9999px), black 0%, transparent 100%)" : "radial-gradient(circle 0px at -9999px -9999px, black 0%, transparent 100%)",
-                maskImage: h1Hovered ? "radial-gradient(circle 120px at var(--mx, -9999px) var(--my, -9999px), black 0%, transparent 100%)" : "radial-gradient(circle 0px at -9999px -9999px, black 0%, transparent 100%)",
-                pointerEvents: "none",
-              }}
-            >
-              <span style={{ color: "transparent", display: "block", background: "linear-gradient(135deg, #ffffff, #9ca3af)", WebkitBackgroundClip: "text", backgroundClip: "text" }}>BRAND</span>
-              <span style={{ color: "transparent", display: "block", background: "linear-gradient(135deg, #ffffff, #9ca3af)", WebkitBackgroundClip: "text", backgroundClip: "text" }}>BROKERS</span>
-            </div>
-          </h1>
-
-          {/* Typewriter tagline */}
-          <p className="font-medium tracking-[0.3em] text-sm md:text-base mb-4 animate-fade-up delay-200" style={{ color: "#aaa", minHeight: "1.5em" }}>
-            {typed}<span className="inline-block w-0.5 h-4 ml-0.5 align-middle animate-pulse" style={{ background: "#ffffff" }} />
+          {/* Tagline — typewriter then per-letter interactive */}
+          <p className="font-medium tracking-[0.3em] text-sm md:text-base mb-4 animate-fade-up delay-200" style={{ minHeight: "1.5em" }}>
+            {typed.length < tagline.length ? (
+              <span style={{ color: "#aaa" }}>
+                {typed}
+                <span className="inline-block w-0.5 h-4 ml-0.5 align-middle animate-pulse" style={{ background: "#ffffff" }} />
+              </span>
+            ) : (
+              <MagneticTagline mouseRef={mouseRef} text={tagline} />
+            )}
           </p>
 
           <p className="text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 animate-fade-up delay-300" style={{ color: "#888", letterSpacing: "0.05em" }}>
@@ -220,20 +239,16 @@ export default function Hero() {
             WHERE BRANDS MEET RESULTS.
           </p>
 
-          {/* CTA buttons */}
+          {/* CTA */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-400">
-            <button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               className="px-8 py-4 rounded-full font-bold text-black text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-              style={{ background: "linear-gradient(135deg, #ffffff, #d1d5db)", boxShadow: "0 8px 30px rgba(255,255,255,0.2)" }}
-            >
+              style={{ background: "linear-gradient(135deg,#ffffff,#d1d5db)", boxShadow: "0 8px 30px rgba(255,255,255,0.2)" }}>
               Let's Build Together →
             </button>
-            <button
-              onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+            <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
               className="px-8 py-4 rounded-full font-bold text-lg border-2 transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black"
-              style={{ borderColor: "#ffffff", color: "#ffffff", background: "transparent" }}
-            >
+              style={{ borderColor: "#ffffff", color: "#ffffff", background: "transparent" }}>
               Explore Services
             </button>
           </div>
@@ -241,10 +256,15 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in delay-800">
-        <span className="text-xs tracking-widest" style={{ color: "#666" }}>SCROLL</span>
-        <div className="w-px h-12 relative overflow-hidden" style={{ background: "rgba(255,255,255,0.1)" }}>
-          <div className="absolute top-0 left-0 w-full" style={{ height: "40%", background: "linear-gradient(to bottom, #ffffff, transparent)", animation: "fadeUp 1.5s ease infinite" }} />
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in delay-800 cursor-pointer"
+        onClick={() => document.getElementById("problem")?.scrollIntoView({ behavior: "smooth" })}
+        style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+        <div style={{ width: 26, height: 40, borderRadius: 13, border: "1.5px solid rgba(255,255,255,0.25)", position: "relative", display: "flex", justifyContent: "center", paddingTop: 7 }}>
+          <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#ffffff", animation: "scrollWheel 1.6s ease-in-out infinite" }} />
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+          <div style={{ width: 10, height: 10, borderRight: "1.5px solid rgba(255,255,255,0.5)", borderBottom: "1.5px solid rgba(255,255,255,0.5)", transform: "rotate(45deg)", animation: "chevronFade 1.6s ease-in-out infinite" }} />
+          <div style={{ width: 10, height: 10, borderRight: "1.5px solid rgba(255,255,255,0.25)", borderBottom: "1.5px solid rgba(255,255,255,0.25)", transform: "rotate(45deg)", animation: "chevronFade 1.6s ease-in-out 0.2s infinite" }} />
         </div>
       </div>
     </section>

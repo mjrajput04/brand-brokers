@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 52">
+  <rect x="4" y="8" width="36" height="36" rx="10" fill="#00A651"/>
+  <text x="9" y="33" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="22" fill="#ffffff">₹</text>
+  <text x="48" y="23" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="13" fill="#00A651">Big</text>
+  <text x="48" y="40" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="13" fill="#ffffff">Cash</text>
+</svg>

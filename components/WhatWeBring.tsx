@@ -1,28 +1,144 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Camera, Play, Music, Gamepad2, Smartphone, Tv, Globe, BarChart3, Cloud, Handshake } from "lucide-react";
+import { createRoot } from "react-dom/client";
 
 const orbitingIcons = [
-  { Icon: Camera, angle: 0 },
-  { Icon: Play, angle: 72 },
-  { Icon: Music, angle: 144 },
-  { Icon: Gamepad2, angle: 216 },
-  { Icon: Smartphone, angle: 288 },
+  { Icon: Camera },
+  { Icon: Play },
+  { Icon: Music },
+  { Icon: Gamepad2 },
+  { Icon: Smartphone },
 ];
 
 const offerings = [
-  { Icon: Tv, title: "OEM & CTV Ads Expertise" },
-  { Icon: Globe, title: "Dedicated Creator Network Across Multiple Niches" },
+  { Icon: Tv,        title: "OEM & CTV Ads Expertise" },
+  { Icon: Globe,     title: "Dedicated Creator Network Across Multiple Niches" },
   { Icon: BarChart3, title: "Measurable, Outcome Driven Approach" },
-  { Icon: Cloud, title: "Pre-Install & Cloud Install Capabilities" },
+  { Icon: Cloud,     title: "Pre-Install & Cloud Install Capabilities" },
   { Icon: Handshake, title: "Integrated Influencer + Performance Execution" },
 ];
+
+function OrbitVisual() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const angleRef = useRef(0);
+  const rafRef = useRef<number>(0);
+  const dotsRef = useRef<HTMLDivElement[]>([]);
+
+  const SIZE = 340;
+  const CENTER = SIZE / 2;
+  const RADIUS = 130;
+  const ICON_SIZE = 48;
+  const N = orbitingIcons.length;
+
+  useEffect(() => {
+    const tick = () => {
+      angleRef.current += 0.4;
+      const a = angleRef.current;
+      dotsRef.current.forEach((el, i) => {
+        if (!el) return;
+        const theta = ((a + (i * 360) / N) * Math.PI) / 180;
+        const x = CENTER + Math.cos(theta) * RADIUS - ICON_SIZE / 2;
+        const y = CENTER + Math.sin(theta) * RADIUS - ICON_SIZE / 2;
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        // Subtle scale pulsing
+        const pulse = 1 + 0.06 * Math.sin((a * Math.PI) / 180 + i * 1.2);
+        el.style.transform = `scale(${pulse})`;
+      });
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  return (
+    <div ref={containerRef} style={{ width: SIZE, height: SIZE, position: "relative", flexShrink: 0 }}>
+
+      {/* Outer glow halo */}
+      <div style={{
+        position: "absolute",
+        inset: -24,
+        borderRadius: "50%",
+        background: "radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 65%)",
+        pointerEvents: "none",
+      }} />
+
+      {/* Orbit track — dashed ring */}
+      <div style={{
+        position: "absolute",
+        top: CENTER - RADIUS - ICON_SIZE / 2,
+        left: CENTER - RADIUS - ICON_SIZE / 2,
+        width: (RADIUS + ICON_SIZE / 2) * 2,
+        height: (RADIUS + ICON_SIZE / 2) * 2,
+        borderRadius: "50%",
+        border: "1px dashed rgba(255,255,255,0.08)",
+        pointerEvents: "none",
+      }} />
+
+      {/* Inner decorative ring */}
+      <div style={{
+        position: "absolute",
+        top: CENTER - 72, left: CENTER - 72,
+        width: 144, height: 144,
+        borderRadius: "50%",
+        border: "1px solid rgba(255,255,255,0.05)",
+        pointerEvents: "none",
+      }} />
+
+      {/* Center logo */}
+      <div style={{
+        position: "absolute",
+        top: CENTER - 52, left: CENTER - 52,
+        width: 104, height: 104,
+        borderRadius: 28,
+        background: "linear-gradient(135deg,#ffffff,#d1d5db)",
+        boxShadow: "0 16px 50px rgba(255,255,255,0.18), 0 0 0 1px rgba(255,255,255,0.3)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        animation: "float 5s ease-in-out infinite",
+      }}>
+        <svg viewBox="0 0 40 40" fill="none" style={{ width: 52, height: 52 }}>
+          <rect x="2"  y="2"  width="16" height="16" rx="3" fill="#0a0a0a" />
+          <rect x="22" y="2"  width="16" height="16" rx="3" fill="rgba(0,0,0,0.4)" />
+          <rect x="2"  y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,0.4)" />
+          <rect x="22" y="22" width="16" height="16" rx="3" fill="#0a0a0a" />
+        </svg>
+      </div>
+
+      {/* Orbiting icon placeholders — positioned by rAF */}
+      {orbitingIcons.map(({ Icon }, i) => (
+        <div
+          key={i}
+          ref={el => { if (el) dotsRef.current[i] = el; }}
+          style={{
+            position: "absolute",
+            width: ICON_SIZE,
+            height: ICON_SIZE,
+            borderRadius: 14,
+            background: "rgba(255,255,255,0.07)",
+            border: "1px solid rgba(255,255,255,0.14)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backdropFilter: "blur(4px)",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
+            willChange: "left, top, transform",
+          }}
+        >
+          <Icon style={{ width: 22, height: 22, color: "rgba(255,255,255,0.85)", strokeWidth: 1.5 }} />
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function WhatWeBring() {
   return (
     <section id="what-we-bring" className="section-wrap overflow-hidden" style={{ background: "#0a0a0a" }}>
       <div className="section-inner">
         <div className="grid md:grid-cols-2 gap-16 items-center">
+
           {/* Left */}
           <div>
             <div className="reveal">
@@ -33,78 +149,40 @@ export default function WhatWeBring() {
               </p>
             </div>
 
-            <div className="mt-10 flex flex-col gap-4 stagger">
+            <div className="mt-10 flex flex-col gap-3 stagger">
               {offerings.map((o) => (
                 <div
                   key={o.title}
-                  className="reveal flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 hover:border-white hover:bg-white/5 cursor-default"
-                  style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}
+                  className="reveal flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 cursor-default"
+                  style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.02)" }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.18)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)";
+                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)";
+                  }}
                 >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.1)" }}>
-                    <o.Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <o.Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
                   </div>
-                  <span className="font-semibold text-white">{o.title}</span>
+                  <span className="font-semibold text-white text-sm">{o.title}</span>
                 </div>
               ))}
             </div>
 
-            <p className="mt-8 reveal font-medium tracking-wide text-white">
+            <p className="mt-8 reveal font-black text-white text-sm tracking-widest">
               WE CONNECT CREATORS, BRANDS, AND AUDIENCES SEAMLESSLY.
             </p>
           </div>
 
-          {/* Right – orbit (no reveal class — reveal resets transform and breaks orbit positions) */}
-          <div className="flex items-center justify-center">
-            <div className="relative" style={{ width: 384, height: 384 }}>
-              {/* Orbit rings */}
-              <div className="absolute inset-0 rounded-full border" style={{ borderColor: "rgba(255,255,255,0.1)", animation: "spin-slow 20s linear infinite" }} />
-              <div className="absolute inset-8 rounded-full border" style={{ borderColor: "rgba(255,255,255,0.05)", animation: "spin-slow 15s linear infinite reverse" }} />
-
-              {/* Center icon */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-24 h-24 rounded-3xl flex items-center justify-center animate-float" style={{ background: "linear-gradient(135deg,#ffffff,#9ca3af)", boxShadow: "0 20px 60px rgba(255,255,255,0.2)" }}>
-                  <svg viewBox="0 0 40 40" fill="none" className="w-12 h-12">
-                    <rect x="2" y="2" width="16" height="16" rx="3" fill="black" />
-                    <rect x="22" y="2" width="16" height="16" rx="3" fill="rgba(0,0,0,0.5)" />
-                    <rect x="2" y="22" width="16" height="16" rx="3" fill="rgba(0,0,0,0.5)" />
-                    <rect x="22" y="22" width="16" height="16" rx="3" fill="black" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Orbiting icons — outer div positions, inner div floats */}
-              {orbitingIcons.map((item, i) => {
-                const rad = (item.angle * Math.PI) / 180;
-                const radius = 160;
-                const x = Math.round(Math.cos(rad) * radius * 1000) / 1000;
-                const y = Math.round(Math.sin(rad) * radius * 1000) / 1000;
-                return (
-                  <div
-                    key={i}
-                    className="absolute"
-                    style={{
-                      top: "50%", left: "50%",
-                      marginTop: -24, marginLeft: -24,
-                      transform: `translate(${x}px, ${y}px)`,
-                    }}
-                  >
-                    <div
-                      className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                      style={{
-                        background: "rgba(255,255,255,0.1)",
-                        border: "1px solid rgba(255,255,255,0.2)",
-                        boxShadow: "0 4px 20px rgba(255,255,255,0.1)",
-                        animation: `float ${3 + i * 0.4}s ease-in-out infinite`,
-                        animationDelay: `${Math.round(i * 0.3 * 10) / 10}s`,
-                      }}
-                    >
-                      <item.Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+          {/* Right — orbit */}
+          <div className="hidden md:flex items-center justify-center">
+            <OrbitVisual />
           </div>
+
         </div>
       </div>
     </section>

@@ -23,9 +23,18 @@ export default function AdminSidebar() {
 
   return (
     <aside className="w-64 min-h-screen flex flex-col" style={{ background: "#111", borderRight: "1px solid rgba(255,255,255,0.06)" }}>
-      <div className="px-6 py-6 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-        <div className="font-black text-white text-lg tracking-tight">BRAND BROKERS</div>
-        <div className="text-gray-500 text-xs mt-0.5">Admin Panel</div>
+      <div className="px-4 py-4 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="flex items-center gap-1">
+          <video
+            src="/logo/logo-anim.webm"
+            autoPlay loop muted playsInline
+            style={{ width: 64, height: 64, objectFit: "contain", flexShrink: 0, mixBlendMode: "screen" }}
+          />
+          <div>
+            <div className="font-black text-white text-xs tracking-tight leading-tight">BRAND BROKERS</div>
+            <div className="text-gray-500 text-xs mt-0.5">Admin Panel</div>
+          </div>
+        </div>
       </div>
 
       <nav className="flex-1 px-3 py-4 flex flex-col gap-1">

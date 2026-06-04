@@ -38,18 +38,59 @@ export default function OemCtv() {
             </div>
           </div>
 
-          <div className="reveal-right flex items-center justify-center gap-4">
-            {[0, 1, 2].map(i => (
-              <div key={i} className="rounded-3xl overflow-hidden flex-shrink-0" style={{ width: i === 1 ? "100px" : "80px", height: i === 1 ? "200px" : "160px", background: "linear-gradient(160deg, #1a1a1a, #0a0a0a)", border: "2px solid rgba(255,255,255,0.1)", animation: `float ${3 + i * 0.5}s ease-in-out infinite`, animationDelay: `${i * 0.4}s`, boxShadow: i === 1 ? "0 20px 60px rgba(255,255,255,0.05)" : "none" }}>
-                <div className="w-full h-full flex flex-col items-center justify-center gap-2 p-2">
-                  <div className="w-full h-3 rounded-full" style={{ background: "rgba(255,255,255,0.2)" }} />
-                  <div className="w-3/4 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.05)" }} />
-                  <div className="w-full rounded-xl flex items-center justify-center text-xs font-bold text-black" style={{ height: "50px", background: "linear-gradient(135deg,#ffffff,#9ca3af)" }}>YOUR APP</div>
-                  <div className="w-full h-2 rounded-full" style={{ background: "rgba(255,255,255,0.05)" }} />
-                  <div className="w-3/4 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.05)" }} />
+          {/* Right — Reach visualization */}
+          <div className="reveal-right flex flex-col gap-4">
+            {/* Big reach number */}
+            <div
+              className="p-6 rounded-3xl"
+              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              <p className="text-xs font-black tracking-[0.2em] uppercase text-gray-500 mb-2">Total Device Reach</p>
+              <p className="font-black text-white" style={{ fontSize: "clamp(40px,5vw,64px)", letterSpacing: "-0.03em", lineHeight: 1 }}>
+                1.69<span style={{ color: "#9ca3af" }}>B+</span>
+              </p>
+              <p className="text-gray-500 text-xs mt-2">Devices globally across OEM network</p>
+            </div>
+
+            {/* Reach bars */}
+            {[
+              { label: "OEM India",     value: "350M+",   pct: 21,  color: "#ffffff" },
+              { label: "OEM Worldwide", value: "1340M+",  pct: 79,  color: "#9ca3af" },
+              { label: "CTV India",     value: "6M+",     pct: 4,   color: "#6b7280" },
+            ].map((s, i) => (
+              <div key={i} style={{ padding: "16px 20px", borderRadius: 16, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#6b7280" }}>{s.label}</span>
+                  <span style={{ fontWeight: 900, fontSize: 18, color: "#ffffff" }}>{s.value}</span>
+                </div>
+                <div style={{ height: 5, borderRadius: 99, background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
+                  <div style={{
+                    height: "100%",
+                    width: `${s.pct}%`,
+                    borderRadius: 99,
+                    background: `linear-gradient(90deg, ${s.color}, ${s.color}66)`,
+                    animation: "expandBar 1.2s cubic-bezier(0.16,1,0.3,1) forwards",
+                    animationDelay: `${i * 0.15}s`,
+                    transformOrigin: "left",
+                  }} />
                 </div>
               </div>
             ))}
+
+            {/* Models row */}
+            <div style={{ display: "flex", gap: 8 }}>
+              {["CPI", "CPC", "CPM"].map(m => (
+                <div key={m} style={{
+                  flex: 1, textAlign: "center", padding: "10px 0",
+                  borderRadius: 12, fontWeight: 900, fontSize: 13,
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  color: "#ffffff",
+                }}>
+                  {m}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

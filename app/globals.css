@@ -219,7 +219,22 @@ body::before {
   transition: transform 0.15s ease, width 0.2s, height 0.2s;
 }
 
-/* Scrollbar */
+@keyframes expandBar {
+  from { width: 0; }
+}
+@keyframes slideInCard {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scrollWheel {
+  0%   { transform: translateY(0);   opacity: 1; }
+  50%  { transform: translateY(10px); opacity: 0.3; }
+  100% { transform: translateY(0);   opacity: 1; }
+}
+@keyframes chevronFade {
+  0%,100% { opacity: 0.15; }
+  50%     { opacity: 0.7; }
+}
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 3px; }

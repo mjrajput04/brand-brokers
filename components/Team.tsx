@@ -15,7 +15,7 @@ export default function Team() {
         <div className="reveal text-center mb-16">
           <span className="section-label text-white">The People</span>
           <h2 className="section-heading text-white">OUR TEAM</h2>
-          <p className="mt-4 text-gray-400 text-lg max-w-xl mx-auto">A young Gen-Z team building transparent & performance led campaigns.</p>
+          <p className="mt-4 text-gray-400 text-lg max-w-xl mx-auto">A young Gen-Z team building transparent & Performance Driven campaigns.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 stagger">
@@ -41,7 +41,7 @@ export default function Team() {
         <div className="reveal mt-12 text-center">
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
             <Zap className="w-6 h-6 text-white" fill="currentColor" />
-            <span className="font-bold text-white">Young · Agile · Transparent · Performance-Led</span>
+            <span className="font-bold text-white">Young · Agile · Transparent · Performance Driven</span>
           </div>
         </div>
       </div>

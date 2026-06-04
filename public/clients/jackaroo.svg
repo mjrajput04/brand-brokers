@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 205 52">
+  <rect x="4" y="8" width="36" height="36" rx="9" fill="#D97706"/>
+  <polygon points="12,34 12,22 18,28 22,18 26,28 32,22 32,34" fill="#FEF3C7"/>
+  <rect x="12" y="34" width="20" height="3" rx="1.5" fill="#FEF3C7"/>
+  <text x="48" y="23" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="11" fill="#D97706" letter-spacing="0.5">JACKAROO</text>
+  <text x="48" y="40" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="14" fill="#ffffff" letter-spacing="1">KING</text>
+</svg>

@@ -1,102 +1,149 @@
 "use client";
 
-const problems = [
-  { label: "Real Performance", side: "left" },
-  { label: "Authentic Trust", side: "left" },
-  { label: "Measurable ROI", side: "left" },
-  { label: "Lack of Trust", side: "right" },
-  { label: "Underutilized Performance", side: "right" },
-  { label: "Unoptimized Install Campaigns", side: "right" },
+import { useState, useEffect, useRef } from "react";
+import { ArrowRight } from "lucide-react";
+
+const rows = [
+  { want: "Real Performance",    get: "Vanity Metrics",       pct: 23 },
+  { want: "Authentic Creators",  get: "Fake Influence",        pct: 31 },
+  { want: "Measurable ROI",      get: "Black-Box Spend",       pct: 18 },
 ];
 
-export default function Problem() {
+function Bar({ pct, active }: { pct: number; active: boolean }) {
+  const [w, setW] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const done = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !done.current) {
+        done.current = true;
+        setTimeout(() => setW(pct), 150);
+      }
+    }, { threshold: 0.6 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [pct]);
+
   return (
-    <section id="problem" className="section-wrap" style={{ background: "#111111" }}>
-      <div className="section-inner">
-        <div className="reveal text-center mb-16">
+    <div ref={ref} style={{ height: 4, borderRadius: 99, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
+      <div style={{
+        height: "100%", width: `${w}%`, borderRadius: 99,
+        background: active ? "linear-gradient(90deg,#fff,#9ca3af)" : "rgba(255,255,255,0.25)",
+        transitionProperty: "width", transitionDuration: "1.1s", transitionTimingFunction: "cubic-bezier(.16,1,.3,1)",
+        position: "relative", overflow: "hidden",
+      }}>
+        {active && <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.7),transparent)", animation: "shimmer 1.6s linear infinite" }} />}
+      </div>
+    </div>
+  );
+}
+
+export default function Problem() {
+  const [active, setActive] = useState<number | null>(null);
+  const [scan, setScan] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setScan(s => (s + 1) % 100), 28);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <section id="problem" className="section-wrap" style={{ background: "#111", position: "relative", overflow: "hidden", paddingTop: "clamp(3rem,6vw,5rem)", paddingBottom: "clamp(3rem,6vw,5rem)" }}>
+
+      {/* bg grid */}
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse at 50% 50%,black 30%,transparent 75%)" }} />
+
+      {/* scanline */}
+      <div aria-hidden style={{ position: "absolute", left: 0, right: 0, top: `${scan}%`, height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.06) 40%,rgba(255,255,255,0.06) 60%,transparent)", pointerEvents: "none" }} />
+
+      <div className="section-inner" style={{ position: "relative", zIndex: 1 }}>
+
+        {/* heading */}
+        <div className="reveal text-center mb-10">
           <span className="section-label text-white">The Challenge</span>
-          <h2 className="section-heading text-white">THE PROBLEM</h2>
-          <p className="mt-4 text-lg max-w-xl mx-auto text-center" style={{ color: "#888" }}>
-            The modern digital landscape is growing rapidly, yet brands still struggle with:
+          <h2 className="section-heading text-white" style={{ fontSize: "clamp(2rem,5vw,3.5rem)" }}>THE PROBLEM</h2>
+          <p className="mt-3 text-sm max-w-md mx-auto" style={{ color: "#555" }}>
+            Brands know what they need. The market keeps delivering something else.
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
-          {/* Left labels */}
-          <div className="hidden md:flex flex-col justify-center gap-10 w-52 text-right" style={{ minHeight: "320px" }}>
-            {problems.filter(p => p.side === "left").map((p, i) => (
-              <div key={p.label} className="reveal-left flex items-center justify-end gap-3">
-                <span className="font-semibold text-sm uppercase tracking-wide text-white">{p.label}</span>
-                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#ffffff" }}>
-                  <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Center circle */}
-          <div className="reveal-scale flex-shrink-0">
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-              <div className="absolute inset-0 rounded-full" style={{ background: "conic-gradient(#ffffff 0deg 180deg, #333 180deg 360deg)", animation: "spin-slow 20s linear infinite" }} />
-              <div className="absolute inset-2 rounded-full" style={{ background: "conic-gradient(#ffffff 0deg 180deg, #0a0a0a 180deg 360deg)" }} />
-              <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="relative text-center" style={{ width: 120 }}>
-                  {/* White text — visible on dark half */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ clipPath: "inset(0 50% 0 0)" }}>
-                    <div className="font-black text-2xl text-white leading-tight">BRAND</div>
-                    <div className="flex gap-3 text-xs font-bold mt-2">
-                      <span className="text-white">WANT</span>
-                      <span className="text-gray-400">GETS</span>
-                    </div>
-                  </div>
-                  {/* Black text — visible on white half */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ clipPath: "inset(0 0 0 50%)" }}>
-                    <div className="font-black text-2xl text-black leading-tight">BRAND</div>
-                    <div className="flex gap-3 text-xs font-bold mt-2">
-                      <span className="text-black">WANT</span>
-                      <span className="text-gray-600">GETS</span>
-                    </div>
-                  </div>
-                  {/* Invisible spacer for layout */}
-                  <div className="invisible">
-                    <div className="font-black text-2xl leading-tight">BRAND</div>
-                    <div className="flex gap-3 text-xs font-bold mt-2">
-                      <span>WANT</span><span>GETS</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {[1, 2, 3].map(i => (
-                <div key={i} className="absolute inset-0 rounded-full border border-gray-500" style={{ animation: "pulse-ring 3s ease-out infinite", animationDelay: `${i * 0.8}s` }} />
-              ))}
-            </div>
-          </div>
-
-          {/* Right labels */}
-          <div className="hidden md:flex flex-col justify-center gap-10 w-52" style={{ minHeight: "320px" }}>
-            {problems.filter(p => p.side === "right").map((p, i) => (
-              <div key={p.label} className="reveal-right flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#ffffff" }}>
-                  <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" />
-                  </svg>
-                </div>
-                <span className="font-semibold text-sm uppercase tracking-wide text-white">{p.label}</span>
-              </div>
-            ))}
-          </div>
+        {/* header row */}
+        <div className="reveal grid gap-3 mb-3" style={{ gridTemplateColumns: "1fr 32px 1fr auto" }}>
+          <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.28em", textTransform: "uppercase", color: "#6b7280", textAlign: "center" }}>✓ want</div>
+          <div />
+          <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.28em", textTransform: "uppercase", color: "#ef4444", textAlign: "center" }}>✗ get</div>
+          <div style={{ fontSize: 9, fontWeight: 800, letterSpacing: "0.28em", textTransform: "uppercase", color: "#374151", textAlign: "center", minWidth: 60 }}>score</div>
         </div>
 
-        {/* Mobile grid */}
-        <div className="md:hidden mt-10 grid grid-cols-2 gap-4 stagger">
-          {problems.map(p => (
-            <div key={p.label} className="reveal p-4 rounded-2xl border" style={{ borderColor: "rgba(255,255,255,0.1)", background: "rgba(255,255,255,0.03)" }}>
-              <p className="font-semibold text-sm text-white">{p.label}</p>
-            </div>
-          ))}
+        {/* rows */}
+        <div className="reveal flex flex-col gap-2">
+          {rows.map((r, i) => {
+            const on = active === i;
+            return (
+              <div
+                key={i}
+                onMouseEnter={() => setActive(i)}
+                onMouseLeave={() => setActive(null)}
+                style={{
+                  display: "grid", gridTemplateColumns: "1fr 32px 1fr auto",
+                  alignItems: "center", gap: 0,
+                  borderRadius: 14,
+                  border: `1px solid ${on ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.06)"}`,
+                  background: on ? "rgba(255,255,255,0.03)" : "transparent",
+                  overflow: "hidden", cursor: "default",
+                  transitionProperty: "border-color, background",
+                  transitionDuration: "0.25s", transitionTimingFunction: "ease",
+                }}
+              >
+                {/* top shimmer line */}
+                <div style={{ gridColumn: "1/-1", height: 1, background: on ? "linear-gradient(90deg,transparent,rgba(255,255,255,0.18),transparent)" : "transparent", transitionProperty: "background", transitionDuration: "0.25s", transitionTimingFunction: "ease" }} />
+
+                {/* want */}
+                <div style={{ padding: "14px 18px" }}>
+                  <div style={{ fontWeight: 900, fontSize: 13, color: on ? "#fff" : "#9ca3af", letterSpacing: "-0.01em", transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }}>{r.want}</div>
+                  <Bar pct={100} active={false} />
+                </div>
+
+                {/* arrow */}
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <ArrowRight style={{ width: 12, height: 12, color: on ? "#ef4444" : "#374151", transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }} />
+                </div>
+
+                {/* get */}
+                <div style={{ padding: "14px 18px" }}>
+                  <div className={on ? "glitch" : ""} data-text={r.get} style={{ fontWeight: 900, fontSize: 13, color: on ? "#f87171" : "#4b5563", letterSpacing: "-0.01em", transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }}>{r.get}</div>
+                  <Bar pct={r.pct} active={on} />
+                </div>
+
+                {/* score */}
+                <div style={{ padding: "14px 18px", minWidth: 60, textAlign: "center" }}>
+                  <div style={{ fontWeight: 900, fontSize: 20, color: on ? "#fff" : "#374151", lineHeight: 1, transitionProperty: "color", transitionDuration: "0.25s", transitionTimingFunction: "ease" }}>{r.pct}%</div>
+                  <div style={{ fontSize: 9, color: "#374151", marginTop: 3, textTransform: "uppercase", letterSpacing: "0.1em" }}>satisfied</div>
+                </div>
+
+              </div>
+            );
+          })}
         </div>
+
+        {/* bottom bar */}
+        <div className="reveal mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+          <p style={{ fontWeight: 900, fontSize: 15, color: "#fff", margin: 0 }}>
+            Brand Brokers closes every gap.
+          </p>
+          <a
+            href="#services"
+            onClick={e => { e.preventDefault(); document.getElementById("services")?.scrollIntoView({ behavior: "smooth" }); }}
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 22px", borderRadius: 10, fontWeight: 900, fontSize: 12, color: "#000", background: "linear-gradient(135deg,#fff,#d1d5db)", textDecoration: "none", flexShrink: 0 }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+            onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+          >
+            See How <ArrowRight style={{ width: 14, height: 14 }} />
+          </a>
+        </div>
+
       </div>
     </section>
   );
