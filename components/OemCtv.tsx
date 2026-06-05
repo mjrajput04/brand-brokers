@@ -2,7 +2,7 @@
 
 import { Cloud } from "lucide-react";
 
-const partners = ["Mi", "POCO", "realme", "OPPO", "Infinix", "TECNO"];
+const partners = ["Mi", "POCO", "realme", "OPPO", "Infinix", "TECNO", "OnePlus", "VIVO", "Samsung"];
 const stats = [
   { label: "OEM India", value: "350M+" },
   { label: "OEM Worldwide", value: "1340M+" },
@@ -21,9 +21,9 @@ export default function OemCtv() {
         <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
           <div className="reveal-left">
             <h3 className="font-black text-white text-xl mb-8 tracking-widest uppercase">Partners:</h3>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-5">
               {partners.map((p, i) => (
-                <div key={p} className="reveal card-hover p-4 rounded-2xl flex items-center justify-center font-black text-lg min-h-[56px]" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", color: "#fff", transitionDelay: `${i * 0.1}s` }}>
+                <div key={p} className="reveal card-hover p-6 rounded-2xl flex items-center justify-center font-black text-lg min-h-[70px]" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", color: "#fff", transitionDelay: `${i * 0.1}s` }}>
                   {p}
                 </div>
               ))}
