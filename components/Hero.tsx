@@ -8,25 +8,59 @@ function MagneticHeading({ mouseRef }: { mouseRef: React.RefObject<{ x: number; 
   const allChars = lines.flatMap(l => Array.from(l));
   const [colors, setColors] = useState<string[]>(() => allChars.map(() => "#ffffff"));
   const rafRef = useRef<number>(0);
-  const palette = ["#ffffff", "#f1f5f9", "#e0e7ff", "#c7d2fe", "#a5b4fc", "#818cf8", "#6366f1", "#4f46e5"];
+  
+  // Updated palette with pink/violet/purple shades
+  const palette = [
+    "#ffffff", // White
+    "#f1f5f9", // Ghost White
+    "#e0e7ff", // Indigo 100
+    "#c7d2fe", // Indigo 200
+    "#a5b4fc", // Indigo 300
+    "#c084fc", // Purple 400
+    "#e879f9", // Fuchsia 400 (Pink/Violet)
+    "#f472b6", // Pink 400
+    "#818cf8", // Indigo 400
+    "#6366f1", // Indigo 500
+  ];
 
   useEffect(() => {
-    const tick = () => {
+    const tick = (time: number) => {
       const mx = mouseRef.current!.x;
       const my = mouseRef.current!.y;
-      const next = letterRefs.current.map((el) => {
+      
+      const next = letterRefs.current.map((el, i) => {
         if (!el) return "#ffffff";
+        
+        // --- 1. Continuous RGB/Wave Effect (Complex Pattern) ---
+        // time based movement + multiple sine waves for a "random" organic pattern
+        const wave1 = Math.sin(i * 0.2 + time * 0.002);
+        const wave2 = Math.sin(i * 0.3 - time * 0.001);
+        const wave = (wave1 + wave2 + 2) / 4; // Normalized to 0-1
+        
+        // --- 2. Mouse Interaction ---
         const rect = el.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
         const dist = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
-        if (dist > 180) return "#ffffff";
-        const t = 1 - dist / 180;
-        return palette[Math.round(t * (palette.length - 1))];
+        
+        let t;
+        if (dist < 220) {
+          const mouseT = 1 - dist / 220;
+          // Combine wave and mouse: mouse makes it more intense
+          t = Math.min(1, wave * 0.3 + mouseT * 0.8);
+        } else {
+          // Base continuous animation (RGB style)
+          t = wave * 0.5; // Always show color
+        }
+        
+        const paletteIdx = Math.floor(t * (palette.length - 1));
+        return palette[paletteIdx];
       });
+      
       setColors(next);
       rafRef.current = requestAnimationFrame(tick);
     };
+    
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
@@ -42,7 +76,7 @@ function MagneticHeading({ mouseRef }: { mouseRef: React.RefObject<{ x: number; 
             return (
               <span key={i} ref={el => { letterRefs.current[i] = el; }}
                 style={{ color: colors[i] ?? "#ffffff", display: "inline-block",
-                  transitionProperty: "color", transitionDuration: "0.12s", transitionTimingFunction: "ease" }}>
+                  transitionProperty: "color", transitionDuration: "0.1s", transitionTimingFunction: "ease" }}>
                 {char}
               </span>
             );
