@@ -12,11 +12,11 @@ const reasons = [
 
 export default function WhyUs() {
   return (
-    <section id="why-us" className="section-wrap" style={{ background: "#0f0f0f", overflowX: "hidden" }}>
+    <section id="why-us" className="section-wrap why-us-section" style={{ overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
-          <span className="section-label text-white">Our Edge</span>
-          <h2 className="section-heading text-white">WHY BRANDS CHOOSE US</h2>
+          <span className="section-label" style={{ color: "var(--t-text)" }}>Our Edge</span>
+          <h2 className="section-heading" style={{ color: "var(--t-text)" }}>WHY BRANDS CHOOSE US</h2>
         </div>
 
         {/* Desktop */}
@@ -75,8 +75,8 @@ export default function WhyUs() {
                 >
                   {r.num}
                 </motion.div>
-                <h4 className="font-black text-white text-xs tracking-widest mb-2">{r.title}</h4>
-                <p className="text-xs leading-relaxed" style={{ color: "#888" }}>{r.desc}</p>
+                <h4 className="font-black text-xs tracking-widest mb-2" style={{ color: "var(--t-text)" }}>{r.title}</h4>
+                <p className="text-xs leading-relaxed" style={{ color: "var(--t-text-dim)" }}>{r.desc}</p>
               </div>
             ))}
           </div>
@@ -85,13 +85,13 @@ export default function WhyUs() {
         {/* Mobile */}
         <div className="md:hidden flex flex-col gap-6 stagger">
           {reasons.map((r) => (
-            <div key={r.num} className="reveal flex gap-5 p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.2)" }}>
-              <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-lg flex-shrink-0" style={{ background: "linear-gradient(135deg,#ffffff,#9ca3af)", color: "#000" }}>
+            <div key={r.num} className="reveal flex gap-5 p-5 rounded-2xl" style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border2)" }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-lg flex-shrink-0" style={{ background: "linear-gradient(135deg,var(--t-text),var(--t-text-muted))", color: "#000" }}>
                 {r.num}
               </div>
               <div>
-                <h4 className="font-black text-white text-sm tracking-widest mb-1">{r.title}</h4>
-                <p className="text-sm" style={{ color: "#888" }}>{r.desc}</p>
+                <h4 className="font-black text-sm tracking-widest mb-1" style={{ color: "var(--t-text)" }}>{r.title}</h4>
+                <p className="text-sm" style={{ color: "var(--t-text-dim)" }}>{r.desc}</p>
               </div>
             </div>
           ))}

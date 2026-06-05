@@ -94,12 +94,12 @@ export default function CaseStudies() {
 
   return (
     <>
-      <section id="case-studies" className="section-wrap" style={{ background: "#111111", overflowX: "hidden" }}>
+      <section id="case-studies" className="section-wrap case-studies-section" style={{ overflowX: "hidden" }}>
         <div className="section-inner">
           <div className="reveal text-center mb-16">
-            <span className="section-label text-white">Proof of Work</span>
-            <h2 className="section-heading text-white">CASE STUDIES</h2>
-            <p className="text-gray-500 text-sm mt-4">Click any card for the full breakdown</p>
+            <span className="section-label" style={{ color: "var(--t-text)" }}>Proof of Work</span>
+            <h2 className="section-heading" style={{ color: "var(--t-text)" }}>CASE STUDIES</h2>
+            <p className="text-sm mt-4" style={{ color: "var(--t-text-faint)" }}>Click any card for the full breakdown</p>
           </div>
 
           {/* Slider */}
@@ -129,7 +129,7 @@ export default function CaseStudies() {
                     <span className="font-black text-6xl select-none" style={{ color: `${c.color}22`, lineHeight: 1 }}>{c.num}</span>
                     <div>
                       <p className="text-xs font-bold tracking-widest uppercase mb-0.5" style={{ color: c.color }}>{c.category}</p>
-                      <h3 className="font-black text-white text-2xl md:text-3xl">{c.brand}</h3>
+                      <h3 className="font-black text-2xl md:text-3xl" style={{ color: "var(--t-text)" }}>{c.brand}</h3>
                     </div>
                   </div>
 
@@ -137,14 +137,14 @@ export default function CaseStudies() {
                     {[{ label: "OBJECTIVE", text: c.objective }, { label: "STRATEGY", text: c.strategy }].map(({ label, text }) => (
                       <div key={label}>
                         <h4 className="font-black text-xs tracking-widest uppercase mb-1.5" style={{ color: c.color }}>{label}</h4>
-                        <p className="text-gray-400 text-sm leading-relaxed">{text}</p>
+                        <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{text}</p>
                       </div>
                     ))}
                     <div>
                       <h4 className="font-black text-xs tracking-widest uppercase mb-2" style={{ color: c.color }}>EXECUTION</h4>
                       <ul className="flex flex-col gap-1.5">
                         {c.execution.map((ex, j) => (
-                          <li key={j} className="flex items-start gap-2 text-gray-400 text-sm">
+                          <li key={j} className="flex items-start gap-2 text-sm" style={{ color: "var(--t-text-muted)" }}>
                             <ArrowRight className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: c.color }} />
                             {ex}
                           </li>
@@ -161,8 +161,8 @@ export default function CaseStudies() {
                     {c.stats.map((s, j) => (
                       <div key={j} className="flex flex-col items-center p-4 rounded-2xl" style={{ background: `${c.color}0d`, border: `1px solid ${c.color}28` }}>
                         <s.Icon className="w-5 h-5 mb-2" style={{ color: c.color }} strokeWidth={1.5} />
-                        <span className="font-black text-white text-2xl">{s.value}</span>
-                        <span className="text-xs mt-0.5 text-gray-500">{s.label}</span>
+                        <span className="font-black text-2xl" style={{ color: "var(--t-text)" }}>{s.value}</span>
+                        <span className="text-xs mt-0.5" style={{ color: "var(--t-text-faint)" }}>{s.label}</span>
                       </div>
                     ))}
                   </div>
@@ -229,7 +229,7 @@ export default function CaseStudies() {
       {/* Detail Modal */}
       {active && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8" style={{ background: "rgba(0,0,0,0.88)", backdropFilter: "blur(16px)" }} onClick={() => setActive(null)}>
-          <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl" style={{ background: "#0d0d0d", border: `1px solid ${active.color}33`, boxShadow: `0 0 0 1px ${active.color}18, 0 50px 120px rgba(0,0,0,0.9)` }} onClick={e => e.stopPropagation()}>
+          <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl" style={{ background: "var(--t-card-bg)", border: `1px solid ${active.color}33`, boxShadow: `0 0 0 1px ${active.color}18, 0 50px 120px rgba(0,0,0,0.9)` }} onClick={e => e.stopPropagation()}>
             <div className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl" style={{ background: `linear-gradient(90deg, ${active.color}, ${active.accentLight}, ${active.color})` }} />
             <div className="absolute top-0 left-0 right-0 h-48 rounded-t-3xl pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 0%, ${active.color}18, transparent 70%)` }} />
             <button onClick={() => setActive(null)} className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
@@ -241,17 +241,17 @@ export default function CaseStudies() {
                   <span className="font-black text-5xl md:text-7xl select-none leading-none" style={{ color: `${active.color}22` }}>{active.num}</span>
                   <div>
                     <p className="text-xs font-bold tracking-widest uppercase" style={{ color: active.color }}>{active.category}</p>
-                    <h2 className="font-black text-white text-2xl md:text-4xl">{active.brand}</h2>
+                    <h2 className="font-black text-2xl md:text-4xl" style={{ color: "var(--t-text)" }}>{active.brand}</h2>
                   </div>
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed max-w-xl">{active.objective}</p>
+                <p className="text-sm leading-relaxed max-w-xl" style={{ color: "var(--t-text-faint)" }}>{active.objective}</p>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
                 {active.stats.map((s, j) => (
                   <div key={j} className="flex flex-col items-center py-4 px-3 rounded-2xl" style={{ background: `${active.color}0f`, border: `1px solid ${active.color}28` }}>
                     <s.Icon className="w-5 h-5 mb-2" style={{ color: active.color }} strokeWidth={1.5} />
-                    <span className="font-black text-white text-xl">{s.value}</span>
-                    <span className="text-xs text-gray-500 mt-0.5">{s.label}</span>
+                    <span className="font-black text-xl" style={{ color: "var(--t-text)" }}>{s.value}</span>
+                    <span className="text-xs mt-0.5" style={{ color: "var(--t-text-faint)" }}>{s.label}</span>
                   </div>
                 ))}
               </div>
@@ -267,28 +267,28 @@ export default function CaseStudies() {
                   </div>
                   <div>
                     <h4 className="font-black text-xs tracking-widest uppercase mb-2" style={{ color: active.color }}>{title}</h4>
-                    <p className="text-gray-300 text-sm leading-relaxed">{text}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{text}</p>
                   </div>
                 </div>
               ))}
               <div className="flex flex-col gap-3 mb-6">
                 <h4 className="font-black text-xs tracking-widest uppercase" style={{ color: active.color }}>EXECUTION BREAKDOWN</h4>
                 {active.execution.map((ex, i) => (
-                  <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                  <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}>
                     <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 font-black text-xs" style={{ background: active.color, color: "#000" }}>{i + 1}</div>
-                    <p className="text-gray-300 text-sm leading-relaxed">{ex}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{ex}</p>
                   </div>
                 ))}
               </div>
               <div className="rounded-2xl p-5 mb-6" style={{ background: `${active.color}0a`, border: `1px solid ${active.color}22` }}>
                 <p className="text-xs font-black tracking-widest uppercase mb-2" style={{ color: active.color }}>KEY LEARNING</p>
-                <p className="text-gray-300 text-sm leading-relaxed italic">&ldquo;{active.fullDetail.learnings}&rdquo;</p>
+                <p className="text-sm leading-relaxed italic" style={{ color: "var(--t-text-muted)" }}>&ldquo;{active.fullDetail.learnings}&rdquo;</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <a href="#contact" onClick={() => setActive(null)} className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-sm hover:opacity-90 transition-opacity min-h-[48px]" style={{ background: active.color, color: "#000" }}>
                   Work With Us <ArrowRight className="w-4 h-4" />
                 </a>
-                <button onClick={() => setActive(null)} className="flex items-center justify-center px-6 py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-colors min-h-[48px]" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <button onClick={() => setActive(null)} className="flex items-center justify-center px-6 py-3 rounded-xl font-bold text-sm transition-colors min-h-[48px]" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)", color: "var(--t-text-muted)" }}>
                   Close
                 </button>
               </div>

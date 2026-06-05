@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const links = ["Problem", "Services", "Why Us", "Case Studies", "Roster", "Clients", "Team", "Contact"];
 
@@ -10,6 +11,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [buttonVisible, setButtonVisible] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => {
@@ -39,6 +41,7 @@ export default function Navbar() {
     setMenuOpen(false);
     setMobileOpen(false);
   };
+
 
   return (
     <>
@@ -71,6 +74,42 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
               </button>
             ))}
+            
+            {/* Theme Toggle Switch */}
+            <button
+              onClick={toggleTheme}
+              className="relative w-14 h-7 rounded-full transition-all duration-300 flex items-center p-1"
+              style={{
+                background: isDark 
+                  ? "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)" 
+                  : "linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ff6b6b 100%)",
+                boxShadow: isDark 
+                  ? "inset 0 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(100,150,255,0.3)" 
+                  : "inset 0 2px 4px rgba(0,0,0,0.1), 0 0 10px rgba(255,200,100,0.4)",
+              }}
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {/* Toggle Circle with Icon */}
+              <div
+                className="w-5 h-5 rounded-full flex items-center justify-center transition-all duration-300"
+                style={{
+                  transform: isDark ? "translateX(0)" : "translateX(28px)",
+                  background: isDark 
+                    ? "linear-gradient(135deg, #e0e0e0, #ffffff)" 
+                    : "linear-gradient(135deg, #fff8dc, #ffd700)",
+                  boxShadow: isDark 
+                    ? "0 2px 4px rgba(0,0,0,0.3)" 
+                    : "0 2px 4px rgba(0,0,0,0.2)",
+                }}
+              >
+                {isDark ? (
+                  <Moon className="w-3 h-3" style={{ color: "#1a1a2e" }} />
+                ) : (
+                  <Sun className="w-3 h-3" style={{ color: "#ff8c00" }} />
+                )}
+              </div>
+            </button>
+            
             <div className="ml-2 relative">
               <span className="absolute inset-0 rounded-full" style={{ animation: "navbar-pulse 2s ease-out infinite", background: "rgba(255,255,255,0.2)", zIndex: 0 }} />
               <span className="absolute inset-0 rounded-full" style={{ animation: "navbar-pulse 2s ease-out infinite", animationDelay: "0.6s", background: "rgba(255,255,255,0.1)", zIndex: 0 }} />

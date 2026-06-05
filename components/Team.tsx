@@ -35,12 +35,12 @@ export default function Team() {
   const [selectedMember, setSelectedMember] = useState<typeof team[0] | null>(null);
 
   return (
-    <section id="team" className="section-wrap" style={{ background: "#141414", overflowX: "hidden" }}>
+    <section id="team" className="section-wrap team-section" style={{ overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
-          <span className="section-label text-white">The People</span>
-          <h2 className="section-heading text-white">OUR TEAM</h2>
-          <p className="mt-4 text-gray-400 text-lg max-w-xl mx-auto">A young Gen-Z team building transparent & Performance Driven campaigns.</p>
+          <span className="section-label" style={{ color: "var(--t-text)" }}>The People</span>
+          <h2 className="section-heading" style={{ color: "var(--t-text)" }}>OUR TEAM</h2>
+          <p className="mt-4 text-lg max-w-xl mx-auto" style={{ color: "var(--t-text-muted)" }}>A young Gen-Z team building transparent & Performance Driven campaigns.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 stagger">
@@ -48,7 +48,7 @@ export default function Team() {
             <div 
               key={member.name} 
               className="reveal card-hover group relative overflow-hidden rounded-3xl p-8 text-center cursor-default transition-all duration-500 hover:-translate-y-2" 
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+              style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}
             >
               {/* Animated Background Highlight */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" style={{ background: `radial-gradient(circle at 50% 0%, ${member.color}11, transparent 70%)` }} />
@@ -61,8 +61,8 @@ export default function Team() {
                 <div className="absolute inset-0 rounded-full" style={{ border: `1px solid ${member.color}44`, animation: "pulse-ring 3s ease-out infinite", animationDelay: `${i * 0.5}s` }} />
               </div>
 
-              <h3 className="font-black text-white text-xl mb-1">{member.name}</h3>
-              <p className="font-medium text-sm mb-8" style={{ color: "#aaa" }}>{member.role}</p>
+              <h3 className="font-black text-xl mb-1" style={{ color: "var(--t-text)" }}>{member.name}</h3>
+              <p className="font-medium text-sm mb-8" style={{ color: "var(--t-text-muted)" }}>{member.role}</p>
 
               {/* Hover Buttons Overlay */}
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 flex-col gap-3 p-6">
@@ -92,9 +92,9 @@ export default function Team() {
         </div>
 
         <div className="reveal mt-12 text-center">
-          <div className="inline-flex flex-wrap items-center justify-center gap-3 px-6 py-3 rounded-full" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-            <Zap className="w-5 h-5 text-white flex-shrink-0" fill="currentColor" />
-            <span className="font-bold text-white text-sm text-center">Young · Agile · Transparent · Performance Driven</span>
+          <div className="inline-flex flex-wrap items-center justify-center gap-3 px-6 py-3 rounded-full" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)" }}>
+            <Zap className="w-5 h-5 flex-shrink-0" style={{ color: "var(--t-text)" }} fill="currentColor" />
+            <span className="font-bold text-sm text-center" style={{ color: "var(--t-text)" }}>Young · Agile · Transparent · Performance Driven</span>
           </div>
         </div>
       </div>
@@ -116,7 +116,7 @@ export default function Team() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl"
-              style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}
             >
               <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, transparent, ${selectedMember.color}, transparent)` }} />
               
@@ -133,15 +133,15 @@ export default function Team() {
                     <selectedMember.Icon className="w-8 h-8" style={{ color: selectedMember.color }} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black text-white">{selectedMember.name}</h3>
-                    <p className="text-gray-400 font-medium">{selectedMember.role}</p>
+                    <h3 className="text-2xl font-black" style={{ color: "var(--t-text)" }}>{selectedMember.name}</h3>
+                    <p className="font-medium" style={{ color: "var(--t-text-muted)" }}>{selectedMember.role}</p>
                   </div>
                 </div>
 
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">About & Expertise</h4>
-                    <p className="text-gray-300 leading-relaxed">
+                    <h4 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--t-text-faint)" }}>About & Expertise</h4>
+                    <p className="leading-relaxed" style={{ color: "var(--t-text-muted)" }}>
                       {selectedMember.description}
                     </p>
                   </div>
@@ -151,7 +151,8 @@ export default function Team() {
                       href={selectedMember.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-white font-bold text-sm hover:text-blue-400 transition-colors"
+                      className="flex items-center gap-2 font-bold text-sm hover:text-blue-400 transition-colors"
+                      style={{ color: "var(--t-text)" }}
                     >
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>

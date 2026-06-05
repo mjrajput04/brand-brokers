@@ -1,69 +1,55 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 /* ── Per-letter interactive heading ── */
-function MagneticHeading({ mouseRef }: { mouseRef: React.RefObject<{ x: number; y: number }> }) {
+function MagneticHeading({ mouseRef, isDark }: { mouseRef: React.RefObject<{ x: number; y: number }>; isDark: boolean }) {
   const lines = ["BRAND", "BROKERS"];
   const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const allChars = lines.flatMap(l => Array.from(l));
-  const [colors, setColors] = useState<string[]>(() => allChars.map(() => "#ffffff"));
+  const [colors, setColors] = useState<string[]>(() => allChars.map(() => isDark ? "#ffffff" : "#1a1a1a"));
   const rafRef = useRef<number>(0);
   
-  // Updated palette with pink/violet/purple shades
-  const palette = [
-    "#ffffff", // White
-    "#f1f5f9", // Ghost White
-    "#e0e7ff", // Indigo 100
-    "#c7d2fe", // Indigo 200
-    "#a5b4fc", // Indigo 300
-    "#c084fc", // Purple 400
-    "#e879f9", // Fuchsia 400 (Pink/Violet)
-    "#f472b6", // Pink 400
-    "#818cf8", // Indigo 400
-    "#6366f1", // Indigo 500
+  const darkPalette = [
+    "#ffffff", "#f1f5f9", "#e0e7ff", "#c7d2fe",
+    "#a5b4fc", "#c084fc", "#e879f9", "#f472b6",
+    "#818cf8", "#6366f1",
+  ];
+  const lightPalette = [
+    "#1a1a1a", "#111827", "#1e3a8a", "#1d4ed8",
+    "#4f46e5", "#7c3aed", "#9333ea", "#be185d",
+    "#2563eb", "#3730a3",
   ];
 
   useEffect(() => {
+    const palette = isDark ? darkPalette : lightPalette;
+    const baseColor = isDark ? "#ffffff" : "#1a1a1a";
     const tick = (time: number) => {
       const mx = mouseRef.current!.x;
       const my = mouseRef.current!.y;
-      
       const next = letterRefs.current.map((el, i) => {
-        if (!el) return "#ffffff";
-        
-        // --- 1. Continuous RGB/Wave Effect (Complex Pattern) ---
-        // time based movement + multiple sine waves for a "random" organic pattern
+        if (!el) return baseColor;
         const wave1 = Math.sin(i * 0.2 + time * 0.002);
         const wave2 = Math.sin(i * 0.3 - time * 0.001);
-        const wave = (wave1 + wave2 + 2) / 4; // Normalized to 0-1
-        
-        // --- 2. Mouse Interaction ---
+        const wave = (wave1 + wave2 + 2) / 4;
         const rect = el.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
         const dist = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
-        
         let t;
         if (dist < 220) {
-          const mouseT = 1 - dist / 220;
-          // Combine wave and mouse: mouse makes it more intense
-          t = Math.min(1, wave * 0.3 + mouseT * 0.8);
+          t = Math.min(1, wave * 0.3 + (1 - dist / 220) * 0.8);
         } else {
-          // Base continuous animation (RGB style)
-          t = wave * 0.5; // Always show color
+          t = wave * 0.5;
         }
-        
-        const paletteIdx = Math.floor(t * (palette.length - 1));
-        return palette[paletteIdx];
+        return palette[Math.floor(t * (palette.length - 1))];
       });
-      
       setColors(next);
       rafRef.current = requestAnimationFrame(tick);
     };
-    
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, []);
+  }, [isDark]);
 
   let idx = 0;
   return (
@@ -75,7 +61,7 @@ function MagneticHeading({ mouseRef }: { mouseRef: React.RefObject<{ x: number; 
             const i = idx++;
             return (
               <span key={i} ref={el => { letterRefs.current[i] = el; }}
-                style={{ color: colors[i] ?? "#ffffff", display: "inline-block",
+                style={{ color: colors[i] ?? (isDark ? "#ffffff" : "#1a1a1a"), display: "inline-block",
                   transitionProperty: "color", transitionDuration: "0.1s", transitionTimingFunction: "ease" }}>
                 {char}
               </span>
@@ -88,9 +74,10 @@ function MagneticHeading({ mouseRef }: { mouseRef: React.RefObject<{ x: number; 
 }
 
 /* ── Per-letter interactive tagline ── */
-function MagneticTagline({ mouseRef, text }: { mouseRef: React.RefObject<{ x: number; y: number }>; text: string }) {
+function MagneticTagline({ mouseRef, text, isDark }: { mouseRef: React.RefObject<{ x: number; y: number }>; text: string; isDark: boolean }) {
+  const base = isDark ? "#888888" : "#555555";
   const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const [colors, setColors] = useState<string[]>(() => Array.from(text).map(() => "#888888"));
+  const [colors, setColors] = useState<string[]>(() => Array.from(text).map(() => base));
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
@@ -98,28 +85,33 @@ function MagneticTagline({ mouseRef, text }: { mouseRef: React.RefObject<{ x: nu
       const mx = mouseRef.current!.x;
       const my = mouseRef.current!.y;
       const next = letterRefs.current.map((el) => {
-        if (!el) return "#888888";
+        if (!el) return base;
         const rect = el.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
         const dist = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
-        if (dist > 140) return "#888888";
+        if (dist > 140) return base;
         const t = 1 - dist / 140;
-        const v = Math.round(136 + t * (255 - 136));
-        return `rgb(${v},${v},${v})`;
+        if (isDark) {
+          const v = Math.round(136 + t * (255 - 136));
+          return `rgb(${v},${v},${v})`;
+        } else {
+          const v = Math.round(85 - t * 85);
+          return `rgb(${v},${v},${v})`;
+        }
       });
       setColors(next);
       rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafRef.current);
-  }, []);
+  }, [isDark]);
 
   return (
     <span>
       {Array.from(text).map((char, i) => (
         <span key={i} ref={el => { letterRefs.current[i] = el; }}
-          style={{ color: colors[i] ?? "#888888", display: "inline-block", whiteSpace: "pre",
+          style={{ color: colors[i] ?? base, display: "inline-block", whiteSpace: "pre",
             transitionProperty: "color", transitionDuration: "0.1s", transitionTimingFunction: "ease" }}>
           {char}
         </span>
@@ -129,6 +121,7 @@ function MagneticTagline({ mouseRef, text }: { mouseRef: React.RefObject<{ x: nu
 }
 
 export default function Hero() {
+  const { isDark } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const bbRef = useRef<HTMLSpanElement>(null);
@@ -221,7 +214,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden w-full" style={{ background: "#0a0a0a", maxWidth: "100vw" }}>
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden w-full hero-section" style={{ maxWidth: "100vw" }}>
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ opacity: 0.3 }} />
 
       {/* Floating orbs */}
@@ -253,22 +246,22 @@ export default function Hero() {
             <video src="/logo/logo-anim.webm" autoPlay loop muted playsInline
               className="relative z-10 animate-float"
               style={{ width: "clamp(140px, 18vw, 220px)", height: "clamp(140px, 18vw, 220px)", objectFit: "contain", mixBlendMode: "screen", animationDuration: "6s", marginBottom: "-24px" }} />
-            <MagneticHeading mouseRef={mouseRef} />
+            <MagneticHeading mouseRef={mouseRef} isDark={isDark} />
           </div>
 
           {/* Tagline — typewriter then per-letter interactive */}
           <p className="font-medium tracking-[0.3em] text-sm md:text-base mb-4 animate-fade-up delay-200" style={{ minHeight: "1.5em" }}>
             {typed.length < tagline.length ? (
-              <span style={{ color: "#aaa" }}>
+              <span style={{ color: isDark ? "#aaa" : "#555" }}>
                 {typed}
-                <span className="inline-block w-0.5 h-4 ml-0.5 align-middle animate-pulse" style={{ background: "#ffffff" }} />
+                <span className="inline-block w-0.5 h-4 ml-0.5 align-middle animate-pulse" style={{ background: isDark ? "#ffffff" : "#1a1a1a" }} />
               </span>
             ) : (
-              <MagneticTagline mouseRef={mouseRef} text={tagline} />
+              <MagneticTagline mouseRef={mouseRef} text={tagline} isDark={isDark} />
             )}
           </p>
 
-          <p className="text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 animate-fade-up delay-300" style={{ color: "#888", letterSpacing: "0.05em" }}>
+          <p className="text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 animate-fade-up delay-300" style={{ color: isDark ? "#888" : "#555", letterSpacing: "0.05em" }}>
             WHERE CREATORS MEET PERFORMANCE.<br />
             WHERE BRANDS MEET RESULTS.
           </p>
@@ -281,8 +274,8 @@ export default function Hero() {
               Let's Build Together →
             </button>
             <button onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-              className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-lg border-2 transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black min-h-[52px]"
-              style={{ borderColor: "#ffffff", color: "#ffffff", background: "transparent" }}>
+              className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-lg border-2 transition-all duration-300 hover:scale-105 min-h-[52px]"
+              style={{ borderColor: isDark ? "#ffffff" : "#1a1a1a", color: isDark ? "#ffffff" : "#1a1a1a", background: "transparent" }}>
               Explore Services
             </button>
           </div>
@@ -293,12 +286,12 @@ export default function Hero() {
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in delay-800 cursor-pointer"
         onClick={() => document.getElementById("problem")?.scrollIntoView({ behavior: "smooth" })}
         style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
-        <div style={{ width: 26, height: 40, borderRadius: 13, border: "1.5px solid rgba(255,255,255,0.25)", position: "relative", display: "flex", justifyContent: "center", paddingTop: 7 }}>
-          <div style={{ width: 4, height: 4, borderRadius: "50%", background: "#ffffff", animation: "scrollWheel 1.6s ease-in-out infinite" }} />
+        <div style={{ width: 26, height: 40, borderRadius: 13, border: `1.5px solid ${isDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.25)"}`, position: "relative", display: "flex", justifyContent: "center", paddingTop: 7 }}>
+          <div style={{ width: 4, height: 4, borderRadius: "50%", background: isDark ? "#ffffff" : "#1a1a1a", animation: "scrollWheel 1.6s ease-in-out infinite" }} />
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
-          <div style={{ width: 10, height: 10, borderRight: "1.5px solid rgba(255,255,255,0.5)", borderBottom: "1.5px solid rgba(255,255,255,0.5)", transform: "rotate(45deg)", animation: "chevronFade 1.6s ease-in-out infinite" }} />
-          <div style={{ width: 10, height: 10, borderRight: "1.5px solid rgba(255,255,255,0.25)", borderBottom: "1.5px solid rgba(255,255,255,0.25)", transform: "rotate(45deg)", animation: "chevronFade 1.6s ease-in-out 0.2s infinite" }} />
+          <div style={{ width: 10, height: 10, borderRight: `1.5px solid ${isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.4)"}`, borderBottom: `1.5px solid ${isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.4)"}`, transform: "rotate(45deg)", animation: "chevronFade 1.6s ease-in-out infinite" }} />
+          <div style={{ width: 10, height: 10, borderRight: `1.5px solid ${isDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.2)"}`, borderBottom: `1.5px solid ${isDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.2)"}`, transform: "rotate(45deg)", animation: "chevronFade 1.6s ease-in-out 0.2s infinite" }} />
         </div>
       </div>
     </section>

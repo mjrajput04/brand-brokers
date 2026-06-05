@@ -6,25 +6,25 @@ const partners = ["Mi", "POCO", "realme", "OPPO", "Infinix", "TECNO", "OnePlus",
 
 export default function OemCtv() {
   return (
-    <section id="oem-&-ctv" className="section-wrap" style={{ background: "#141414", overflowX: "hidden" }}>
+    <section id="oem-&-ctv" className="section-wrap oem-ctv-section" style={{ overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
-          <span className="section-label text-white">Inventory</span>
-          <h2 className="section-heading text-white">OEM & CTV ADS INVENTORY</h2>
+          <span className="section-label" style={{ color: "var(--t-text)" }}>Inventory</span>
+          <h2 className="section-heading" style={{ color: "var(--t-text)" }}>OEM & CTV ADS INVENTORY</h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
           <div className="reveal-left">
-            <h3 className="font-black text-white text-xl mb-8 tracking-widest uppercase">Partners:</h3>
+            <h3 className="font-black text-xl mb-8 tracking-widest uppercase" style={{ color: "var(--t-text)" }}>Partners:</h3>
             <div className="grid grid-cols-3 gap-5">
               {partners.map((p, i) => (
-                <div key={p} className="reveal card-hover p-6 rounded-2xl flex items-center justify-center font-black text-lg min-h-[70px]" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", color: "#fff", transitionDelay: `${i * 0.1}s` }}>
+                <div key={p} className="reveal card-hover p-6 rounded-2xl flex items-center justify-center font-black text-lg min-h-[70px]" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)", color: "var(--t-text)", transitionDelay: `${i * 0.1}s` }}>
                   {p}
                 </div>
               ))}
             </div>
-            <div className="mt-8 p-5 rounded-2xl" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <p className="text-gray-400 font-bold text-sm tracking-widest uppercase mb-2">Available Models:</p>
+            <div className="mt-8 p-5 rounded-2xl" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)" }}>
+              <p className="font-bold text-sm tracking-widest uppercase mb-2" style={{ color: "var(--t-text-muted)" }}>Available Models:</p>
               <div className="flex gap-4">
                 {["CPI", "CPC", "CPM"].map(m => (
                   <span key={m} className="px-4 py-2 rounded-full font-black text-sm" style={{ background: "#ffffff", color: "#000" }}>{m}</span>
@@ -38,13 +38,13 @@ export default function OemCtv() {
             {/* Big reach number */}
             <div
               className="p-6 rounded-3xl"
-              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+              style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}
             >
-              <p className="text-xs font-black tracking-[0.2em] uppercase text-gray-500 mb-2">Total Device Reach</p>
-              <p className="font-black text-white" style={{ fontSize: "clamp(40px,5vw,64px)", letterSpacing: "-0.03em", lineHeight: 1 }}>
-                1.69<span style={{ color: "#9ca3af" }}>B+</span>
+              <p className="text-xs font-black tracking-[0.2em] uppercase mb-2" style={{ color: "var(--t-text-faint)" }}>Total Device Reach</p>
+              <p className="font-black" style={{ fontSize: "clamp(40px,5vw,64px)", letterSpacing: "-0.03em", lineHeight: 1, color: "var(--t-text)" }}>
+                1.69<span style={{ color: "var(--t-text-muted)" }}>B+</span>
               </p>
-              <p className="text-gray-500 text-xs mt-2">Devices globally across OEM network</p>
+              <p className="text-xs mt-2" style={{ color: "var(--t-text-faint)" }}>Devices globally across OEM network</p>
             </div>
 
             {/* Reach bars */}
@@ -53,12 +53,12 @@ export default function OemCtv() {
               { label: "OEM Worldwide", value: "1340M+",  pct: 79,  color: "#9ca3af" },
               { label: "CTV India",     value: "6M+",     pct: 4,   color: "#6b7280" },
             ].map((s, i) => (
-              <div key={i} style={{ padding: "16px 20px", borderRadius: 16, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div key={i} style={{ padding: "16px 20px", borderRadius: 16, background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
-                  <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#6b7280" }}>{s.label}</span>
-                  <span style={{ fontWeight: 900, fontSize: 18, color: "#ffffff" }}>{s.value}</span>
+                  <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--t-text-faint)" }}>{s.label}</span>
+                  <span style={{ fontWeight: 900, fontSize: 18, color: "var(--t-text)" }}>{s.value}</span>
                 </div>
-                <div style={{ height: 5, borderRadius: 99, background: "rgba(255,255,255,0.07)", overflow: "hidden" }}>
+                <div style={{ height: 5, borderRadius: 99, background: "var(--t-bar-bg)", overflow: "hidden" }}>
                   <div style={{
                     height: "100%",
                     width: `${s.pct}%`,
@@ -74,16 +74,16 @@ export default function OemCtv() {
           </div>
         </div>
 
-        <div className="reveal p-8 md:p-12 rounded-3xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
-          <h3 className="font-black text-white text-xl tracking-widest uppercase mb-4 text-center">CUMULATIVE REACH – WW & INDIA</h3>
-          <p className="text-center text-sm" style={{ color: "#888" }}>Suitable for Consumer Tech Brands to reduce CAC through CPI Campaign</p>
+        <div className="reveal p-8 md:p-12 rounded-3xl" style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}>
+          <h3 className="font-black text-xl tracking-widest uppercase mb-4 text-center" style={{ color: "var(--t-text)" }}>CUMULATIVE REACH – WW & INDIA</h3>
+          <p className="text-center text-sm" style={{ color: "var(--t-text-dim)" }}>Suitable for Consumer Tech Brands to reduce CAC through CPI Campaign</p>
         </div>
 
         <div className="mt-16 grid md:grid-cols-2 gap-10 items-center">
           <div className="reveal-left">
-            <span className="section-label text-white">More Offerings – OEM AD</span>
-            <h3 className="font-black text-white text-2xl mt-2 mb-4">PRE INSTALLED APP INVENTORY (PAI)</h3>
-            <p className="text-gray-300 leading-relaxed">A cloud managed distribution model where apps are pre installed at the factory or via cloud push before first device use, ensuring instant reach, zero CPI wastage, high visibility, and fraud free user acquisition.</p>
+            <span className="section-label" style={{ color: "var(--t-text)" }}>More Offerings – OEM AD</span>
+            <h3 className="font-black text-2xl mt-2 mb-4" style={{ color: "var(--t-text)" }}>PRE INSTALLED APP INVENTORY (PAI)</h3>
+            <p className="leading-relaxed" style={{ color: "var(--t-text-muted)" }}>A cloud managed distribution model where apps are pre installed at the factory or via cloud push before first device use, ensuring instant reach, zero CPI wastage, high visibility, and fraud free user acquisition.</p>
           </div>
           <div className="reveal-right flex justify-center">
             <div className="w-32 h-32 rounded-3xl flex items-center justify-center animate-float" style={{ background: "linear-gradient(135deg,#ffffff,#9ca3af)", boxShadow: "0 20px 60px rgba(255,255,255,0.1)" }}>

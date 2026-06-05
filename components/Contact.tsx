@@ -14,17 +14,17 @@ export default function Contact() {
 
   return (
     <>
-      <section id="contact" className="section-wrap relative" style={{ background: "#0f0f0f", overflow: "hidden" }}>
+      <section id="contact" className="section-wrap contact-section relative" style={{ overflow: "hidden" }}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)" }} />
 
         <div className="section-inner relative z-10">
           <div className="reveal text-center mb-14">
-            <span className="section-label text-white">Get In Touch</span>
-            <h2 className="section-heading text-white" style={{ lineHeight: 1 }}>
+            <span className="section-label" style={{ color: "var(--t-text)" }}>Get In Touch</span>
+            <h2 className="section-heading" style={{ lineHeight: 1, color: "var(--t-text)" }}>
               LET'S BUILD YOUR<br />
               <span className="shimmer-text">GROWTH STORY</span>
             </h2>
-            <p className="mt-6 text-gray-400 text-base max-w-xl mx-auto">
+            <p className="mt-6 text-base max-w-xl mx-auto" style={{ color: "var(--t-text-muted)" }}>
               Ready to connect creators, brands, and audiences seamlessly? Book a call.
             </p>
           </div>
@@ -63,41 +63,41 @@ export default function Contact() {
             <button
               onClick={copy}
               className="w-full group p-5 rounded-2xl text-left flex items-center gap-4 transition-all duration-300"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)")}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)")}
+              style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--t-card-border2)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--t-card-border)")}
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.07)" }}>
-                <Mail className="w-5 h-5 text-white" strokeWidth={1.5} />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "var(--t-icon-bg)" }}>
+                <Mail className="w-5 h-5" style={{ color: "var(--t-text)" }} strokeWidth={1.5} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white font-bold text-sm truncate">founders@brandbrokers.in</p>
-                <p className="text-gray-600 text-xs mt-0.5">Prefer email? We reply within 24 hours.</p>
+                <p className="font-bold text-sm truncate" style={{ color: "var(--t-text)" }}>founders@brandbrokers.in</p>
+                <p className="text-xs mt-0.5" style={{ color: "var(--t-text-faint)" }}>Prefer email? We reply within 24 hours.</p>
               </div>
-              <span className="text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0" style={{ background: "rgba(255,255,255,0.06)", color: copied ? "#4ade80" : "#9ca3af" }}>
+              <span className="text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0" style={{ background: "var(--t-icon-bg)", color: copied ? "#4ade80" : "var(--t-text-muted)" }}>
                 {copied ? "Copied!" : "Copy"}
               </span>
             </button>
           </div>
 
           {/* Footer */}
-          <div className="mt-16 pt-8 flex flex-col gap-8" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="mt-16 pt-8 flex flex-col gap-8" style={{ borderTop: "1px solid var(--t-card-border)" }}>
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-2">
                 <video src="/logo/logo-anim.webm" autoPlay loop muted playsInline
                   style={{ width: 80, height: 80, objectFit: "contain", mixBlendMode: "screen", flexShrink: 0 }} />
-                <span className="font-black text-white text-xl" style={{ letterSpacing: "-0.02em" }}>BRAND BROKERS</span>
+                <span className="font-black text-xl" style={{ letterSpacing: "-0.02em", color: "var(--t-text)" }}>BRAND BROKERS</span>
               </div>
               
               {/* Social Links */}
               <div className="flex items-center gap-4">
-                <a href="https://instagram.com/brandbrokers" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all">
+                <a href="https://instagram.com/brandbrokers" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl transition-all" style={{ background: "var(--t-card-bg2)", color: "var(--t-text-muted)" }}>
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <a href="https://youtube.com/@brandbrokers" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all">
+                <a href="https://youtube.com/@brandbrokers" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl transition-all" style={{ background: "var(--t-card-bg2)", color: "var(--t-text-muted)" }}>
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
                 </a>
-                <a href="https://linkedin.com/company/brandbrokers" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all">
+                <a href="https://linkedin.com/company/brandbrokers" target="_blank" rel="noopener noreferrer" className="p-3 rounded-xl transition-all" style={{ background: "var(--t-card-bg2)", color: "var(--t-text-muted)" }}>
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                   </svg>
@@ -105,12 +105,12 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left pt-8 border-t border-white/5">
-              <div className="flex items-center gap-2 text-gray-500 text-sm">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left pt-8" style={{ borderTop: "1px solid var(--t-card-border)" }}>
+              <div className="flex items-center gap-2 text-sm" style={{ color: "var(--t-text-faint)" }}>
                 <MapPin className="w-4 h-4" />
                 <span>123, Creator Hub, Digital Street, Mumbai, India - 400001</span>
               </div>
-              <p className="text-gray-600 text-sm">© 2026 Brand Brokers. For The Creators, By The Creators.</p>
+              <p className="text-sm" style={{ color: "var(--t-text-faint)" }}>© 2026 Brand Brokers. For The Creators, By The Creators.</p>
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@ export default function Contact() {
         >
           <div
             className="relative w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl overflow-hidden"
-            style={{ background: "#111", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 40px 100px rgba(0,0,0,0.9)" }}
+            style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)", boxShadow: "0 40px 100px rgba(0,0,0,0.9)" }}
             onClick={e => e.stopPropagation()}
           >
             <div className="h-1" style={{ background: "linear-gradient(90deg,#ffffff,#9ca3af,#ffffff)" }} />
@@ -136,18 +136,18 @@ export default function Contact() {
             <button
               onClick={() => setShowBooking(false)}
               className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full z-10"
-              style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)" }}
             >
-              <X className="w-4 h-4 text-white" />
+              <X className="w-4 h-4" style={{ color: "var(--t-text)" }} />
             </button>
             <div className="p-6 md:p-8">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.08)" }}>
-                  <Calendar className="w-6 h-6 text-white" strokeWidth={1.5} />
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: "var(--t-icon-bg)" }}>
+                  <Calendar className="w-6 h-6" style={{ color: "var(--t-text)" }} strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="font-black text-white text-xl">Book a Strategy Call</h3>
-                  <p className="text-gray-500 text-sm">30 min · Free · Google Meet</p>
+                  <h3 className="font-black text-xl" style={{ color: "var(--t-text)" }}>Book a Strategy Call</h3>
+                  <p className="text-sm" style={{ color: "var(--t-text-faint)" }}>30 min · Free · Google Meet</p>
                 </div>
               </div>
               <div className="flex flex-col gap-3 mb-6">
@@ -157,8 +157,8 @@ export default function Contact() {
                   { icon: CheckCircle, text: "Understand pricing and timelines upfront" },
                 ].map(({ icon: Icon, text }, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <Icon className="w-4 h-4 flex-shrink-0" style={{ color: "#9ca3af" }} strokeWidth={2} />
-                    <span className="text-gray-400 text-sm">{text}</span>
+                    <Icon className="w-4 h-4 flex-shrink-0" style={{ color: "var(--t-text-muted)" }} strokeWidth={2} />
+                    <span className="text-sm" style={{ color: "var(--t-text-muted)" }}>{text}</span>
                   </div>
                 ))}
               </div>
@@ -174,8 +174,8 @@ export default function Contact() {
                 </a>
                 <button
                   onClick={copy}
-                  className="py-3 rounded-2xl font-bold text-gray-500 text-sm hover:text-gray-300 transition-colors"
-                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", minHeight: 48 }}
+                  className="py-3 rounded-2xl font-bold text-sm transition-colors"
+                  style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)", minHeight: 48, color: "var(--t-text-muted)" }}
                 >
                   {copied ? "✓ Email copied" : "Or email us: founders@brandbrokers.in"}
                 </button>

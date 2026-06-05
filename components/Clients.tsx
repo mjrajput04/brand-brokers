@@ -77,12 +77,12 @@ function LogoCard({
 
 export default function Clients() {
   return (
-    <section id="clients" className="section-wrap" style={{ background: "#111111", overflowX: "hidden" }}>
+    <section id="clients" className="section-wrap clients-section" style={{ overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-16">
-          <span className="section-label text-purple-400">Our Work</span>
-          <h2 className="section-heading text-white">CLIENT PORTFOLIO</h2>
-          <p className="mt-4 text-gray-400 text-lg">
+          <span className="section-label" style={{ color: "var(--t-text-muted)" }}>Our Work</span>
+          <h2 className="section-heading" style={{ color: "var(--t-text)" }}>CLIENT PORTFOLIO</h2>
+          <p className="mt-4 text-lg" style={{ color: "var(--t-text-muted)" }}>
             Trusted by India&apos;s top gaming &amp; tech brands
           </p>
         </div>
@@ -133,14 +133,14 @@ export default function Clients() {
               key={s.label}
               className="reveal-scale text-center p-6 rounded-2xl"
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(168,85,247,0.15)",
+                background: "var(--t-card-bg)",
+                border: "1px solid var(--t-card-border)",
               }}
             >
-              <p className="font-black text-white" style={{ fontSize: "clamp(24px,3vw,40px)" }}>
+              <p className="font-black" style={{ fontSize: "clamp(24px,3vw,40px)", color: "var(--t-text)" }}>
                 {s.num}
               </p>
-              <p className="text-gray-400 text-sm mt-1">{s.label}</p>
+              <p className="text-sm mt-1" style={{ color: "var(--t-text-muted)" }}>{s.label}</p>
             </div>
           ))}
         </div>

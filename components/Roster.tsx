@@ -117,12 +117,12 @@ export default function Roster() {
   ];
 
   return (
-    <section id="roster" className="section-wrap" style={{ background: "#0f0f0f", overflowX: "hidden" }}>
+    <section id="roster" className="section-wrap roster-section" style={{ overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="reveal text-center mb-14">
-          <span className="section-label text-white">Creator Network</span>
-          <h2 className="section-heading text-white">OUR ROSTER</h2>
-          <p className="mt-4 text-lg max-w-2xl mx-auto" style={{ color: "#aaa" }}>
+          <span className="section-label" style={{ color: "var(--t-text)" }}>Creator Network</span>
+          <h2 className="section-heading" style={{ color: "var(--t-text)" }}>OUR ROSTER</h2>
+          <p className="mt-4 text-lg max-w-2xl mx-auto" style={{ color: "var(--t-text-muted)" }}>
             A curated network of high-impact creators across every major niche, ready to amplify your brand.
           </p>
         </div>
@@ -165,8 +165,8 @@ export default function Roster() {
                     <div
                       className="p-4 md:p-7 rounded-3xl relative group overflow-hidden"
                       style={{
-                        background: isCenter ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.02)",
-                        border: `1px solid ${isCenter ? "rgba(255,255,255,0.18)" : "rgba(255,255,255,0.07)"}`,
+                        background: isCenter ? "var(--t-card-bg2)" : "var(--t-card-bg)",
+                        border: `1px solid ${isCenter ? "var(--t-card-border2)" : "var(--t-card-border)"}`,
                         boxShadow: isCenter ? "0 20px 60px rgba(0,0,0,0.5)" : "none",
                         transitionProperty: "background, border-color, box-shadow",
                         transitionDuration: "0.4s",
@@ -180,7 +180,7 @@ export default function Roster() {
                           style={{
                             width: isCenter ? "clamp(44px,8vw,64px)" : "clamp(36px,6vw,52px)",
                             height: isCenter ? "clamp(44px,8vw,64px)" : "clamp(36px,6vw,52px)",
-                            background: isCenter ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.07)",
+                            background: isCenter ? "var(--t-icon-bg)" : "var(--t-card-bg)",
                             transitionProperty: "width, height, background",
                             transitionDuration: "0.4s",
                             transitionTimingFunction: "ease",
@@ -191,20 +191,20 @@ export default function Roster() {
                           />
                         </div>
                         <div className="min-w-0">
-                          <p className="font-black text-white truncate" style={{ fontSize: isCenter ? "clamp(11px,2.5vw,15px)" : "clamp(10px,2vw,13px)" }}>{creator.handle}</p>
-                          <p className="text-xs mt-0.5 truncate" style={{ color: "#666", fontSize: "clamp(9px,1.5vw,11px)" }}>{creator.niche}</p>
+                          <p className="font-black truncate" style={{ fontSize: isCenter ? "clamp(11px,2.5vw,15px)" : "clamp(10px,2vw,13px)", color: "var(--t-text)" }}>{creator.handle}</p>
+                          <p className="text-xs mt-0.5 truncate" style={{ color: "var(--t-text-faint)", fontSize: "clamp(9px,1.5vw,11px)" }}>{creator.niche}</p>
                         </div>
                       </div>
 
                       {/* Followers */}
                       <div className="flex items-end justify-between">
-                        <span className="font-bold tracking-widest uppercase hidden sm:block" style={{ color: "#555", fontSize: "clamp(8px,1.2vw,10px)" }}>Followers</span>
-                        <span className="font-black text-white" style={{ fontSize: isCenter ? "clamp(18px,4vw,28px)" : "clamp(14px,3vw,22px)" }}>{creator.followers}</span>
+                        <span className="font-bold tracking-widest uppercase hidden sm:block" style={{ color: "var(--t-text-faint)", fontSize: "clamp(8px,1.2vw,10px)" }}>Followers</span>
+                        <span className="font-black" style={{ fontSize: isCenter ? "clamp(18px,4vw,28px)" : "clamp(14px,3vw,22px)", color: "var(--t-text)" }}>{creator.followers}</span>
                       </div>
 
                       {isCenter && (
                         <div className="mt-3 pt-3 md:mt-4 md:pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-                          <p className="text-center font-bold tracking-widest uppercase" style={{ color: "#555", fontSize: "clamp(8px,1.5vw,10px)" }}>
+                          <p className="text-center font-bold tracking-widest uppercase" style={{ color: "var(--t-text-faint)", fontSize: "clamp(8px,1.5vw,10px)" }}>
                             Available for brand deals
                           </p>
                         </div>
@@ -298,7 +298,7 @@ export default function Roster() {
         </div>
 
         <div className="reveal mt-10 text-center">
-          <p className="font-medium tracking-wide text-white">
+          <p className="font-medium tracking-wide" style={{ color: "var(--t-text)" }}>
             500+ CREATORS ACROSS 20+ NICHES AND GROWING.
           </p>
         </div>
@@ -321,7 +321,7 @@ export default function Roster() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl"
-              style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}
             >
               <div className="h-1.5 w-full" style={{ background: "linear-gradient(90deg, transparent, #ffffff, transparent)" }} />
               
@@ -338,23 +338,23 @@ export default function Roster() {
                     <selectedCreator.Icon className="w-8 h-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black text-white">{selectedCreator.handle}</h3>
-                    <p className="text-gray-400 font-medium">{selectedCreator.niche}</p>
+                    <h3 className="text-2xl font-black" style={{ color: "var(--t-text)" }}>{selectedCreator.handle}</h3>
+                    <p className="font-medium" style={{ color: "var(--t-text-muted)" }}>{selectedCreator.niche}</p>
                   </div>
                 </div>
 
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">About Creator</h4>
-                    <p className="text-gray-300 leading-relaxed">
+                    <h4 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "var(--t-text-faint)" }}>About Creator</h4>
+                    <p className="leading-relaxed" style={{ color: "var(--t-text-muted)" }}>
                       {selectedCreator.description}
                     </p>
                   </div>
 
                   <div className="flex items-center gap-6">
                     <div>
-                      <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Followers</p>
-                      <p className="text-2xl font-black text-white">{selectedCreator.followers}</p>
+                      <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "var(--t-text-faint)" }}>Followers</p>
+                      <p className="text-2xl font-black" style={{ color: "var(--t-text)" }}>{selectedCreator.followers}</p>
                     </div>
                     <div className="h-10 w-px bg-white/10" />
                     <div>
@@ -364,7 +364,7 @@ export default function Roster() {
                   </div>
 
                   <div className="pt-6 border-t border-white/5">
-                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Connect on Socials</h4>
+                    <h4 className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "var(--t-text-faint)" }}>Connect on Socials</h4>
                     <div className="flex flex-wrap gap-3">
                       {Object.entries(selectedCreator.socials).map(([platform, url]) => (
                         <a 

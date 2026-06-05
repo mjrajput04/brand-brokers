@@ -83,16 +83,16 @@ export default function UGC() {
 
   return (
     <>
-      <section id="ugc" className="section-wrap" style={{ background: "#0a0a0a", overflowX: "hidden" }}>
+      <section id="ugc" className="section-wrap ugc-section" style={{ overflowX: "hidden" }}>
         <div className="section-inner">
 
           {/* Top split */}
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div className="reveal-left">
-              <span className="section-label text-white">Content Creation</span>
-              <h2 className="section-heading text-white">UGC VIDEO PRODUCTION</h2>
-              <p className="font-bold text-gray-400 mt-2 mb-4 tracking-wide">BUILT NATIVE, OPTIMIZED FOR SCALE</p>
-              <p className="text-gray-400 leading-relaxed">
+              <span className="section-label" style={{ color: "var(--t-text)" }}>Content Creation</span>
+              <h2 className="section-heading" style={{ color: "var(--t-text)" }}>UGC VIDEO PRODUCTION</h2>
+              <p className="font-bold mt-2 mb-4 tracking-wide" style={{ color: "var(--t-text-muted)" }}>BUILT NATIVE, OPTIMIZED FOR SCALE</p>
+              <p className="leading-relaxed" style={{ color: "var(--t-text-muted)" }}>
                 High-performance, platform-native video content designed to drive trust and conversions.
                 End-to-end UGC creative production — from strategic concept to final asset.
               </p>
@@ -100,9 +100,9 @@ export default function UGC() {
             <div className="reveal-right flex justify-center">
               <div
                 className="w-28 h-28 sm:w-40 sm:h-40 rounded-3xl flex items-center justify-center animate-float"
-                style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 80px rgba(255,255,255,0.05)" }}
+                style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)" }}
               >
-                <Clapperboard className="w-14 h-14 sm:w-20 sm:h-20 text-white" strokeWidth={1.5} />
+                <Clapperboard className="w-14 h-14 sm:w-20 sm:h-20" style={{ color: "var(--t-text)" }} strokeWidth={1.5} />
               </div>
             </div>
           </div>
@@ -118,8 +118,8 @@ export default function UGC() {
               </div>
             </div>
             <div className="reveal-right order-1 md:order-2">
-              <h2 className="section-heading text-white">FROM CONCEPT TO CONVERSION</h2>
-              <p className="text-gray-400 leading-relaxed mt-4">
+              <h2 className="section-heading" style={{ color: "var(--t-text)" }}>FROM CONCEPT TO CONVERSION</h2>
+              <p className="leading-relaxed mt-4" style={{ color: "var(--t-text-muted)" }}>
                 We manage your complete UGC video production lifecycle, ensuring every frame feels organic while driving measurable performance.
               </p>
             </div>
@@ -127,8 +127,8 @@ export default function UGC() {
 
           {/* Section label */}
           <div className="reveal text-center mb-4">
-            <h3 className="font-black text-2xl md:text-4xl tracking-tight text-white">WHAT WE OFFER:</h3>
-            <p className="text-gray-600 text-sm mt-3">Hover to explore · Click to open full detail</p>
+            <h3 className="font-black text-2xl md:text-4xl tracking-tight" style={{ color: "var(--t-text)" }}>WHAT WE OFFER:</h3>
+            <p className="text-sm mt-3" style={{ color: "var(--t-text-faint)" }}>Hover to explore · Click to open full detail</p>
           </div>
 
           {/* Offering cards */}
@@ -140,8 +140,8 @@ export default function UGC() {
                   key={o.title}
                   className="group relative rounded-2xl cursor-pointer overflow-hidden"
                   style={{
-                    background: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.07)",
+                    background: "var(--t-card-bg)",
+                    border: "1px solid var(--t-card-border)",
                     transition: "border-color 0.3s, box-shadow 0.3s, transform 0.3s",
                   }}
                   onClick={() => setActive(o)}
@@ -153,7 +153,7 @@ export default function UGC() {
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget as HTMLElement;
-                    el.style.borderColor = "rgba(255,255,255,0.07)";
+                    el.style.borderColor = "var(--t-card-border)";
                     el.style.boxShadow = "none";
                     el.style.transform = "translateY(0)";
                   }}
@@ -181,12 +181,10 @@ export default function UGC() {
 
                     {/* Text */}
                     <div className="flex-1 min-w-0">
-                      <h4
-                        className="font-black text-white text-sm tracking-widest uppercase mb-2"
-                      >
+                      <h4 className="font-black text-sm tracking-widest uppercase mb-2" style={{ color: "var(--t-text)" }}>
                         {o.title}
                       </h4>
-                      <p className="text-gray-400 text-sm leading-relaxed">{o.desc}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{o.desc}</p>
 
                       {/* Learn more — reveals on hover */}
                       <div
@@ -203,12 +201,9 @@ export default function UGC() {
           </div>
 
           {/* Perfect For bar */}
-          <div
-            className="reveal p-5 rounded-2xl text-center"
-            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
-          >
-            <span className="font-bold text-sm" style={{ color: "#888" }}>
-              <span className="text-white font-black">Perfect For: </span>
+          <div className="reveal p-5 rounded-2xl text-center" style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}>
+            <span className="font-bold text-sm" style={{ color: "var(--t-text-dim)" }}>
+              <span className="font-black" style={{ color: "var(--t-text)" }}>Perfect For: </span>
               {perfectFor.join(" | ")}
             </span>
           </div>
@@ -225,7 +220,7 @@ export default function UGC() {
           <div
             className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl"
             style={{
-              background: "#0d0d0d",
+              background: "var(--t-card-bg)",
               border: `1px solid ${active.color}33`,
               boxShadow: `0 0 0 1px ${active.color}18, 0 40px 100px rgba(0,0,0,0.85)`,
             }}
@@ -245,9 +240,9 @@ export default function UGC() {
             <button
               onClick={() => setActive(null)}
               className="absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center rounded-full transition-colors"
-              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)" }}
             >
-              <X className="w-4 h-4 text-white" />
+              <X className="w-4 h-4" style={{ color: "var(--t-text)" }} />
             </button>
 
             <div className="relative p-6 md:p-10">
@@ -266,11 +261,11 @@ export default function UGC() {
                   >
                     UGC Production
                   </p>
-                  <h2 className="font-black text-white text-xl leading-tight">{active.title}</h2>
+                  <h2 className="font-black text-xl leading-tight" style={{ color: "var(--t-text)" }}>{active.title}</h2>
                 </div>
               </div>
 
-              <div className="mb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }} />
+              <div className="mb-6" style={{ borderBottom: "1px solid var(--t-card-border)" }} />
 
               {/* What is it */}
               <div className="mb-7">
@@ -280,7 +275,7 @@ export default function UGC() {
                 >
                   WHAT IS IT
                 </h4>
-                <p className="text-gray-300 text-sm leading-relaxed">{active.detail.what}</p>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{active.detail.what}</p>
               </div>
 
               {/* What's included */}
@@ -300,7 +295,7 @@ export default function UGC() {
                       >
                         <Check className="w-3 h-3 text-black" strokeWidth={3} />
                       </div>
-                      <p className="text-gray-300 text-sm leading-relaxed">{point}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{point}</p>
                     </div>
                   ))}
                 </div>
@@ -342,8 +337,8 @@ export default function UGC() {
                 </a>
                 <button
                   onClick={() => setActive(null)}
-                  className="flex items-center justify-center px-5 py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-colors min-h-[48px]"
-                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                  className="flex items-center justify-center px-5 py-3 rounded-xl font-bold text-sm transition-colors min-h-[48px]"
+                  style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)", color: "var(--t-text-muted)" }}
                 >
                   Close
                 </button>

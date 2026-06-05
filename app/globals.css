@@ -8,6 +8,35 @@
   --white: #ffffff;
   --section-pad-x: clamp(1.5rem, 5vw, 6rem);
   --section-pad-y: clamp(4rem, 8vw, 8rem);
+
+  /* Theme tokens — dark defaults */
+  --t-text:        #ffffff;
+  --t-text-muted:  #9ca3af;
+  --t-text-dim:    #888888;
+  --t-text-faint:  #555555;
+  --t-text-dark:   #374151;
+  --t-card-bg:     rgba(255,255,255,0.03);
+  --t-card-bg2:    rgba(255,255,255,0.05);
+  --t-card-border: rgba(255,255,255,0.07);
+  --t-card-border2:rgba(255,255,255,0.12);
+  --t-bar-bg:      rgba(255,255,255,0.06);
+  --t-icon-bg:     rgba(255,255,255,0.08);
+  --t-icon-border: rgba(255,255,255,0.10);
+}
+
+.light-mode {
+  --t-text:        #1a1a1a;
+  --t-text-muted:  #444444;
+  --t-text-dim:    #555555;
+  --t-text-faint:  #777777;
+  --t-text-dark:   #333333;
+  --t-card-bg:     rgba(0,0,0,0.04);
+  --t-card-bg2:    rgba(0,0,0,0.06);
+  --t-card-border: rgba(0,0,0,0.10);
+  --t-card-border2:rgba(0,0,0,0.15);
+  --t-bar-bg:      rgba(0,0,0,0.08);
+  --t-icon-bg:     rgba(0,0,0,0.06);
+  --t-icon-border: rgba(0,0,0,0.10);
 }
 
 *, *::before, *::after { box-sizing: border-box;}
@@ -245,3 +274,50 @@ body::before {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 3px; }
+
+/* ---- DARK MODE SECTION DEFAULTS ---- */
+.hero-section          { background: #0a0a0a; }
+.problem-section       { background: #111111; }
+.services-section      { background: #141414; }
+.why-us-section        { background: #0f0f0f; }
+.what-we-bring-section { background: #0a0a0a; }
+.oem-ctv-section       { background: #141414; }
+.ugc-section           { background: #0a0a0a; }
+.case-studies-section  { background: #111111; }
+.roster-section        { background: #0f0f0f; }
+.clients-section       { background: #111111; }
+.team-section          { background: #141414; }
+.contact-section       { background: #0f0f0f; }
+
+/* ---- LIGHT MODE OVERRIDES ---- */
+.light-mode body {
+  background: #f0f0f0 !important;
+  color: #1a1a1a !important;
+}
+
+.light-mode .hero-section,
+.light-mode .services-section,
+.light-mode .what-we-bring-section,
+.light-mode .oem-ctv-section,
+.light-mode .ugc-section,
+.light-mode .case-studies-section,
+.light-mode .clients-section,
+.light-mode .team-section { background: #f0f0f0 !important; }
+
+.light-mode .problem-section,
+.light-mode .why-us-section,
+.light-mode .roster-section,
+.light-mode .contact-section { background: #e8e8e8 !important; }
+
+.light-mode .text-white { color: #1a1a1a !important; }
+.light-mode .text-gray-400 { color: #555 !important; }
+.light-mode .text-gray-500 { color: #666 !important; }
+.light-mode .text-gray-600 { color: #777 !important; }
+.light-mode .text-gray-300 { color: #333 !important; }
+.light-mode .section-label { color: #555 !important; }
+
+.light-mode .custom-cursor { background: #1a1a1a; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
+.light-mode .custom-cursor-ring { border-color: rgba(0,0,0,0.4); }
+
+/* Services card tagline fix in light mode */
+.light-mode .services-section .section-heading { color: #1a1a1a !important; }

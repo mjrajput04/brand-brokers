@@ -89,13 +89,13 @@ export default function Services() {
 
   return (
     <>
-      <section id="services" className="section-wrap" style={{ background: "#141414", overflowX: "hidden" }}>
+      <section id="services" className="section-wrap services-section" style={{ overflowX: "hidden" }}>
         <div className="section-inner">
 
           {/* Heading */}
           <div className="reveal text-center mb-16">
-            <span className="section-label text-white">What We Do</span>
-            <h2 className="section-heading text-white">OUR SERVICES</h2>
+            <span className="section-label" style={{ color: "var(--t-text)" }}>What We Do</span>
+            <h2 className="section-heading" style={{ color: "var(--t-text)" }}>OUR SERVICES</h2>
           </div>
 
           {/* Cards */}
@@ -105,8 +105,8 @@ export default function Services() {
                 key={s.title}
                 className="group relative rounded-3xl flex flex-col cursor-pointer overflow-hidden"
                 style={{
-                  background: "linear-gradient(160deg, #161616 0%, #0f0f0f 100%)",
-                  border: "1px solid rgba(255,255,255,0.07)",
+                  background: "var(--t-card-bg)",
+                  border: "1px solid var(--t-card-border)",
                   transition: "transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease",
                 }}
                 onClick={() => setActive(s)}
@@ -120,7 +120,7 @@ export default function Services() {
                   const el = e.currentTarget as HTMLElement;
                   el.style.transform = "translateY(0)";
                   el.style.boxShadow = "none";
-                  el.style.borderColor = "rgba(255,255,255,0.07)";
+                  el.style.borderColor = "var(--t-card-border)";
                 }}
               >
                 {/* Noise texture glow top */}
@@ -162,12 +162,10 @@ export default function Services() {
 
                   {/* Title */}
                   <div>
-                    <h3
-                      className="font-black text-white text-xl leading-tight tracking-tight whitespace-pre-line"
-                    >
+                    <h3 className="font-black text-xl leading-tight tracking-tight whitespace-pre-line" style={{ color: "var(--t-text)" }}>
                       {s.title}
                     </h3>
-                    <p className="text-xs mt-2 leading-relaxed" style={{ color: `${s.color}99` }}>
+                    <p className="text-xs mt-2 leading-relaxed" style={{ color: s.color === "#ffffff" ? "var(--t-text-muted)" : `${s.color}cc` }}>
                       {s.tagline}
                     </p>
                   </div>
@@ -183,7 +181,7 @@ export default function Services() {
                           className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                           style={{ background: s.color }}
                         />
-                        <span className="text-gray-400 text-sm">{item}</span>
+                        <span className="text-gray-400 text-sm" style={{ color: "var(--t-text-muted)" }}>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -226,7 +224,7 @@ export default function Services() {
           <div
             className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl"
             style={{
-              background: "#0e0e0e",
+              background: "var(--t-card-bg)",
               border: `1px solid ${active.color}33`,
               boxShadow: `0 0 0 1px ${active.color}18, 0 50px 120px rgba(0,0,0,0.95)`,
             }}
@@ -240,9 +238,9 @@ export default function Services() {
             <button
               onClick={() => setActive(null)}
               className="absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center rounded-full transition-all hover:scale-110"
-              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
+              style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)" }}
             >
-              <X className="w-4 h-4 text-white" />
+              <X className="w-4 h-4" style={{ color: "var(--t-text)" }} />
             </button>
 
             <div className="relative p-6 md:p-12">
@@ -253,23 +251,23 @@ export default function Services() {
                 </div>
                 <div className="min-w-0">
                   <span className="text-xs font-black tracking-widest uppercase" style={{ color: active.color }}>Our Service</span>
-                  <h2 className="font-black text-white text-xl md:text-3xl leading-tight whitespace-pre-line mt-1">{active.title}</h2>
-                  <p className="text-gray-500 text-sm mt-1">{active.tagline}</p>
+                  <h2 className="font-black text-xl md:text-3xl leading-tight whitespace-pre-line mt-1" style={{ color: "var(--t-text)" }}>{active.title}</h2>
+                  <p className="text-gray-500 text-sm mt-1" style={{ color: "var(--t-text-faint)" }}>{active.tagline}</p>
                 </div>
               </div>
 
-              <div className="mb-8" style={{ borderBottom: `1px solid rgba(255,255,255,0.06)` }} />
+              <div className="mb-8" style={{ borderBottom: `1px solid var(--t-card-border)` }} />
 
               {/* What */}
               <div className="mb-8">
                 <h4 className="font-black text-xs tracking-widest uppercase mb-3" style={{ color: active.color }}>WHAT IS IT</h4>
-                <p className="text-gray-300 text-sm leading-relaxed">{active.detail.what}</p>
+                <p className="text-gray-300 text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{active.detail.what}</p>
               </div>
 
               {/* Who */}
               <div className="mb-8">
                 <h4 className="font-black text-xs tracking-widest uppercase mb-3" style={{ color: active.color }}>WHO IS IT FOR</h4>
-                <p className="text-gray-300 text-sm leading-relaxed">{active.detail.who}</p>
+                <p className="text-gray-300 text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{active.detail.who}</p>
               </div>
 
               {/* How */}
@@ -277,11 +275,11 @@ export default function Services() {
                 <h4 className="font-black text-xs tracking-widest uppercase mb-4" style={{ color: active.color }}>HOW WE DO IT</h4>
                 <div className="flex flex-col gap-3">
                   {active.detail.how.map((step, i) => (
-                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}>
                       <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: active.color }}>
                         <Check className="w-3.5 h-3.5 text-black" strokeWidth={3} />
                       </div>
-                      <p className="text-gray-300 text-sm leading-relaxed">{step}</p>
+                      <p className="text-gray-300 text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{step}</p>
                     </div>
                   ))}
                 </div>
@@ -311,8 +309,8 @@ export default function Services() {
                 </a>
                 <button
                   onClick={() => setActive(null)}
-                  className="flex items-center justify-center px-6 py-3 rounded-xl font-bold text-sm text-gray-400 hover:text-white transition-colors min-h-[48px]"
-                  style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                  className="flex items-center justify-center px-6 py-3 rounded-xl font-bold text-sm transition-colors min-h-[48px]"
+                  style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)", color: "var(--t-text-muted)" }}
                 >
                   Close
                 </button>

@@ -126,7 +126,7 @@ function OrbitVisual() {
             willChange: "left, top, transform",
           }}
         >
-          <Icon style={{ width: 22, height: 22, color: "rgba(255,255,255,0.85)", strokeWidth: 1.5 }} />
+          <Icon style={{ width: 22, height: 22, color: "var(--t-text)", strokeWidth: 1.5 }} />
         </div>
       ))}
     </div>
@@ -135,16 +135,16 @@ function OrbitVisual() {
 
 export default function WhatWeBring() {
   return (
-    <section id="what-we-bring" className="section-wrap" style={{ background: "#0a0a0a", overflowX: "hidden" }}>
+    <section id="what-we-bring" className="section-wrap what-we-bring-section" style={{ overflowX: "hidden" }}>
       <div className="section-inner">
         <div className="grid md:grid-cols-2 gap-16 items-center">
 
           {/* Left */}
           <div>
             <div className="reveal">
-              <span className="section-label text-white">Our Ecosystem</span>
-              <h2 className="section-heading text-white">WHAT WE BRING</h2>
-              <p className="mt-4 text-lg" style={{ color: "#aaa" }}>
+              <span className="section-label" style={{ color: "var(--t-text)" }}>Our Ecosystem</span>
+              <h2 className="section-heading" style={{ color: "var(--t-text)" }}>WHAT WE BRING</h2>
+              <p className="mt-4 text-lg" style={{ color: "var(--t-text-muted)" }}>
                 Brand Brokers provides a clean, measurable, creator-first advertising ecosystem.
               </p>
             </div>
@@ -154,26 +154,26 @@ export default function WhatWeBring() {
                 <div
                   key={o.title}
                   className="reveal flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 cursor-default"
-                  style={{ border: "1px solid rgba(255,255,255,0.07)", background: "rgba(255,255,255,0.02)" }}
+                  style={{ border: "1px solid var(--t-card-border)", background: "var(--t-card-bg)" }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.18)";
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--t-card-border2)";
+                    (e.currentTarget as HTMLElement).style.background = "var(--t-card-bg2)";
                   }}
                   onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)";
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)";
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--t-card-border)";
+                    (e.currentTarget as HTMLElement).style.background = "var(--t-card-bg)";
                   }}
                 >
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                    <o.Icon className="w-5 h-5 text-white" strokeWidth={1.5} />
+                    style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-icon-border)" }}>
+                    <o.Icon className="w-5 h-5" style={{ color: "var(--t-text)" }} strokeWidth={1.5} />
                   </div>
-                  <span className="font-semibold text-white text-sm">{o.title}</span>
+                  <span className="font-semibold text-sm" style={{ color: "var(--t-text)" }}>{o.title}</span>
                 </div>
               ))}
             </div>
 
-            <p className="mt-8 reveal font-black text-white text-sm tracking-widest">
+            <p className="mt-8 reveal font-black text-sm tracking-widest" style={{ color: "var(--t-text)" }}>
               WE CONNECT CREATORS, BRANDS, AND AUDIENCES SEAMLESSLY.
             </p>
           </div>
