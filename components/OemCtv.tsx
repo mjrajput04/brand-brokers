@@ -3,11 +3,6 @@
 import { Cloud } from "lucide-react";
 
 const partners = ["Mi", "POCO", "realme", "OPPO", "Infinix", "TECNO", "OnePlus", "VIVO", "Samsung"];
-const stats = [
-  { label: "OEM India", value: "350M+" },
-  { label: "OEM Worldwide", value: "1340M+" },
-  { label: "CTV India", value: "6M+" },
-];
 
 export default function OemCtv() {
   return (
@@ -76,35 +71,12 @@ export default function OemCtv() {
                 </div>
               </div>
             ))}
-
-            {/* Models row */}
-            <div style={{ display: "flex", gap: 8 }}>
-              {["CPI", "CPC", "CPM"].map(m => (
-                <div key={m} style={{
-                  flex: 1, textAlign: "center", padding: "10px 0",
-                  borderRadius: 12, fontWeight: 900, fontSize: 13,
-                  background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  color: "#ffffff",
-                }}>
-                  {m}
-                </div>
-              ))}
-            </div>
           </div>
         </div>
 
         <div className="reveal p-8 md:p-12 rounded-3xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
-          <h3 className="font-black text-white text-xl tracking-widest uppercase mb-8 text-center">CUMULATIVE REACH – WW & INDIA</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 stagger">
-            {stats.map((s) => (
-              <div key={s.label} className="reveal-scale text-center">
-                <p className="text-gray-500 text-xs font-bold tracking-widest uppercase mb-2">{s.label}</p>
-                <p className="font-black text-white" style={{ fontSize: "clamp(28px, 4vw, 56px)" }}>{s.value}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-center mt-8 text-sm" style={{ color: "#888" }}>Suitable for Consumer Tech Brands to reduce CAC through CPI Campaign</p>
+          <h3 className="font-black text-white text-xl tracking-widest uppercase mb-4 text-center">CUMULATIVE REACH – WW & INDIA</h3>
+          <p className="text-center text-sm" style={{ color: "#888" }}>Suitable for Consumer Tech Brands to reduce CAC through CPI Campaign</p>
         </div>
 
         <div className="mt-16 grid md:grid-cols-2 gap-10 items-center">
