@@ -146,16 +146,7 @@ export default function Contact() {
                   className="flex items-center justify-center gap-2 py-4 rounded-2xl font-black text-black text-sm hover:opacity-90 transition-opacity"
                   style={{ background: "linear-gradient(135deg,#ffffff,#d1d5db)", minHeight: 52 }}
                 >
-                  Book on Calendly <ArrowRight className="w-4 h-4" />
-                </a>
-                <a
-                  href="https://wa.me/919999999999?text=Hi%20Brand%20Brokers%2C%20I%20want%20to%20book%20a%20strategy%20call"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-4 rounded-2xl font-black text-white text-sm hover:opacity-90 transition-opacity"
-                  style={{ background: "#25D366", minHeight: 52 }}
-                >
-                  Schedule via WhatsApp <ArrowRight className="w-4 h-4" />
+                  Book on Google Meet <ArrowRight className="w-4 h-4" />
                 </a>
                 <button
                   onClick={copy}
