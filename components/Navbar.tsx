@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 
-const links = ["Problem", "Services", "Why Us", "Case Studies", "Roster", "Clients", "Team", "Contact"];
+const links = ["Problem", "Services", "Why Us", "Case Studies", "Our Products", "Roster", "Clients", "Team"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
