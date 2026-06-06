@@ -43,7 +43,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-black text-black text-lg md:text-xl mb-1">Book a Strategy Call</p>
-                    <p className="text-gray-600 text-sm leading-relaxed">30-min call with our team. We'll talk about your brand goals and build a custom plan.</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">30 min call with our team. We'll talk about your brand goals and build a custom plan.</p>
                     <div className="flex flex-wrap items-center gap-3 mt-3">
                       <span className="flex items-center gap-1.5 text-xs font-bold text-gray-500"><Clock className="w-3.5 h-3.5" /> 30 minutes</span>
                       <span className="flex items-center gap-1.5 text-xs font-bold text-gray-500"><Video className="w-3.5 h-3.5" /> Google Meet</span>

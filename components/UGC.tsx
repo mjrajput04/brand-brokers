@@ -41,7 +41,7 @@ const offerings = [
   {
     icon: Film,
     title: "NATIVE PRODUCTION",
-    desc: "Short-form, performance-optimized video built for Ads, Instagram, & more",
+    desc: "Short form, performance optimized video built for Ads, Instagram, & more",
     color: "#d1d5db",
     detail: {
       what: "We produce content that looks like it belongs in the feed — not a TV commercial dropped into social. Our production team understands platform psychology and creates videos optimized for autoplay, sound-off, and scroll-stop.",
@@ -93,8 +93,8 @@ export default function UGC() {
               <h2 className="section-heading" style={{ color: "var(--t-text)" }}>UGC VIDEO PRODUCTION</h2>
               <p className="font-bold mt-2 mb-4 tracking-wide" style={{ color: "var(--t-text-muted)" }}>BUILT NATIVE, OPTIMIZED FOR SCALE</p>
               <p className="leading-relaxed" style={{ color: "var(--t-text-muted)" }}>
-                High-performance, platform-native video content designed to drive trust and conversions.
-                End-to-end UGC creative production — from strategic concept to final asset.
+                High performance, platform native video content designed to drive trust and conversions.
+                End to end UGC creative production from strategic concept to final asset.
               </p>
             </div>
             <div className="reveal-right flex justify-center">

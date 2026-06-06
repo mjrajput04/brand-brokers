@@ -8,7 +8,7 @@ const services = [
     Icon: Users,
     number: "01",
     title: "INFLUENCER\nMARKETING",
-    tagline: "End-to-end creator campaigns that convert",
+    tagline: "End to end creator campaigns that convert",
     color: "#ffffff",
     tag: "Most Popular",
     items: [
@@ -34,22 +34,22 @@ const services = [
     Icon: BarChart3,
     number: "02",
     title: "PERFORMANCE\nMARKETING",
-    tagline: "High-intent channels traditional agencies miss",
+    tagline: "High intent channels traditional agencies miss",
     color: "#a78bfa",
     tag: "High ROI",
     items: [
-      "OEM Ads (device-level placements)",
+      "OEM Ads (device level placements)",
       "Preload Installs",
       "CTV Advertising",
     ],
     detail: {
-      what: "We run paid performance campaigns across non-traditional but ultra-high-intent channels — OEM phone ads that appear the moment a user first boots their device, preload installs that ship your app with the phone itself, and CTV spots on smart TVs reaching households during prime time.",
+      what: "We run paid performance campaigns across non-traditional but ultra high intent channels — OEM phone ads that appear the moment a user first boots their device, preload installs that ship your app with the phone itself, and CTV spots on smart TVs reaching households during prime time.",
       who: "App developers, gaming studios, fintech, and brands wanting guaranteed eyeballs with measurable ROI.",
       how: [
         "OEM partner network setup & campaign configuration",
         "Preload deal negotiation with device manufacturers",
         "CTV creative production & inventory buying",
-        "Real-time performance dashboard with ROAS tracking",
+        "Real time performance dashboard with ROAS tracking",
         "A/B testing creatives for cost-per-install optimization",
       ],
       perfectFor: ["App installs at scale", "New market entry", "Performance-first campaigns", "Guaranteed reach"],
@@ -68,7 +68,7 @@ const services = [
       "Dedicated support & deal flow",
     ],
     detail: {
-      what: "We represent gaming and lifestyle creators end-to-end. Our team handles inbound brand enquiries, negotiates deals, manages deliverables, and coaches creators on content strategy — so they can focus on making great content.",
+      what: "We represent gaming and lifestyle creators end to end. Our team handles inbound brand enquiries, negotiates deals, manages deliverables, and coaches creators on content strategy — so they can focus on making great content.",
       who: "Creators with 10K–10M+ followers looking to monetize, and brands looking for authentic long-term creator partnerships.",
       how: [
         "Creator audit & growth gap analysis",

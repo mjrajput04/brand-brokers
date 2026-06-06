@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const reasons = [
   { num: "01", title: "ADVERTISING EXPERTISE", desc: "Strong OEM & CTV advertising across various platforms." },
   { num: "02", title: "ROI DRIVEN", desc: "Planning on every campaign, ensuring measurable outcomes." },
-  { num: "03", title: "TRANSPARENCY", desc: "Clear pricing & real-time reporting for complete trust." },
+  { num: "03", title: "TRANSPARENCY", desc: "Clear pricing & real time reporting for complete trust." },
   { num: "04", title: "1500+ CREATORS", desc: "Vast network of verified creators across diverse categories." },
   { num: "05", title: "GEN-Z INSIGHT", desc: "Young, agile team with strong community understanding." },
 ];

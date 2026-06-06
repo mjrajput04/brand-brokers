@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 const rows = [
   { want: "Real Performance",    get: "Vanity Metrics",   pct: 23 },
   { want: "Authentic Creators",  get: "Fake Influence",   pct: 31 },
-  { want: "Measurable ROI",      get: "Black-Box Spend",  pct: 18 },
+  { want: "Measurable ROI",      get: "Black Box Spend",  pct: 18 },
 ];
 
 function Bar({ pct, active }: { pct: number; active: boolean }) {

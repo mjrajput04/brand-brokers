@@ -123,7 +123,7 @@ export default function Roster() {
           <span className="section-label" style={{ color: "var(--t-text)" }}>Creator Network</span>
           <h2 className="section-heading" style={{ color: "var(--t-text)" }}>OUR ROSTER</h2>
           <p className="mt-4 text-lg max-w-2xl mx-auto" style={{ color: "var(--t-text-muted)" }}>
-            A curated network of high-impact creators across every major niche, ready to amplify your brand.
+            A curated network of high impact creators across every major niche, ready to amplify your brand.
           </p>
         </div>
 

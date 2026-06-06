@@ -145,7 +145,7 @@ export default function WhatWeBring() {
               <span className="section-label" style={{ color: "var(--t-text)" }}>Our Ecosystem</span>
               <h2 className="section-heading" style={{ color: "var(--t-text)" }}>WHAT WE BRING</h2>
               <p className="mt-4 text-lg" style={{ color: "var(--t-text-muted)" }}>
-                Brand Brokers provides a clean, measurable, creator-first advertising ecosystem.
+                Brand Brokers provides a clean, measurable, creator first advertising ecosystem.
               </p>
             </div>
 

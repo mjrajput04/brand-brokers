@@ -10,12 +10,12 @@ const cases = [
     category: "Gaming App · Influencer Marketing",
     color: "#6C3CE1",
     accentLight: "#a78bfa",
-    objective: "Build a dedicated gaming audience through high-engagement Shorts promotions.",
-    strategy: "Activated top-performing gaming channels with relatable short-form content to spark curiosity and maximize reach.",
+    objective: "Build a dedicated gaming audience through high engagement Shorts promotions.",
+    strategy: "Activated top performing gaming channels with relatable short form content to spark curiosity and maximize reach.",
     execution: [
-      "Multiple creator-led short videos across YouTube Shorts and Instagram Reels",
-      "Audience-specific hooks focusing on immersive gameplay experience",
-      "Momentum-based posting schedule to maintain ongoing buzz",
+      "Multiple creator led short videos across YouTube Shorts and Instagram Reels",
+      "Audience specific hooks focusing on immersive gameplay experience",
+      "Momentum based posting schedule to maintain ongoing buzz",
     ],
     stats: [
       { value: "200K+", label: "Views", Icon: Eye },
@@ -27,7 +27,7 @@ const cases = [
       background: "WePlay was an emerging gaming platform looking to carve a niche in India's saturated mobile gaming market. The challenge: build brand awareness and drive app installs without a massive ad budget.",
       approach: "We identified mid-tier gaming creators (100K–500K subscribers) whose audiences had the highest overlap with WePlay's target demographic — competitive mobile gamers aged 16–28. Rather than one big creator push, we activated a cluster of 8 creators simultaneously to create a trending perception.",
       results: "The campaign delivered 200K+ views at an industry-beating ₹0.15 CPV, proving that smart creator selection outperforms raw spend. The 2K+ organic installs came entirely from creator CTAs — zero paid UA spend.",
-      learnings: "Short-form content with gameplay hooks (first 3 seconds showing a dramatic play) consistently outperformed talking-head style reviews by 3x in watch time and 2x in click-through.",
+      learnings: "Short form content with gameplay hooks (first 3 seconds showing a dramatic play) consistently outperformed talking-head style reviews by 3x in watch time and 2x in click-through.",
     },
   },
   {
@@ -37,9 +37,9 @@ const cases = [
     color: "#00C853",
     accentLight: "#4ade80",
     objective: "Create strong buzz for the launch of the Infinix GT30 Pro Gaming Edition smartphone.",
-    strategy: "Partnered with high-engagement gaming creators to drive credibility and showcase real in-game performance benchmarks.",
+    strategy: "Partnered with high engagement gaming creators to drive credibility and showcase real in game performance benchmarks.",
     execution: [
-      "Product-focused short videos featuring real gameplay on the device",
+      "Product focused short videos featuring real gameplay on the device",
       "Authentic creator opinions and honest benchmark comparisons",
       "Barter collaboration model to maximize ROI without paid fees",
     ],
@@ -49,10 +49,10 @@ const cases = [
       { value: "4",     label: "Influencers", Icon: Star },
     ],
     fullDetail: {
-      background: "Infinix GT30 Pro needed a gaming-focused launch strategy to reach India's growing PC-to-mobile gaming converter audience. Traditional tech review channels weren't cutting through — the brand needed creators who actually game.",
-      approach: "We curated 4 macro gaming creators with combined reach of 8M+, structured a barter deal (device gifting and usage rights), and co-developed content briefs that felt native to each creator's style — not scripted tech ads.",
+      background: "Infinix GT30 Pro needed a gaming  focused launch strategy to reach India's growing PC to mobile gaming converter audience. Traditional tech review channels weren't cutting through the brand needed creators who actually game.",
+      approach: "We curated 4 macro gaming creators with combined reach of 8M+, structured a barter deal (device gifting and usage rights), and co-developed content briefs that felt native to each creator's style not scripted tech ads.",
       results: "3.6M views across 4 creators in 2 weeks. The cost efficiency was remarkable: all delivered through barter, making the effective CPV near zero. The 200K likes signal strong purchase intent among the gaming demographic.",
-      learnings: "Barter deals work best when creators are genuinely enthusiastic about the product. We pre-screened all 4 creators to ensure they were already gaming phone users — authenticity drove the engagement numbers.",
+      learnings: "Barter deals work best when creators are genuinely enthusiastic about the product. We pre-screened all 4 creators to ensure they were already gaming phone users authenticity drove the engagement numbers.",
     },
   },
   {
@@ -62,7 +62,7 @@ const cases = [
     color: "#06B6D4",
     accentLight: "#22d3ee",
     objective: "Shift MetaSpace's perception from just another gaming platform to a Web3 esports authority, and boost visibility for their new podcast.",
-    strategy: "Used gaming creators to push Shorts, Reels, Stories, and community posts — positioning the podcast as a must-watch for gaming enthusiasts transitioning to Web3.",
+    strategy: "Used gaming creators to push Shorts, Reels, Stories, and community posts positioning the podcast as a must watch for gaming enthusiasts transitioning to Web3.",
     execution: [
       "Community-driven engagement through creator Discord and Telegram shoutouts",
       "Positioned podcast as inside knowledge for Web3 gaming early adopters",
