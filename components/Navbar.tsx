@@ -49,18 +49,23 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${atTop ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}`}
         style={{
-          background: scrolled ? "rgba(10,10,10,0.95)" : "transparent",
+          background: scrolled ? (isDark ? "rgba(10,10,10,0.95)" : "rgba(240,240,240,0.95)") : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.1)" : "none",
+          borderBottom: scrolled ? `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)"}` : "none",
           padding: scrolled ? "12px var(--section-pad-x)" : "20px var(--section-pad-x)",
         }}
       >
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-1 cursor-pointer min-w-0" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            <video src="/logo/logo-anim.webm" autoPlay loop muted playsInline
-              style={{ width: "clamp(50px,10vw,90px)", height: "clamp(50px,10vw,90px)", objectFit: "contain", flexShrink: 0, mixBlendMode: "screen" }} />
-            <span className="font-black text-sm sm:text-xl tracking-tight text-white truncate" style={{ letterSpacing: "-0.02em" }}>
+          {isDark ? (
+              <video key="dark" src="/logo/logo-anim.webm" autoPlay loop muted playsInline
+                style={{ width: "clamp(50px,10vw,90px)", height: "clamp(50px,10vw,90px)", objectFit: "contain", flexShrink: 0, mixBlendMode: "screen" }} />
+            ) : (
+              <img key="light" src="/logo/logo-black.png" alt="Brand Brokers"
+                style={{ width: "clamp(40px,6vw,60px)", height: "clamp(20px,3vw,30px)", objectFit: "contain", flexShrink: 0 }} />
+            )}
+            <span className="font-black text-sm sm:text-xl tracking-tight truncate" style={{ letterSpacing: "-0.02em", color: isDark ? "#ffffff" : "#0a0a0a" }}>
               BRAND BROKERS
             </span>
           </div>
@@ -69,9 +74,10 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-6">
             {links.map(l => (
               <button key={l} onClick={() => scrollTo(l)}
-                className="text-sm font-medium tracking-wide text-white transition-all duration-200 relative group">
+                className="text-sm font-medium tracking-wide transition-all duration-200 relative group"
+                style={{ color: isDark ? "#ffffff" : "#0a0a0a" }}>
                 {l}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ background: isDark ? "#fff" : "#0a0a0a" }} />
               </button>
             ))}
             
@@ -128,8 +134,9 @@ export default function Navbar() {
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {[0,1,2].map(i => (
-              <span key={i} className="block w-6 h-0.5 bg-white transition-all duration-300"
+              <span key={i} className="block w-6 h-0.5 transition-all duration-300"
                 style={{
+                  background: isDark ? "#ffffff" : "#0a0a0a",
                   transform: mobileOpen && i === 0 ? "rotate(45deg) translate(5px,5px)" : mobileOpen && i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none",
                   opacity: mobileOpen && i === 1 ? 0 : 1,
                 }}

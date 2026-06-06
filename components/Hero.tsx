@@ -243,9 +243,15 @@ export default function Hero() {
                 <span className="absolute rounded-full pointer-events-none" style={{ width: 220, height: 220, top: 0, left: "50%", transform: "translateX(-50%)", background: "rgba(255,255,255,0.03)", animation: "pulse-ring 1.8s ease-out 0.5s forwards" }} />
               </>
             )}
-            <video src="/logo/logo-anim.webm" autoPlay loop muted playsInline
-              className="relative z-10 animate-float"
-              style={{ width: "clamp(140px, 18vw, 220px)", height: "clamp(140px, 18vw, 220px)", objectFit: "contain", mixBlendMode: "screen", animationDuration: "6s", marginBottom: "-24px" }} />
+            {isDark ? (
+              <video key="dark" src="/logo/logo-anim.webm" autoPlay loop muted playsInline
+                className="relative z-10 animate-float"
+                style={{ width: "clamp(140px, 18vw, 220px)", height: "clamp(140px, 18vw, 220px)", objectFit: "contain", mixBlendMode: "screen", animationDuration: "6s", marginBottom: "-24px" }} />
+            ) : (
+              <img key="light" src="/logo/logo-black.png" alt="Brand Brokers"
+                className="relative z-10 animate-float"
+                style={{ width: "clamp(90px, 10vw, 90px)", height: "clamp(100px, 12vw, 160px)", objectFit: "contain", animationDuration: "6s", marginBottom: "30px" }} />
+            )}
             <MagneticHeading mouseRef={mouseRef} isDark={isDark} />
           </div>
 
