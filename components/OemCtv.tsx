@@ -1,10 +1,13 @@
 "use client";
 
 import { Cloud } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const partners = ["Mi", "POCO", "realme", "OPPO", "Infinix", "TECNO", "OnePlus", "VIVO", "Samsung"];
 
 export default function OemCtv() {
+  const { isDark } = useTheme();
+
   return (
     <section id="oem-&-ctv" className="section-wrap oem-ctv-section">
       <div className="section-inner">
@@ -27,7 +30,7 @@ export default function OemCtv() {
               <p className="font-bold text-sm tracking-widest uppercase mb-2" style={{ color: "var(--t-text-muted)" }}>Available Models:</p>
               <div className="flex gap-4">
                 {["CPI", "CPC", "CPM"].map(m => (
-                  <span key={m} className="px-4 py-2 rounded-full font-black text-sm" style={{ background: "#ffffff", color: "#000" }}>{m}</span>
+                  <span key={m} className="px-4 py-2 rounded-full font-black text-sm" style={{ background: isDark ? "#ffffff" : "#000000", color: isDark ? "#000" : "#fff" }}>{m}</span>
                 ))}
               </div>
             </div>
@@ -49,9 +52,9 @@ export default function OemCtv() {
 
             {/* Reach bars */}
             {[
-              { label: "OEM India",     value: "350M+",   pct: 21,  color: "#ffffff" },
-              { label: "OEM Worldwide", value: "1340M+",  pct: 79,  color: "#9ca3af" },
-              { label: "CTV India",     value: "6M+",     pct: 4,   color: "#6b7280" },
+              { label: "OEM India",     value: "350M+",   pct: 21,  color: isDark ? "#ffffff" : "#000000" },
+              { label: "OEM Worldwide", value: "1340M+",  pct: 79,  color: isDark ? "#9ca3af" : "#444444" },
+              { label: "CTV India",     value: "6M+",     pct: 4,   color: isDark ? "#6b7280" : "#666666" },
             ].map((s, i) => (
               <div key={i} style={{ padding: "16px 20px", borderRadius: 16, background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
@@ -86,8 +89,8 @@ export default function OemCtv() {
             <p className="leading-relaxed" style={{ color: "var(--t-text-muted)" }}>A cloud managed distribution model where apps are pre installed at the factory or via cloud push before first device use, ensuring instant reach, zero CPI wastage, high visibility, and fraud free user acquisition.</p>
           </div>
           <div className="reveal-right flex justify-center">
-            <div className="w-32 h-32 rounded-3xl flex items-center justify-center animate-float" style={{ background: "linear-gradient(135deg,#ffffff,#9ca3af)", boxShadow: "0 20px 60px rgba(255,255,255,0.1)" }}>
-              <Cloud className="w-16 h-16 text-black" strokeWidth={1.5} />
+            <div className="w-32 h-32 rounded-3xl flex items-center justify-center animate-float" style={{ background: isDark ? "linear-gradient(135deg,#ffffff,#9ca3af)" : "linear-gradient(135deg,#1a1a1a,#444444)", boxShadow: isDark ? "0 20px 60px rgba(255,255,255,0.1)" : "0 20px 60px rgba(0,0,0,0.1)" }}>
+              <Cloud className="w-16 h-16" style={{ color: isDark ? "#000" : "#fff" }} strokeWidth={1.5} />
             </div>
           </div>
         </div>

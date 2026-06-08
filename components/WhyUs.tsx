@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const reasons = [
   { num: "01", title: "ADVERTISING EXPERTISE", desc: "Strong OEM & CTV advertising across various platforms." },
@@ -11,6 +12,12 @@ const reasons = [
 ];
 
 export default function WhyUs() {
+  const { isDark } = useTheme();
+
+  const strokeColor = isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.15)";
+  const circleColor = isDark ? "#ffffff" : "#000000";
+  const glowColor = isDark ? "rgba(255,255,255,0.8)" : "rgba(0,0,0,0.4)";
+
   return (
     <section id="why-us" className="section-wrap why-us-section">
       <div className="section-inner">
@@ -25,7 +32,7 @@ export default function WhyUs() {
             <path 
               id="curve-path"
               d="M 100,32 C 200,32 200,128 300,128 S 400,32 500,32 S 600,128 700,128 S 800,32 900,32" 
-              stroke="rgba(255,255,255,0.2)" 
+              stroke={strokeColor} 
               strokeWidth="2" 
               fill="none" 
               strokeDasharray="6 6"
@@ -33,7 +40,7 @@ export default function WhyUs() {
             />
             <motion.circle
               r="6"
-              fill="#ffffff"
+              fill={circleColor}
               initial={{ offsetDistance: "0%" }}
               animate={{ offsetDistance: "100%" }}
               transition={{
@@ -43,7 +50,7 @@ export default function WhyUs() {
               }}
               style={{
                 offsetPath: "path('M 100,32 C 200,32 200,128 300,128 S 400,32 500,32 S 600,128 700,128 S 800,32 900,32')",
-                filter: "drop-shadow(0 0 8px rgba(255,255,255,0.8))"
+                filter: `drop-shadow(0 0 8px ${glowColor})`
               }}
             />
           </svg>
@@ -55,9 +62,11 @@ export default function WhyUs() {
                   animate={{
                     scale: [1, 1.3, 1],
                     boxShadow: [
-                      "0 0 0px rgba(255,255,255,0)",
-                      "0 0 50px rgba(255,255,255,0.4), 0 0 20px #fff",
-                      "0 0 0px rgba(255,255,255,0)"
+                      `0 0 0px ${isDark ? "rgba(255,255,255,0)" : "rgba(0,0,0,0)"}`,
+                      isDark 
+                        ? "0 0 50px rgba(255,255,255,0.4), 0 0 20px #fff" 
+                        : "0 0 40px rgba(0,0,0,0.15), 0 0 15px rgba(0,0,0,0.1)",
+                      `0 0 0px ${isDark ? "rgba(255,255,255,0)" : "rgba(0,0,0,0)"}`
                     ],
                   }}
                   transition={{
@@ -68,9 +77,11 @@ export default function WhyUs() {
                     ease: "easeInOut"
                   }}
                   style={{
-                    background: i % 2 === 0 ? "linear-gradient(135deg,#ffffff,#9ca3af)" : "rgba(255,255,255,0.1)",
-                    color: i % 2 === 0 ? "#000" : "#fff",
-                    border: "2px solid #ffffff",
+                    background: i % 2 === 0 
+                      ? (isDark ? "linear-gradient(135deg,#ffffff,#9ca3af)" : "linear-gradient(135deg,#1a1a1a,#444444)") 
+                      : (isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"),
+                    color: i % 2 === 0 ? (isDark ? "#000" : "#fff") : (isDark ? "#fff" : "#000"),
+                    border: isDark ? "2px solid #ffffff" : "2px solid #000000",
                   }}
                 >
                   {r.num}
@@ -86,7 +97,7 @@ export default function WhyUs() {
         <div className="md:hidden flex flex-col gap-6 stagger">
           {reasons.map((r) => (
             <div key={r.num} className="reveal flex gap-5 p-5 rounded-2xl" style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border2)" }}>
-              <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-lg flex-shrink-0" style={{ background: "linear-gradient(135deg,var(--t-text),var(--t-text-muted))", color: "#000" }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-lg flex-shrink-0" style={{ background: isDark ? "linear-gradient(135deg,#ffffff,#9ca3af)" : "linear-gradient(135deg,#1a1a1a,#444444)", color: isDark ? "#000" : "#fff" }}>
                 {r.num}
               </div>
               <div>
