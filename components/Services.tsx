@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Users, BarChart3, Star, X, ArrowRight, Check, Zap } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const services = [
   {
@@ -86,6 +87,7 @@ type Service = typeof services[number];
 
 export default function Services() {
   const [active, setActive] = useState<Service | null>(null);
+  const { isDark } = useTheme();
 
   return (
     <>
@@ -100,139 +102,155 @@ export default function Services() {
 
           {/* Cards */}
           <div className="grid md:grid-cols-3 gap-6">
-            {services.map((s) => (
-              <div
-                key={s.title}
-                className="group relative rounded-3xl flex flex-col cursor-pointer overflow-hidden"
-                style={{
-                  background: "var(--t-card-bg)",
-                  border: "1px solid var(--t-card-border)",
-                  transition: "transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease",
-                }}
-                onClick={() => setActive(s)}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.transform = "translateY(-8px)";
-                  el.style.boxShadow = `0 30px 80px ${s.color}22, 0 0 0 1px ${s.color}44`;
-                  el.style.borderColor = `${s.color}44`;
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.transform = "translateY(0)";
-                  el.style.boxShadow = "none";
-                  el.style.borderColor = "var(--t-card-border)";
-                }}
-              >
-                {/* Noise texture glow top */}
+            {services.map((s) => {
+              // Adjust white color for light mode
+              const displayColor = (!isDark && s.color === "#ffffff") ? "#0a0a0a" : s.color;
+              
+              return (
                 <div
-                  className="absolute top-0 left-0 right-0 h-px"
-                  style={{ background: `linear-gradient(90deg, transparent, ${s.color}88, transparent)` }}
-                />
-                {/* Radial glow behind icon */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-52 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                  style={{ background: `radial-gradient(ellipse at 50% 0%, ${s.color}18 0%, transparent 70%)` }}
-                />
-
-                <div className="relative flex flex-col flex-1 p-8 gap-6">
-
-                  {/* Number + Tag row */}
-                  <div className="flex items-center justify-between">
-                    <span
-                      className="font-black text-5xl leading-none select-none"
-                      style={{ color: `${s.color}18` }}
-                    >
-                      {s.number}
-                    </span>
-                    <span
-                      className="text-xs font-black px-3 py-1.5 rounded-full tracking-wider"
-                      style={{ background: `${s.color}18`, color: s.color, border: `1px solid ${s.color}33` }}
-                    >
-                      {s.tag}
-                    </span>
-                  </div>
-
-                  {/* Icon */}
+                  key={s.title}
+                  className="group relative rounded-3xl flex flex-col cursor-pointer overflow-hidden"
+                  style={{
+                    background: "var(--t-card-bg)",
+                    border: "1px solid var(--t-card-border)",
+                    transition: "transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease",
+                  }}
+                  onClick={() => setActive(s)}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.transform = "translateY(-8px)";
+                    el.style.boxShadow = `0 30px 80px ${displayColor}22, 0 0 0 1px ${displayColor}44`;
+                    el.style.borderColor = `${displayColor}44`;
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.transform = "translateY(0)";
+                    el.style.boxShadow = "none";
+                    el.style.borderColor = "var(--t-card-border)";
+                  }}
+                >
+                  {/* Noise texture glow top */}
                   <div
-                    className="w-14 h-14 flex items-center justify-center rounded-2xl"
-                    style={{ background: `${s.color}12`, border: `1px solid ${s.color}28` }}
-                  >
-                    <s.Icon className="w-7 h-7" style={{ color: s.color }} strokeWidth={1.5} />
-                  </div>
-
-                  {/* Title */}
-                  <div>
-                    <h3 className="font-black text-xl leading-tight tracking-tight whitespace-pre-line" style={{ color: "var(--t-text)" }}>
-                      {s.title}
-                    </h3>
-                    <p className="text-xs mt-2 leading-relaxed" style={{ color: s.color === "#ffffff" ? "var(--t-text-muted)" : `${s.color}cc` }}>
-                      {s.tagline}
-                    </p>
-                  </div>
-
-                  {/* Divider */}
-                  <div style={{ height: "1px", background: `linear-gradient(90deg, ${s.color}44, transparent)` }} />
-
-                  {/* Items */}
-                  <ul className="flex flex-col gap-3 flex-1">
-                    {s.items.map((item, j) => (
-                      <li key={j} className="flex items-center gap-3">
-                        <div
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                          style={{ background: s.color }}
-                        />
-                        <span className="text-gray-400 text-sm" style={{ color: "var(--t-text-muted)" }}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Learn More CTA */}
+                    className="absolute top-0 left-0 right-0 h-px"
+                    style={{ background: `linear-gradient(90deg, transparent, ${displayColor}88, transparent)` }}
+                  />
+                  {/* Radial glow behind icon */}
                   <div
-                    className="flex items-center justify-between pt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
-                    style={{ borderTop: `1px solid ${s.color}22` }}
-                  >
-                    <span className="text-sm font-black" style={{ color: s.color }}>
-                      Learn More
-                    </span>
+                    className="absolute top-0 left-0 right-0 h-52 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                    style={{ background: `radial-gradient(ellipse at 50% 0%, ${displayColor}18 0%, transparent 70%)` }}
+                  />
+
+                  <div className="relative flex flex-col flex-1 p-8 gap-6">
+
+                    {/* Number + Tag row */}
+                    <div className="flex items-center justify-between">
+                      <span
+                        className="font-black text-5xl leading-none select-none"
+                        style={{ color: isDark ? `${displayColor}18` : `${displayColor}15` }}
+                      >
+                        {s.number}
+                      </span>
+                      <span
+                        className="text-xs font-black px-3 py-1.5 rounded-full tracking-wider"
+                        style={{ 
+                          background: isDark ? `${displayColor}18` : `${displayColor}08`, 
+                          color: displayColor, 
+                          border: `1px solid ${displayColor}22` 
+                        }}
+                      >
+                        {s.tag}
+                      </span>
+                    </div>
+
+                    {/* Icon */}
                     <div
-                      className="w-8 h-8 rounded-full flex items-center justify-center"
-                      style={{ background: s.color }}
+                      className="w-14 h-14 flex items-center justify-center rounded-2xl"
+                      style={{ 
+                        background: isDark ? `${displayColor}12` : `${displayColor}08`, 
+                        border: `1px solid ${displayColor}18` 
+                      }}
                     >
-                      <ArrowRight className="w-4 h-4 text-black" />
+                      <s.Icon className="w-7 h-7" style={{ color: displayColor }} strokeWidth={1.5} />
+                    </div>
+
+                    {/* Title */}
+                    <div>
+                      <h3 className="font-black text-xl leading-tight tracking-tight whitespace-pre-line" style={{ color: "var(--t-text)" }}>
+                        {s.title}
+                      </h3>
+                      <p className="text-xs mt-2 leading-relaxed" style={{ color: (displayColor === "#ffffff" || displayColor === "#0a0a0a") ? "var(--t-text-muted)" : `${displayColor}` }}>
+                        {s.tagline}
+                      </p>
+                    </div>
+
+                    {/* Divider */}
+                    <div style={{ height: "1px", background: `linear-gradient(90deg, ${displayColor}33, transparent)` }} />
+
+                    {/* Items */}
+                    <ul className="flex flex-col gap-3 flex-1">
+                      {s.items.map((item, j) => (
+                        <li key={j} className="flex items-center gap-3">
+                          <div
+                            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                            style={{ background: displayColor, opacity: 0.6 }}
+                          />
+                          <span className="text-sm" style={{ color: "var(--t-text-muted)" }}>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Learn More CTA */}
+                    <div
+                      className="flex items-center justify-between pt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+                      style={{ borderTop: `1px solid ${displayColor}18` }}
+                    >
+                      <span className="text-sm font-black" style={{ color: displayColor }}>
+                        Learn More
+                      </span>
+                      <div
+                        className="w-8 h-8 rounded-full flex items-center justify-center"
+                        style={{ background: displayColor }}
+                      >
+                        <ArrowRight className="w-4 h-4" style={{ color: isDark ? "#000" : "#fff" }} />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Bottom bar */}
-                <div
-                  className="h-[3px] w-0 group-hover:w-full transition-all duration-500"
-                  style={{ background: `linear-gradient(90deg, ${s.color}, transparent)` }}
-                />
-              </div>
-            ))}
+                  {/* Bottom bar */}
+                  <div
+                    className="h-[3px] w-0 group-hover:w-full transition-all duration-500"
+                    style={{ background: `linear-gradient(90deg, ${displayColor}, transparent)` }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ── Modal ── */}
-      {active && (
+      {active && (() => {
+        const displayColor = (!isDark && active.color === "#ffffff") ? "#0a0a0a" : active.color;
+        return (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
-          style={{ background: "rgba(0,0,0,0.9)", backdropFilter: "blur(16px)" }}
+          style={{ background: isDark ? "rgba(0,0,0,0.9)" : "rgba(255,255,255,0.9)", backdropFilter: "blur(16px)" }}
           onClick={() => setActive(null)}
         >
           <div
             className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl"
             style={{
               background: "var(--t-card-bg)",
-              border: `1px solid ${active.color}33`,
-              boxShadow: `0 0 0 1px ${active.color}18, 0 50px 120px rgba(0,0,0,0.95)`,
+              border: `1px solid ${displayColor}33`,
+              boxShadow: isDark 
+                ? `0 0 0 1px ${displayColor}18, 0 50px 120px rgba(0,0,0,0.95)`
+                : `0 0 0 1px ${displayColor}08, 0 50px 120px rgba(0,0,0,0.1)`,
             }}
             onClick={e => e.stopPropagation()}
           >
             {/* Top strip */}
-            <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-3xl" style={{ background: `linear-gradient(90deg, ${active.color}, transparent)` }} />
-            <div className="absolute top-0 left-0 right-0 h-52 rounded-t-3xl pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 0%, ${active.color}1a, transparent 70%)` }} />
+            <div className="absolute top-0 left-0 right-0 h-[3px] rounded-t-3xl" style={{ background: `linear-gradient(90deg, ${displayColor}, transparent)` }} />
+            <div className="absolute top-0 left-0 right-0 h-52 rounded-t-3xl pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 0%, ${displayColor}1a, transparent 70%)` }} />
 
             {/* Close */}
             <button
@@ -246,13 +264,13 @@ export default function Services() {
             <div className="relative p-6 md:p-12">
               {/* Modal header */}
               <div className="flex items-start gap-4 mb-8">
-                <div className="w-14 h-14 flex items-center justify-center rounded-2xl flex-shrink-0" style={{ background: `${active.color}18`, border: `1px solid ${active.color}33` }}>
-                  <active.Icon className="w-7 h-7" style={{ color: active.color }} strokeWidth={1.5} />
+                <div className="w-14 h-14 flex items-center justify-center rounded-2xl flex-shrink-0" style={{ background: `${displayColor}18`, border: `1px solid ${displayColor}33` }}>
+                  <active.Icon className="w-7 h-7" style={{ color: displayColor }} strokeWidth={1.5} />
                 </div>
                 <div className="min-w-0">
-                  <span className="text-xs font-black tracking-widest uppercase" style={{ color: active.color }}>Our Service</span>
+                  <span className="text-xs font-black tracking-widest uppercase" style={{ color: displayColor }}>Our Service</span>
                   <h2 className="font-black text-xl md:text-3xl leading-tight whitespace-pre-line mt-1" style={{ color: "var(--t-text)" }}>{active.title}</h2>
-                  <p className="text-gray-500 text-sm mt-1" style={{ color: "var(--t-text-faint)" }}>{active.tagline}</p>
+                  <p className="text-sm mt-1" style={{ color: "var(--t-text-faint)" }}>{active.tagline}</p>
                 </div>
               </div>
 
@@ -260,37 +278,37 @@ export default function Services() {
 
               {/* What */}
               <div className="mb-8">
-                <h4 className="font-black text-xs tracking-widest uppercase mb-3" style={{ color: active.color }}>WHAT IS IT</h4>
-                <p className="text-gray-300 text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{active.detail.what}</p>
+                <h4 className="font-black text-xs tracking-widest uppercase mb-3" style={{ color: displayColor }}>WHAT IS IT</h4>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{active.detail.what}</p>
               </div>
 
               {/* Who */}
               <div className="mb-8">
-                <h4 className="font-black text-xs tracking-widest uppercase mb-3" style={{ color: active.color }}>WHO IS IT FOR</h4>
-                <p className="text-gray-300 text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{active.detail.who}</p>
+                <h4 className="font-black text-xs tracking-widest uppercase mb-3" style={{ color: displayColor }}>WHO IS IT FOR</h4>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{active.detail.who}</p>
               </div>
 
               {/* How */}
               <div className="mb-8">
-                <h4 className="font-black text-xs tracking-widest uppercase mb-4" style={{ color: active.color }}>HOW WE DO IT</h4>
+                <h4 className="font-black text-xs tracking-widest uppercase mb-4" style={{ color: displayColor }}>HOW WE DO IT</h4>
                 <div className="flex flex-col gap-3">
                   {active.detail.how.map((step, i) => (
                     <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}>
-                      <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: active.color }}>
-                        <Check className="w-3.5 h-3.5 text-black" strokeWidth={3} />
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: displayColor }}>
+                        <Check className="w-3.5 h-3.5" style={{ color: isDark ? "#000" : "#fff" }} strokeWidth={3} />
                       </div>
-                      <p className="text-gray-300 text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{step}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{step}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Perfect For */}
-              <div className="rounded-2xl p-6 mb-8" style={{ background: `${active.color}08`, border: `1px solid ${active.color}22` }}>
-                <p className="text-xs font-black tracking-widest uppercase mb-3" style={{ color: active.color }}>PERFECT FOR</p>
+              <div className="rounded-2xl p-6 mb-8" style={{ background: `${displayColor}08`, border: `1px solid ${displayColor}22` }}>
+                <p className="text-xs font-black tracking-widest uppercase mb-3" style={{ color: displayColor }}>PERFECT FOR</p>
                 <div className="flex flex-wrap gap-2">
                   {active.detail.perfectFor.map((tag) => (
-                    <span key={tag} className="px-3 py-1.5 rounded-lg text-xs font-bold" style={{ background: `${active.color}14`, color: active.color, border: `1px solid ${active.color}33` }}>
+                    <span key={tag} className="px-3 py-1.5 rounded-lg text-xs font-bold" style={{ background: `${displayColor}14`, color: displayColor, border: `1px solid ${displayColor}33` }}>
                       {tag}
                     </span>
                   ))}
@@ -303,7 +321,7 @@ export default function Services() {
                   href="#contact"
                   onClick={() => setActive(null)}
                   className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-black text-sm hover:opacity-90 transition-opacity min-h-[48px]"
-                  style={{ background: active.color, color: "#000" }}
+                  style={{ background: displayColor, color: isDark ? "#000" : "#fff" }}
                 >
                   Get Started <ArrowRight className="w-4 h-4" />
                 </a>
@@ -318,7 +336,7 @@ export default function Services() {
             </div>
           </div>
         </div>
-      )}
+      )})()}
     </>
   );
 }

@@ -25,18 +25,18 @@
 }
 
 .light-mode {
-  --t-text:        #1a1a1a;
-  --t-text-muted:  #444444;
-  --t-text-dim:    #555555;
-  --t-text-faint:  #777777;
-  --t-text-dark:   #333333;
-  --t-card-bg:     rgba(0,0,0,0.04);
-  --t-card-bg2:    rgba(0,0,0,0.06);
-  --t-card-border: rgba(0,0,0,0.10);
-  --t-card-border2:rgba(0,0,0,0.15);
-  --t-bar-bg:      rgba(0,0,0,0.08);
-  --t-icon-bg:     rgba(0,0,0,0.06);
-  --t-icon-border: rgba(0,0,0,0.10);
+  --t-text:        #000000;
+  --t-text-muted:  #333333;
+  --t-text-dim:    #444444;
+  --t-text-faint:  #666666;
+  --t-text-dark:   #1a1a1a;
+  --t-card-bg:     rgba(0,0,0,0.03);
+  --t-card-bg2:    rgba(0,0,0,0.05);
+  --t-card-border: rgba(0,0,0,0.08);
+  --t-card-border2:rgba(0,0,0,0.12);
+  --t-bar-bg:      rgba(0,0,0,0.06);
+  --t-icon-bg:     rgba(0,0,0,0.04);
+  --t-icon-border: rgba(0,0,0,0.08);
 }
 
 *, *::before, *::after { box-sizing: border-box;}
