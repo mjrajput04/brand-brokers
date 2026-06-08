@@ -22,6 +22,8 @@
   --t-bar-bg:      rgba(255,255,255,0.06);
   --t-icon-bg:     rgba(255,255,255,0.08);
   --t-icon-border: rgba(255,255,255,0.10);
+  --t-shimmer-1: #555555;
+  --t-shimmer-2: #ffffff;
 }
 
 .light-mode {
@@ -37,6 +39,8 @@
   --t-bar-bg:      rgba(0,0,0,0.06);
   --t-icon-bg:     rgba(0,0,0,0.04);
   --t-icon-border: rgba(0,0,0,0.08);
+  --t-shimmer-1: #999999;
+  --t-shimmer-2: #000000;
 }
 
 *, *::before, *::after { box-sizing: border-box;}
@@ -177,11 +181,12 @@ body::before {
 
 /* Shimmer text */
 .shimmer-text {
-  background: linear-gradient(90deg, #555 0%, #ffffff 40%, #555 60%, #ffffff 100%);
+  background: linear-gradient(90deg, var(--t-shimmer-1) 0%, var(--t-shimmer-2) 40%, var(--t-shimmer-1) 60%, var(--t-shimmer-2) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: inline-block;
   animation: shimmer 3s linear infinite;
 }
 

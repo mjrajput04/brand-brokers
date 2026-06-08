@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
 import { Mail, Calendar, ArrowRight, X, Video, Clock, CheckCircle, MapPin } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
+  const { isDark } = useTheme();
 
   const copy = () => {
     navigator.clipboard.writeText("founders@brandbrokers.in");
@@ -15,7 +17,9 @@ export default function Contact() {
   return (
     <>
       <section id="contact" className="section-wrap contact-section relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" 
+          style={{ background: isDark ? "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)" : "radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%)" }} 
+        />
 
         <div className="section-inner relative z-10">
           <div className="reveal text-center mb-14">
@@ -34,25 +38,28 @@ export default function Contact() {
             <button
               onClick={() => setShowBooking(true)}
               className="w-full group relative overflow-hidden rounded-3xl p-6 md:p-8 text-left transition-all duration-300 hover:scale-[1.01]"
-              style={{ background: "linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)", boxShadow: "0 20px 60px rgba(255,255,255,0.15)" }}
+              style={{ 
+                background: isDark ? "linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%)" : "linear-gradient(135deg, #000000 0%, #374151 100%)", 
+                boxShadow: isDark ? "0 20px 60px rgba(255,255,255,0.15)" : "0 20px 60px rgba(0,0,0,0.1)" 
+              }}
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(0,0,0,0.08)" }}>
-                    <Calendar className="w-6 h-6 md:w-7 md:h-7 text-black" strokeWidth={1.5} />
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: isDark ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.1)" }}>
+                    <Calendar className="w-6 h-6 md:w-7 md:h-7" style={{ color: isDark ? "#000000" : "#ffffff" }} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <p className="font-black text-black text-lg md:text-xl mb-1">Book a Strategy Call</p>
-                    <p className="text-gray-600 text-sm leading-relaxed">30 min call with our team. We'll talk about your brand goals and build a custom plan.</p>
+                    <p className="font-black text-lg md:text-xl mb-1" style={{ color: isDark ? "#000000" : "#ffffff" }}>Book a Strategy Call</p>
+                    <p className="text-sm leading-relaxed" style={{ color: isDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)" }}>30 min call with our team. We'll talk about your brand goals and build a custom plan.</p>
                     <div className="flex flex-wrap items-center gap-3 mt-3">
-                      <span className="flex items-center gap-1.5 text-xs font-bold text-gray-500"><Clock className="w-3.5 h-3.5" /> 30 minutes</span>
-                      <span className="flex items-center gap-1.5 text-xs font-bold text-gray-500"><Video className="w-3.5 h-3.5" /> Google Meet</span>
-                      <span className="flex items-center gap-1.5 text-xs font-bold text-gray-500"><CheckCircle className="w-3.5 h-3.5" /> Free</span>
+                      <span className="flex items-center gap-1.5 text-xs font-bold" style={{ color: isDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)" }}><Clock className="w-3.5 h-3.5" /> 30 minutes</span>
+                      <span className="flex items-center gap-1.5 text-xs font-bold" style={{ color: isDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)" }}><Video className="w-3.5 h-3.5" /> Google Meet</span>
+                      <span className="flex items-center gap-1.5 text-xs font-bold" style={{ color: isDark ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)" }}><CheckCircle className="w-3.5 h-3.5" /> Free</span>
                     </div>
                   </div>
                 </div>
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" style={{ background: "rgba(0,0,0,0.1)" }}>
-                  <ArrowRight className="w-5 h-5 text-black" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" style={{ background: isDark ? "rgba(0,0,0,0.1)" : "rgba(255,255,255,0.15)" }}>
+                  <ArrowRight className="w-5 h-5" style={{ color: isDark ? "#000000" : "#ffffff" }} />
                 </div>
               </div>
             </button>
@@ -85,7 +92,14 @@ export default function Contact() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-2">
                 <video src="/logo/logo-anim.webm" autoPlay loop muted playsInline
-                  style={{ width: 80, height: 80, objectFit: "contain", mixBlendMode: "screen", flexShrink: 0 }} />
+                  style={{ 
+                    width: 80, 
+                    height: 80, 
+                    objectFit: "contain", 
+                    mixBlendMode: isDark ? "screen" : "multiply", 
+                    filter: isDark ? "none" : "invert(1)",
+                    flexShrink: 0 
+                  }} />
                 <span className="font-black text-xl" style={{ letterSpacing: "-0.02em", color: "var(--t-text)" }}>BRAND BROKERS</span>
               </div>
               
@@ -120,25 +134,25 @@ export default function Contact() {
       {showBooking && (
         <div
           className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
-          style={{ background: "rgba(0,0,0,0.92)", backdropFilter: "blur(16px)" }}
+          style={{ background: isDark ? "rgba(0,0,0,0.85)" : "rgba(255,255,255,0.85)", backdropFilter: "blur(16px)" }}
           onClick={() => setShowBooking(false)}
         >
           <div
             className="relative w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl overflow-hidden"
-            style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)", boxShadow: "0 40px 100px rgba(0,0,0,0.9)" }}
+            style={{ background: "var(--bg-secondary)", border: "1px solid var(--t-card-border)", boxShadow: isDark ? "0 40px 100px rgba(0,0,0,0.9)" : "0 40px 100px rgba(0,0,0,0.1)" }}
             onClick={e => e.stopPropagation()}
           >
-            <div className="h-1" style={{ background: "linear-gradient(90deg,#ffffff,#9ca3af,#ffffff)" }} />
+            <div className="h-1" style={{ background: isDark ? "linear-gradient(90deg,#ffffff,#9ca3af,#ffffff)" : "linear-gradient(90deg,#000000,#333333,#000000)" }} />
             {/* Drag handle mobile */}
             <div className="flex justify-center pt-3 sm:hidden">
-              <div className="w-10 h-1 rounded-full" style={{ background: "rgba(255,255,255,0.2)" }} />
+              <div className="w-10 h-1 rounded-full" style={{ background: isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.1)" }} />
             </div>
             <button
               onClick={() => setShowBooking(false)}
-              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full z-10"
-              style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)" }}
+              className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full z-10 transition-colors"
+              style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)", color: "var(--t-text)" }}
             >
-              <X className="w-4 h-4" style={{ color: "var(--t-text)" }} />
+              <X className="w-4 h-4" />
             </button>
             <div className="p-6 md:p-8">
               <div className="flex items-center gap-4 mb-6">
@@ -167,8 +181,12 @@ export default function Contact() {
                   href="https://calendly.com/brandbrokers"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-4 rounded-2xl font-black text-black text-sm hover:opacity-90 transition-opacity"
-                  style={{ background: "linear-gradient(135deg,#ffffff,#d1d5db)", minHeight: 52 }}
+                  className="flex items-center justify-center gap-2 py-4 rounded-2xl font-black text-sm hover:opacity-90 transition-opacity shadow-lg"
+                  style={{ 
+                    background: isDark ? "linear-gradient(135deg,#ffffff,#d1d5db)" : "linear-gradient(135deg,#000000,#374151)", 
+                    color: isDark ? "#000000" : "#ffffff",
+                    minHeight: 52 
+                  }}
                 >
                   Book on Google Meet <ArrowRight className="w-4 h-4" />
                 </a>

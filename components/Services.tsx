@@ -240,7 +240,7 @@ export default function Services() {
           <div
             className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl"
             style={{
-              background: "var(--t-card-bg)",
+              background: "var(--bg-secondary)",
               border: `1px solid ${displayColor}33`,
               boxShadow: isDark 
                 ? `0 0 0 1px ${displayColor}18, 0 50px 120px rgba(0,0,0,0.95)`

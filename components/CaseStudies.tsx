@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { Eye, IndianRupee, ThumbsUp, Download, Star, Mic2, X, ArrowRight, Target, Lightbulb, Zap, ChevronLeft, ChevronRight } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const cases = [
   {
@@ -86,6 +87,7 @@ type Case = typeof cases[number];
 export default function CaseStudies() {
   const [active, setActive] = useState<Case | null>(null);
   const [current, setCurrent] = useState(0);
+  const { isDark } = useTheme();
 
   const prev = () => setCurrent(c => (c - 1 + cases.length) % cases.length);
   const next = () => setCurrent(c => (c + 1) % cases.length);
@@ -228,12 +230,30 @@ export default function CaseStudies() {
 
       {/* Detail Modal */}
       {active && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8" style={{ background: "rgba(0,0,0,0.88)", backdropFilter: "blur(16px)" }} onClick={() => setActive(null)}>
-          <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl" style={{ background: "var(--t-card-bg)", border: `1px solid ${active.color}33`, boxShadow: `0 0 0 1px ${active.color}18, 0 50px 120px rgba(0,0,0,0.9)` }} onClick={e => e.stopPropagation()}>
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8" 
+          style={{ background: isDark ? "rgba(0,0,0,0.9)" : "rgba(255,255,255,0.9)", backdropFilter: "blur(16px)" }} 
+          onClick={() => setActive(null)}
+        >
+          <div 
+            className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl" 
+            style={{ 
+              background: "var(--bg-secondary)", 
+              border: `1px solid ${active.color}33`, 
+              boxShadow: isDark 
+                ? `0 0 0 1px ${active.color}18, 0 50px 120px rgba(0,0,0,0.9)`
+                : `0 0 0 1px ${active.color}08, 0 50px 120px rgba(0,0,0,0.1)` 
+            }} 
+            onClick={e => e.stopPropagation()}
+          >
             <div className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl" style={{ background: `linear-gradient(90deg, ${active.color}, ${active.accentLight}, ${active.color})` }} />
             <div className="absolute top-0 left-0 right-0 h-48 rounded-t-3xl pointer-events-none" style={{ background: `radial-gradient(ellipse at 50% 0%, ${active.color}18, transparent 70%)` }} />
-            <button onClick={() => setActive(null)} className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <X className="w-4 h-4 text-white" />
+            <button 
+              onClick={() => setActive(null)} 
+              className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full transition-colors" 
+              style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)", color: "var(--t-text)" }}
+            >
+              <X className="w-4 h-4" />
             </button>
             <div className="relative p-6 md:p-12">
               <div className="mb-6">
@@ -255,7 +275,7 @@ export default function CaseStudies() {
                   </div>
                 ))}
               </div>
-              <div className="mb-6" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }} />
+              <div className="mb-6" style={{ borderBottom: "1px solid var(--t-card-border)" }} />
               {[
                 { Icon: Target,   title: "BACKGROUND AND CHALLENGE", text: active.fullDetail.background },
                 { Icon: Lightbulb, title: "OUR APPROACH",             text: active.fullDetail.approach },
