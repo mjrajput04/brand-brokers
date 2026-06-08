@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Monitor, Sparkles, Gamepad2, Dumbbell, Utensils, Music, ChevronLeft, ChevronRight, Info, Share2, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const creators = [
   { 
@@ -105,6 +106,7 @@ export default function Roster() {
   const [center, setCenter] = useState(1); // index of center card
   const [selectedCreator, setSelectedCreator] = useState<typeof creators[0] | null>(null);
   const [showHandles, setShowHandles] = useState<number | null>(null);
+  const { isDark } = useTheme();
 
   const prev = () => setCenter(c => (c - 1 + creators.length) % creators.length);
   const next = () => setCenter(c => (c + 1) % creators.length);
@@ -134,10 +136,13 @@ export default function Roster() {
           <button
             onClick={prev}
             className="absolute left-0 z-10 w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-            style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}
+            style={{ 
+              background: isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.05)", 
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)"}` 
+            }}
             aria-label="Previous"
           >
-            <ChevronLeft className="w-5 h-5 text-white" />
+            <ChevronLeft className="w-5 h-5" style={{ color: "var(--t-text)" }} />
           </button>
 
           {/* 3 cards */}
@@ -167,7 +172,9 @@ export default function Roster() {
                       style={{
                         background: isCenter ? "var(--t-card-bg2)" : "var(--t-card-bg)",
                         border: `1px solid ${isCenter ? "var(--t-card-border2)" : "var(--t-card-border)"}`,
-                        boxShadow: isCenter ? "0 20px 60px rgba(0,0,0,0.5)" : "none",
+                        boxShadow: isCenter 
+                          ? (isDark ? "0 20px 60px rgba(0,0,0,0.5)" : "0 20px 60px rgba(0,0,0,0.1)") 
+                          : "none",
                         transitionProperty: "background, border-color, box-shadow",
                         transitionDuration: "0.4s",
                         transitionTimingFunction: "ease",
@@ -187,7 +194,12 @@ export default function Roster() {
                           }}
                         >
                           <creator.Icon
-                            style={{ width: isCenter ? "clamp(20px,4vw,30px)" : "clamp(16px,3vw,24px)", height: isCenter ? "clamp(20px,4vw,30px)" : "clamp(16px,3vw,24px)", color: "#ffffff", strokeWidth: 1.5 }}
+                            style={{ 
+                              width: isCenter ? "clamp(20px,4vw,30px)" : "clamp(16px,3vw,24px)", 
+                              height: isCenter ? "clamp(20px,4vw,30px)" : "clamp(16px,3vw,24px)", 
+                              color: isDark ? "#ffffff" : "#000000", 
+                              strokeWidth: 1.5 
+                            }}
                           />
                         </div>
                         <div className="min-w-0">
@@ -203,7 +215,7 @@ export default function Roster() {
                       </div>
 
                       {isCenter && (
-                        <div className="mt-3 pt-3 md:mt-4 md:pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                        <div className="mt-3 pt-3 md:mt-4 md:pt-4" style={{ borderTop: `1px solid ${isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)"}` }}>
                           <p className="text-center font-bold tracking-widest uppercase" style={{ color: "var(--t-text-faint)", fontSize: "clamp(8px,1.5vw,10px)" }}>
                             Available for brand deals
                           </p>
@@ -215,8 +227,11 @@ export default function Roster() {
                         <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 flex flex-col items-center justify-center gap-3 p-6 z-10">
                           <button 
                             onClick={(e) => { e.stopPropagation(); setSelectedCreator(creator); }}
-                            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-black text-sm transition-all hover:scale-105 active:scale-95"
-                            style={{ background: "linear-gradient(135deg, #ffffff, #d1d5db)" }}
+                            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95"
+                            style={{ 
+                              background: isDark ? "linear-gradient(135deg, #ffffff, #d1d5db)" : "linear-gradient(135deg, #000000, #333333)",
+                              color: isDark ? "#000000" : "#ffffff"
+                            }}
                           >
                             <Info className="w-4 h-4" /> Know More
                           </button>
@@ -236,7 +251,11 @@ export default function Roster() {
                                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                   animate={{ opacity: 1, y: 0, scale: 1 }}
                                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                  className="absolute bottom-full left-0 right-0 mb-2 p-2 rounded-2xl bg-[#1a1a1a] border border-white/10 shadow-2xl flex flex-wrap justify-center gap-2 z-20"
+                                  className="absolute bottom-full left-0 right-0 mb-2 p-2 rounded-2xl shadow-2xl flex flex-wrap justify-center gap-2 z-20"
+                                  style={{ 
+                                    background: isDark ? "#1a1a1a" : "#ffffff", 
+                                    border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}` 
+                                  }}
                                   onClick={(e) => e.stopPropagation()}
                                 >
                                   {Object.entries(creator.socials).map(([platform, url]) => (
@@ -245,7 +264,11 @@ export default function Roster() {
                                       href={url}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-white/70 hover:text-white transition-all hover:scale-110"
+                                      className="p-3 rounded-xl transition-all hover:scale-110"
+                                      style={{ 
+                                        background: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)",
+                                        color: "var(--t-text)"
+                                      }}
                                       title={platform.charAt(0).toUpperCase() + platform.slice(1)}
                                     >
                                       <SocialIcon platform={platform} />
@@ -268,10 +291,13 @@ export default function Roster() {
           <button
             onClick={next}
             className="absolute right-0 z-10 w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-            style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}
+            style={{ 
+              background: isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.05)", 
+              border: `1px solid ${isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)"}` 
+            }}
             aria-label="Next"
           >
-            <ChevronRight className="w-5 h-5 text-white" />
+            <ChevronRight className="w-5 h-5" style={{ color: "var(--t-text)" }} />
           </button>
         </div>
 
@@ -285,7 +311,9 @@ export default function Roster() {
                 width: i === center ? 24 : 6,
                 height: 6,
                 borderRadius: 99,
-                background: i === center ? "#ffffff" : "rgba(255,255,255,0.2)",
+                background: i === center 
+                  ? (isDark ? "#ffffff" : "#000000") 
+                  : (isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.1)"),
                 transitionProperty: "width, background",
                 transitionDuration: "0.3s",
                 transitionTimingFunction: "ease",
@@ -313,7 +341,8 @@ export default function Roster() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedCreator(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+              className="absolute inset-0 backdrop-blur-md"
+              style={{ background: isDark ? "rgba(0,0,0,0.85)" : "rgba(255,255,255,0.8)" }}
             />
             
             <motion.div 
@@ -321,21 +350,28 @@ export default function Roster() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl"
-              style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}
+              style={{ 
+                background: isDark ? "#0a0a0a" : "#ffffff", 
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}` 
+              }}
             >
-              <div className="h-1.5 w-full" style={{ background: "linear-gradient(90deg, transparent, #ffffff, transparent)" }} />
+              <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, transparent, ${isDark ? "#ffffff" : "#000000"}, transparent)` }} />
               
               <button 
                 onClick={() => setSelectedCreator(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors z-10"
+                className="absolute top-4 right-4 p-2 rounded-full transition-colors z-10"
+                style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)" }}
               >
-                <X className="w-5 h-5 text-white" />
+                <X className="w-5 h-5" style={{ color: "var(--t-text)" }} />
               </button>
 
               <div className="p-8">
                 <div className="flex items-center gap-5 mb-8">
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                    <selectedCreator.Icon className="w-8 h-8 text-white" />
+                  <div 
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" 
+                    style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)" }}
+                  >
+                    <selectedCreator.Icon className="w-8 h-8" style={{ color: "var(--t-text)" }} />
                   </div>
                   <div>
                     <h3 className="text-2xl font-black" style={{ color: "var(--t-text)" }}>{selectedCreator.handle}</h3>
@@ -356,14 +392,14 @@ export default function Roster() {
                       <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "var(--t-text-faint)" }}>Followers</p>
                       <p className="text-2xl font-black" style={{ color: "var(--t-text)" }}>{selectedCreator.followers}</p>
                     </div>
-                    <div className="h-10 w-px bg-white/10" />
+                    <div className="h-10 w-px" style={{ background: "var(--t-card-border)" }} />
                     <div>
-                      <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Status</p>
-                      <p className="text-sm font-bold text-green-400">Available for deals</p>
+                      <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "var(--t-text-faint)" }}>Status</p>
+                      <p className="text-sm font-bold text-green-500">Available for deals</p>
                     </div>
                   </div>
 
-                  <div className="pt-6 border-t border-white/5">
+                  <div className="pt-6 border-t" style={{ borderColor: "var(--t-card-border)" }}>
                     <h4 className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: "var(--t-text-faint)" }}>Connect on Socials</h4>
                     <div className="flex flex-wrap gap-3">
                       {Object.entries(selectedCreator.socials).map(([platform, url]) => (
@@ -372,7 +408,11 @@ export default function Roster() {
                           href={url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold text-sm transition-all hover:scale-105"
+                          className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all hover:scale-105"
+                          style={{ 
+                            background: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)",
+                            color: "var(--t-text)"
+                          }}
                         >
                           <SocialIcon platform={platform} />
                           {platform.charAt(0).toUpperCase() + platform.slice(1)}
@@ -384,7 +424,11 @@ export default function Roster() {
                   <div className="pt-6 flex justify-end">
                     <button 
                       onClick={() => setSelectedCreator(null)}
-                      className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-bold text-sm hover:bg-gray-200 transition-colors"
+                      className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm transition-colors"
+                      style={{ 
+                        background: isDark ? "#ffffff" : "#000000",
+                        color: isDark ? "#000000" : "#ffffff"
+                      }}
                     >
                       Close <ArrowRight className="w-4 h-4" />
                     </button>
