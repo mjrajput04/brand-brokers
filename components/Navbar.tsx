@@ -72,16 +72,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-6">
-            {links.map(l => (
-              <button key={l} onClick={() => scrollTo(l)}
-                className="text-sm font-medium tracking-wide transition-all duration-200 relative group"
-                style={{ color: isDark ? "#ffffff" : "#0a0a0a" }}>
-                {l}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ background: isDark ? "#fff" : "#0a0a0a" }} />
-              </button>
-            ))}
-            
+          <div className="hidden lg:flex items-center gap-4">
             {/* Theme Toggle Switch */}
             <button
               onClick={toggleTheme}
@@ -126,6 +117,18 @@ export default function Navbar() {
                 Let's Talk
               </button>
             </div>
+
+            {/* Menu Button */}
+            <button
+              onClick={() => setMenuOpen(true)}
+              className="p-2.5 rounded-full transition-all duration-300 hover:scale-110 flex items-center justify-center"
+              style={{
+                background: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)"}`,
+              }}
+            >
+              <Menu className="w-5 h-5" style={{ color: isDark ? "#ffffff" : "#0a0a0a" }} />
+            </button>
           </div>
 
           {/* Mobile hamburger */}
@@ -167,17 +170,22 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Floating Menu Button - appears when scrolled with fade animation */}
-      <button
-        onClick={() => setMenuOpen(true)}
-        className={`fixed top-6 right-6 z-50 p-3 rounded-full transition-all duration-500 hover:scale-110 ${buttonVisible && !menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"}`}
-        style={{
-          background: "rgba(255,255,255,0.95)",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
-        }}
+      {/* Floating Action Bar - appears when scrolled */}
+      <div
+        className={`fixed top-6 right-6 z-50 flex items-center gap-3 transition-all duration-500 ${buttonVisible && !menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"}`}
       >
-        <Menu className="w-6 h-6 text-black" />
-      </button>
+        <button
+          onClick={() => setMenuOpen(true)}
+          className="p-3 rounded-full transition-all duration-300 hover:scale-110 flex items-center justify-center"
+          style={{
+            background: isDark ? "rgba(30,30,30,0.9)" : "rgba(255,255,255,0.95)",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+            border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.05)"}`,
+          }}
+        >
+          <Menu className="w-6 h-6" style={{ color: isDark ? "#ffffff" : "#000000" }} />
+        </button>
+      </div>
 
       {/* Floating Menu Overlay */}
       {menuOpen && (
