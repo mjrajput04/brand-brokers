@@ -62,11 +62,12 @@ export default function Navbar() {
               <video key="dark" src="/logo/logo-anim.webm" autoPlay loop muted playsInline
                 style={{ width: "clamp(50px,10vw,90px)", height: "clamp(50px,10vw,90px)", objectFit: "contain", flexShrink: 0, mixBlendMode: "screen" }} />
             ) : (
-              <img key="light" src="/logo/logo-black.png" alt="Brand Brokers"
-                style={{ width: "clamp(40px,6vw,60px)", height: "clamp(20px,3vw,30px)", objectFit: "contain", flexShrink: 0 }} />
+              <video key="light" src="/logo/logo-black.webm" autoPlay loop muted playsInline
+                style={{ width: "clamp(50px,10vw,90px)", height: "clamp(50px,10vw,90px)", objectFit: "contain", flexShrink: 0 }} />
             )}
-            <span className="font-black text-sm sm:text-xl tracking-tight truncate" style={{ letterSpacing: "-0.02em", color: isDark ? "#ffffff" : "#0a0a0a" }}>
-              BRAND BROKERS
+            <span className="font-black text-sm sm:text-xl tracking-tight truncate flex gap-1" style={{ letterSpacing: "-0.02em" }}>
+              <span style={{ color: isDark ? "#ffffff" : "#0a0a0a" }}>BRAND</span>
+              <span className="shimmer-text">BROKERS</span>
             </span>
           </div>
 

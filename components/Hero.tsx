@@ -4,71 +4,19 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 /* ── Per-letter interactive heading ── */
 function MagneticHeading({ mouseRef, isDark }: { mouseRef: React.RefObject<{ x: number; y: number }>; isDark: boolean }) {
-  const lines = ["BRAND", "BROKERS"];
-  const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const allChars = lines.flatMap(l => Array.from(l));
-  const [colors, setColors] = useState<string[]>(() => allChars.map(() => isDark ? "#ffffff" : "#1a1a1a"));
-  const rafRef = useRef<number>(0);
-  
-  const darkPalette = [
-    "#ffffff", "#f1f5f9", "#e0e7ff", "#c7d2fe",
-    "#a5b4fc", "#c084fc", "#e879f9", "#f472b6",
-    "#818cf8", "#6366f1",
-  ];
-  const lightPalette = [
-    "#1a1a1a", "#111827", "#1e3a8a", "#1d4ed8",
-    "#4f46e5", "#7c3aed", "#9333ea", "#be185d",
-    "#2563eb", "#3730a3",
-  ];
-
-  useEffect(() => {
-    const palette = isDark ? darkPalette : lightPalette;
-    const baseColor = isDark ? "#ffffff" : "#1a1a1a";
-    const tick = (time: number) => {
-      const mx = mouseRef.current!.x;
-      const my = mouseRef.current!.y;
-      const next = letterRefs.current.map((el, i) => {
-        if (!el) return baseColor;
-        const wave1 = Math.sin(i * 0.2 + time * 0.002);
-        const wave2 = Math.sin(i * 0.3 - time * 0.001);
-        const wave = (wave1 + wave2 + 2) / 4;
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dist = Math.sqrt((mx - cx) ** 2 + (my - cy) ** 2);
-        let t;
-        if (dist < 220) {
-          t = Math.min(1, wave * 0.3 + (1 - dist / 220) * 0.8);
-        } else {
-          t = wave * 0.5;
-        }
-        return palette[Math.floor(t * (palette.length - 1))];
-      });
-      setColors(next);
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [isDark]);
-
-  let idx = 0;
   return (
     <h1 className="font-black leading-none animate-fade-up relative select-none"
       style={{ fontSize: "clamp(32px,9vw,120px)", letterSpacing: "-0.03em" }}>
-      {lines.map((line, li) => (
-        <div key={li} style={{ display: "block" }}>
-          {Array.from(line).map((char) => {
-            const i = idx++;
-            return (
-              <span key={i} ref={el => { letterRefs.current[i] = el; }}
-                style={{ color: colors[i] ?? (isDark ? "#ffffff" : "#1a1a1a"), display: "inline-block",
-                  transitionProperty: "color", transitionDuration: "0.1s", transitionTimingFunction: "ease" }}>
-                {char}
-              </span>
-            );
-          })}
-        </div>
-      ))}
+      <div className="block">
+        <span style={{ color: isDark ? "#ffffff" : "#000000" }}>
+          BRAND
+        </span>
+      </div>
+      <div className="block">
+        <span className="shimmer-text">
+          BROKERS
+        </span>
+      </div>
     </h1>
   );
 }
@@ -248,9 +196,9 @@ export default function Hero() {
                 className="relative z-10 animate-float"
                 style={{ width: "clamp(140px, 18vw, 220px)", height: "clamp(140px, 18vw, 220px)", objectFit: "contain", mixBlendMode: "screen", animationDuration: "6s", marginBottom: "-24px" }} />
             ) : (
-              <img key="light" src="/logo/logo-black.png" alt="Brand Brokers"
+              <video key="light" src="/logo/logo-black.webm" autoPlay loop muted playsInline
                 className="relative z-10 animate-float"
-                style={{ width: "clamp(90px, 10vw, 90px)", height: "clamp(100px, 12vw, 160px)", objectFit: "contain", animationDuration: "6s", marginBottom: "30px" }} />
+                style={{ width: "clamp(140px, 18vw, 220px)", height: "clamp(140px, 18vw, 220px)", objectFit: "contain", mixBlendMode: "screen", animationDuration: "6s", marginBottom: "-24px" }} />
             )}
             <MagneticHeading mouseRef={mouseRef} isDark={isDark} />
           </div>
