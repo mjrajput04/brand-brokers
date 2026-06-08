@@ -135,7 +135,7 @@ function OrbitVisual() {
 
 export default function WhatWeBring() {
   return (
-    <section id="what-we-bring" className="section-wrap what-we-bring-section" style={{ overflowX: "hidden" }}>
+    <section id="what-we-bring" className="section-wrap what-we-bring-section">
       <div className="section-inner">
         <div className="grid md:grid-cols-2 gap-16 items-center">
 

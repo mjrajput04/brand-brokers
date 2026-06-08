@@ -50,7 +50,7 @@ export default function Problem() {
   }, []);
 
   return (
-    <section id="problem" className="section-wrap problem-section" style={{ position: "relative", overflow: "hidden", paddingTop: "clamp(3rem,6vw,5rem)", paddingBottom: "clamp(3rem,6vw,5rem)" }}>
+    <section id="problem" className="section-wrap problem-section" style={{ position: "relative", paddingTop: "clamp(3rem,6vw,5rem)", paddingBottom: "clamp(3rem,6vw,5rem)" }}>
       <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse at 50% 50%,black 30%,transparent 75%)" }} />
       <div aria-hidden style={{ position: "absolute", left: 0, right: 0, top: `${scan}%`, height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,0.06) 40%,rgba(255,255,255,0.06) 60%,transparent)", pointerEvents: "none" }} />
 

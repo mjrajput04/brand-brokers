@@ -94,7 +94,7 @@ export default function CaseStudies() {
 
   return (
     <>
-      <section id="case-studies" className="section-wrap case-studies-section" style={{ overflowX: "hidden" }}>
+      <section id="case-studies" className="section-wrap case-studies-section">
         <div className="section-inner">
           <div className="reveal text-center mb-16">
             <span className="section-label" style={{ color: "var(--t-text)" }}>Proof of Work</span>

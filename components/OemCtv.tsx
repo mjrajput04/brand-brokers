@@ -6,7 +6,7 @@ const partners = ["Mi", "POCO", "realme", "OPPO", "Infinix", "TECNO", "OnePlus",
 
 export default function OemCtv() {
   return (
-    <section id="oem-&-ctv" className="section-wrap oem-ctv-section" style={{ overflowX: "hidden" }}>
+    <section id="oem-&-ctv" className="section-wrap oem-ctv-section">
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label" style={{ color: "var(--t-text)" }}>Inventory</span>

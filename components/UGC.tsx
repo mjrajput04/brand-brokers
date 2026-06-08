@@ -83,7 +83,7 @@ export default function UGC() {
 
   return (
     <>
-      <section id="ugc" className="section-wrap ugc-section" style={{ overflowX: "hidden" }}>
+      <section id="ugc" className="section-wrap ugc-section">
         <div className="section-inner">
 
           {/* Top split */}

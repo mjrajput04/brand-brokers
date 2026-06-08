@@ -77,7 +77,7 @@ function LogoCard({
 
 export default function Clients() {
   return (
-    <section id="clients" className="section-wrap clients-section" style={{ overflowX: "hidden" }}>
+    <section id="clients" className="section-wrap clients-section">
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label" style={{ color: "var(--t-text-muted)" }}>Our Work</span>

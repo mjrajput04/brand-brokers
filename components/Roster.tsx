@@ -117,7 +117,7 @@ export default function Roster() {
   ];
 
   return (
-    <section id="roster" className="section-wrap roster-section" style={{ overflowX: "hidden" }}>
+    <section id="roster" className="section-wrap roster-section">
       <div className="section-inner">
         <div className="reveal text-center mb-14">
           <span className="section-label" style={{ color: "var(--t-text)" }}>Creator Network</span>

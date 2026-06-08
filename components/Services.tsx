@@ -89,7 +89,7 @@ export default function Services() {
 
   return (
     <>
-      <section id="services" className="section-wrap services-section" style={{ overflowX: "hidden" }}>
+      <section id="services" className="section-wrap services-section">
         <div className="section-inner">
 
           {/* Heading */}

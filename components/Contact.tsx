@@ -14,7 +14,7 @@ export default function Contact() {
 
   return (
     <>
-      <section id="contact" className="section-wrap contact-section relative" style={{ overflow: "hidden" }}>
+      <section id="contact" className="section-wrap contact-section relative">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)" }} />
 
         <div className="section-inner relative z-10">

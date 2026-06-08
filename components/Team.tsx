@@ -35,7 +35,7 @@ export default function Team() {
   const [selectedMember, setSelectedMember] = useState<typeof team[0] | null>(null);
 
   return (
-    <section id="team" className="section-wrap team-section" style={{ overflowX: "hidden" }}>
+    <section id="team" className="section-wrap team-section">
       <div className="section-inner">
         <div className="reveal text-center mb-16">
           <span className="section-label" style={{ color: "var(--t-text)" }}>The People</span>
