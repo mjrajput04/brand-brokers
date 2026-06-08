@@ -26,9 +26,9 @@ export default function OemCtv() {
                 </div>
               ))}
             </div>
-            <div className="mt-8 p-5 rounded-2xl" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)" }}>
-              <p className="font-bold text-sm tracking-widest uppercase mb-2" style={{ color: "var(--t-text-muted)" }}>Available Models:</p>
-              <div className="flex gap-4">
+            <div className="mt-8 p-5 rounded-2xl flex items-center justify-between gap-4" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)" }}>
+              <p className="font-bold text-sm tracking-widest uppercase" style={{ color: "var(--t-text-muted)" }}>Available Models:</p>
+              <div className="flex gap-3">
                 {["CPI", "CPC", "CPM"].map(m => (
                   <span key={m} className="px-4 py-2 rounded-full font-black text-sm" style={{ background: isDark ? "#ffffff" : "#000000", color: isDark ? "#000" : "#fff" }}>{m}</span>
                 ))}
@@ -78,8 +78,37 @@ export default function OemCtv() {
         </div>
 
         <div className="reveal p-8 md:p-12 rounded-3xl" style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}>
-          <h3 className="font-black text-xl tracking-widest uppercase mb-4 text-center" style={{ color: "var(--t-text)" }}>CUMULATIVE REACH – WW & INDIA</h3>
-          <p className="text-center text-sm" style={{ color: "var(--t-text-dim)" }}>Suitable for Consumer Tech Brands to reduce CAC through CPI Campaign</p>
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Preferred by */}
+            <div>
+              <h3 className="font-black text-sm tracking-[0.2em] uppercase mb-6" style={{ color: "var(--t-text)" }}>
+                Preferred by:
+              </h3>
+              <div className="flex flex-col gap-4">
+                {["Consumer Tech", "Gaming & Entertainment", "Fintech & Apps"].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--t-text-dim)" }} />
+                    <span className="font-bold text-lg" style={{ color: "var(--t-text-muted)" }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Used for */}
+            <div>
+              <h3 className="font-black text-sm tracking-[0.2em] uppercase mb-6" style={{ color: "var(--t-text)" }}>
+                Used for:
+              </h3>
+              <div className="flex flex-col gap-4">
+                {["Reduce CAC", "High Volume UA"].map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--t-text-dim)" }} />
+                    <span className="font-bold text-lg" style={{ color: "var(--t-text-muted)" }}>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="mt-16 grid md:grid-cols-2 gap-10 items-center">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Clapperboard, TrendingUp, FileText, Users, Film, Scissors, X, ArrowRight, Check } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const offerings = [
   {
@@ -80,6 +81,7 @@ type Offering = typeof offerings[number];
 
 export default function UGC() {
   const [active, setActive] = useState<Offering | null>(null);
+  const { isDark } = useTheme();
 
   return (
     <>
@@ -112,9 +114,13 @@ export default function UGC() {
             <div className="reveal-left order-2 md:order-1 flex justify-center">
               <div
                 className="w-28 h-28 sm:w-40 sm:h-40 rounded-3xl flex items-center justify-center animate-float"
-                style={{ background: "linear-gradient(135deg,#ffffff,#9ca3af)", boxShadow: "0 30px 80px rgba(255,255,255,0.1)", animationDelay: "1s" }}
+                style={{ 
+                  background: isDark ? "linear-gradient(135deg,#ffffff,#9ca3af)" : "linear-gradient(135deg,#1a1a1a,#444444)", 
+                  boxShadow: isDark ? "0 30px 80px rgba(255,255,255,0.1)" : "0 30px 80px rgba(0,0,0,0.1)", 
+                  animationDelay: "1s" 
+                }}
               >
-                <TrendingUp className="w-14 h-14 sm:w-20 sm:h-20 text-black" strokeWidth={1.5} />
+                <TrendingUp className="w-14 h-14 sm:w-20 sm:h-20" style={{ color: isDark ? "#000" : "#fff" }} strokeWidth={1.5} />
               </div>
             </div>
             <div className="reveal-right order-1 md:order-2">
@@ -135,6 +141,10 @@ export default function UGC() {
           <div className="grid md:grid-cols-2 gap-5 mb-8 mt-10">
             {offerings.map((o) => {
               const Icon = o.icon;
+              // Adjust light colors for light mode
+              const isLightColor = o.color === "#ffffff" || o.color === "#e5e7eb" || o.color === "#d1d5db";
+              const displayColor = (!isDark && isLightColor) ? "#0a0a0a" : o.color;
+
               return (
                 <div
                   key={o.title}
@@ -147,8 +157,8 @@ export default function UGC() {
                   onClick={() => setActive(o)}
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLElement;
-                    el.style.borderColor = `${o.color}55`;
-                    el.style.boxShadow = `0 0 30px ${o.color}15`;
+                    el.style.borderColor = `${displayColor}55`;
+                    el.style.boxShadow = `0 0 30px ${displayColor}15`;
                     el.style.transform = "translateY(-4px)";
                   }}
                   onMouseLeave={e => {
@@ -161,22 +171,25 @@ export default function UGC() {
                   {/* Hover glow bg */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{ background: `radial-gradient(ellipse at 10% 50%, ${o.color}0c, transparent 65%)` }}
+                    style={{ background: `radial-gradient(ellipse at 10% 50%, ${displayColor}0c, transparent 65%)` }}
                   />
 
                   {/* Left accent line */}
                   <div
                     className="absolute left-0 top-4 bottom-4 w-[3px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: o.color }}
+                    style={{ background: displayColor }}
                   />
 
                   <div className="relative flex items-start gap-5 p-6">
                     {/* Icon */}
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                      style={{ background: `${o.color}14`, border: `1px solid ${o.color}28` }}
+                      style={{ 
+                        background: isDark ? `${displayColor}14` : `${displayColor}08`, 
+                        border: `1px solid ${displayColor}28` 
+                      }}
                     >
-                      <Icon className="w-6 h-6" style={{ color: o.color }} strokeWidth={1.5} />
+                      <Icon className="w-6 h-6" style={{ color: displayColor }} strokeWidth={1.5} />
                     </div>
 
                     {/* Text */}
@@ -189,7 +202,7 @@ export default function UGC() {
                       {/* Learn more — reveals on hover */}
                       <div
                         className="flex items-center gap-1.5 mt-3 text-xs font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-1 group-hover:translate-y-0"
-                        style={{ color: o.color }}
+                        style={{ color: displayColor }}
                       >
                         Learn More <ArrowRight className="w-3.5 h-3.5" />
                       </div>
@@ -211,29 +224,35 @@ export default function UGC() {
       </section>
 
       {/* ── Detail Modal ── */}
-      {active && (
+      {active && (() => {
+        const isLightColor = active.color === "#ffffff" || active.color === "#e5e7eb" || active.color === "#d1d5db";
+        const displayColor = (!isDark && isLightColor) ? "#0a0a0a" : active.color;
+        
+        return (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
-          style={{ background: "rgba(0,0,0,0.88)", backdropFilter: "blur(14px)" }}
+          style={{ background: isDark ? "rgba(0,0,0,0.88)" : "rgba(255,255,255,0.92)", backdropFilter: "blur(14px)" }}
           onClick={() => setActive(null)}
         >
           <div
             className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl"
             style={{
               background: "var(--t-card-bg)",
-              border: `1px solid ${active.color}33`,
-              boxShadow: `0 0 0 1px ${active.color}18, 0 40px 100px rgba(0,0,0,0.85)`,
+              border: `1px solid ${displayColor}33`,
+              boxShadow: isDark 
+                ? `0 0 0 1px ${displayColor}18, 0 40px 100px rgba(0,0,0,0.85)`
+                : `0 0 0 1px ${displayColor}08, 0 40px 100px rgba(0,0,0,0.1)`,
             }}
             onClick={e => e.stopPropagation()}
           >
             {/* Top gradient strip */}
             <div
               className="absolute top-0 left-0 right-0 h-[3px] rounded-t-3xl"
-              style={{ background: active.color }}
+              style={{ background: displayColor }}
             />
             <div
               className="absolute top-0 left-0 right-0 h-40 rounded-t-3xl pointer-events-none"
-              style={{ background: `radial-gradient(ellipse at 40% 0%, ${active.color}1a, transparent 70%)` }}
+              style={{ background: `radial-gradient(ellipse at 40% 0%, ${displayColor}1a, transparent 70%)` }}
             />
 
             {/* Close button */}
@@ -250,14 +269,14 @@ export default function UGC() {
               <div className="flex items-center gap-4 mb-6">
                 <div
                   className="w-12 h-12 flex items-center justify-center rounded-xl flex-shrink-0"
-                  style={{ background: `${active.color}18`, border: `1px solid ${active.color}33` }}
+                  style={{ background: `${displayColor}18`, border: `1px solid ${displayColor}33` }}
                 >
-                  <active.icon className="w-6 h-6" style={{ color: active.color }} strokeWidth={1.5} />
+                  <active.icon className="w-6 h-6" style={{ color: displayColor }} strokeWidth={1.5} />
                 </div>
                 <div className="min-w-0">
                   <p
                     className="text-xs font-black tracking-widest uppercase mb-0.5"
-                    style={{ color: active.color }}
+                    style={{ color: displayColor }}
                   >
                     UGC Production
                   </p>
@@ -271,7 +290,7 @@ export default function UGC() {
               <div className="mb-7">
                 <h4
                   className="font-black text-xs tracking-widest uppercase mb-3"
-                  style={{ color: active.color }}
+                  style={{ color: displayColor }}
                 >
                   WHAT IS IT
                 </h4>
@@ -282,7 +301,7 @@ export default function UGC() {
               <div className="mb-7">
                 <h4
                   className="font-black text-xs tracking-widest uppercase mb-4"
-                  style={{ color: active.color }}
+                  style={{ color: displayColor }}
                 >
                   WHAT&apos;S INCLUDED
                 </h4>
@@ -291,9 +310,9 @@ export default function UGC() {
                     <div key={i} className="flex items-start gap-3">
                       <div
                         className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
-                        style={{ background: active.color }}
+                        style={{ background: displayColor }}
                       >
-                        <Check className="w-3 h-3 text-black" strokeWidth={3} />
+                        <Check className="w-3 h-3" style={{ color: isDark ? "#000" : "#fff" }} strokeWidth={3} />
                       </div>
                       <p className="text-sm leading-relaxed" style={{ color: "var(--t-text-muted)" }}>{point}</p>
                     </div>
@@ -304,11 +323,11 @@ export default function UGC() {
               {/* Perfect For */}
               <div
                 className="rounded-2xl p-5 mb-8"
-                style={{ background: `${active.color}08`, border: `1px solid ${active.color}22` }}
+                style={{ background: `${displayColor}08`, border: `1px solid ${displayColor}22` }}
               >
                 <p
                   className="text-xs font-black tracking-widest uppercase mb-3"
-                  style={{ color: active.color }}
+                  style={{ color: displayColor }}
                 >
                   PERFECT FOR
                 </p>
@@ -317,7 +336,7 @@ export default function UGC() {
                     <span
                       key={tag}
                       className="px-3 py-1.5 rounded-lg text-xs font-bold"
-                      style={{ background: `${active.color}14`, color: active.color, border: `1px solid ${active.color}33` }}
+                      style={{ background: `${displayColor}14`, color: displayColor, border: `1px solid ${displayColor}33` }}
                     >
                       {tag}
                     </span>
@@ -331,7 +350,7 @@ export default function UGC() {
                   href="#contact"
                   onClick={() => setActive(null)}
                   className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-black text-sm hover:opacity-90 transition-opacity min-h-[48px]"
-                  style={{ background: active.color, color: "#000" }}
+                  style={{ background: displayColor, color: isDark ? "#000" : "#fff" }}
                 >
                   Get Started <ArrowRight className="w-4 h-4" />
                 </a>
@@ -346,7 +365,7 @@ export default function UGC() {
             </div>
           </div>
         </div>
-      )}
+      )})}
     </>
   );
 }

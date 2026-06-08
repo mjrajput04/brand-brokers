@@ -1,4 +1,5 @@
 "use client";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface Client {
   name: string;
@@ -76,6 +77,8 @@ function LogoCard({
 }
 
 export default function Clients() {
+  const { isDark } = useTheme();
+
   return (
     <section id="clients" className="section-wrap clients-section">
       <div className="section-inner">
@@ -98,8 +101,8 @@ export default function Clients() {
             <LogoCard
               key={i}
               client={c}
-              bgColor="rgba(255,255,255,0.04)"
-              borderColor="rgba(255,255,255,0.09)"
+              bgColor={isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.04)"}
+              borderColor={isDark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.08)"}
             />
           ))}
         </div>
@@ -118,8 +121,8 @@ export default function Clients() {
             <LogoCard
               key={i}
               client={c}
-              bgColor="rgba(168,85,247,0.06)"
-              borderColor="rgba(168,85,247,0.18)"
+              bgColor={isDark ? "rgba(168,85,247,0.06)" : "rgba(168,85,247,0.04)"}
+              borderColor={isDark ? "rgba(168,85,247,0.18)" : "rgba(168,85,247,0.15)"}
             />
           ))}
         </div>
