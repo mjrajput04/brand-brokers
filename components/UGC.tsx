@@ -142,7 +142,7 @@ export default function UGC() {
             {offerings.map((o) => {
               const Icon = o.icon;
               // Adjust light colors for light mode
-              const isLightColor = o.color === "#ffffff" || o.color === "#e5e7eb" || o.color === "#d1d5db";
+              const isLightColor = o.color === "#ffffff" || o.color === "#e5e7eb" || o.color === "#d1d5db" || o.color === "#9ca3af";
               const displayColor = (!isDark && isLightColor) ? "#0a0a0a" : o.color;
 
               return (
@@ -225,7 +225,7 @@ export default function UGC() {
 
       {/* ── Detail Modal ── */}
       {active && (() => {
-        const isLightColor = active.color === "#ffffff" || active.color === "#e5e7eb" || active.color === "#d1d5db";
+        const isLightColor = active.color === "#ffffff" || active.color === "#e5e7eb" || active.color === "#d1d5db" || active.color === "#9ca3af";
         const displayColor = (!isDark && isLightColor) ? "#0a0a0a" : active.color;
         
         return (
