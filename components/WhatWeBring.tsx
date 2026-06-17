@@ -22,6 +22,7 @@ const offerings = [
 
 function OrbitVisual() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const scaleWrapRef = useRef<HTMLDivElement>(null);
   const angleRef = useRef(0);
   const rafRef = useRef<number>(0);
   const dotsRef = useRef<HTMLDivElement[]>([]);
@@ -53,8 +54,29 @@ function OrbitVisual() {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
+  // Scale the fixed-size diagram down to fit narrow viewports so it never overflows.
+  useEffect(() => {
+    const wrap = scaleWrapRef.current;
+    const inner = containerRef.current;
+    if (!wrap || !inner) return;
+    const apply = () => {
+      const available = wrap.clientWidth;
+      const scale = Math.min(1, available / SIZE);
+      inner.style.transform = `scale(${scale})`;
+      wrap.style.height = `${SIZE * scale}px`;
+    };
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(wrap);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <div ref={containerRef} style={{ width: SIZE, height: SIZE, position: "relative", flexShrink: 0 }}>
+    <div
+      ref={scaleWrapRef}
+      style={{ width: "100%", maxWidth: SIZE, display: "flex", justifyContent: "center", overflow: "hidden" }}
+    >
+      <div ref={containerRef} style={{ width: SIZE, height: SIZE, position: "relative", flexShrink: 0, transformOrigin: "top center" }}>
 
       {/* Outer glow halo */}
       <div style={{
@@ -129,6 +151,7 @@ function OrbitVisual() {
           <Icon style={{ width: 22, height: 22, color: "var(--t-text)", strokeWidth: 1.5 }} />
         </div>
       ))}
+      </div>
     </div>
   );
 }
@@ -137,7 +160,7 @@ export default function WhatWeBring() {
   return (
     <section id="what-we-bring" className="section-wrap what-we-bring-section">
       <div className="section-inner">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
 
           {/* Left */}
           <div>
@@ -178,8 +201,8 @@ export default function WhatWeBring() {
             </p>
           </div>
 
-          {/* Right — orbit */}
-          <div className="hidden md:flex items-center justify-center">
+          {/* Right — orbit (scales down on small screens, never overflows) */}
+          <div className="flex items-center justify-center w-full overflow-hidden">
             <OrbitVisual />
           </div>
 

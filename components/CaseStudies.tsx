@@ -98,7 +98,7 @@ export default function CaseStudies() {
     <>
       <section id="case-studies" className="section-wrap case-studies-section">
         <div className="section-inner">
-          <div className="reveal text-center mb-16">
+          <div className="reveal text-center mb-10 md:mb-16">
             <span className="section-label" style={{ color: "var(--t-text)" }}>Proof of Work</span>
             <h2 className="section-heading" style={{ color: "var(--t-text)" }}>CASE STUDIES</h2>
             <p className="text-sm mt-4" style={{ color: "var(--t-text-faint)" }}>Click any card for the full breakdown</p>
@@ -128,7 +128,7 @@ export default function CaseStudies() {
                 {/* LEFT */}
                 <div>
                   <div className="flex items-center gap-4 mb-5">
-                    <span className="font-black text-6xl select-none" style={{ color: `${c.color}22`, lineHeight: 1 }}>{c.num}</span>
+                    <span className="font-black text-5xl md:text-6xl select-none" style={{ color: `${c.color}22`, lineHeight: 1 }}>{c.num}</span>
                     <div>
                       <p className="text-xs font-bold tracking-widest uppercase mb-0.5" style={{ color: c.color }}>{c.category}</p>
                       <h3 className="font-black text-2xl md:text-3xl" style={{ color: "var(--t-text)" }}>{c.brand}</h3>
@@ -236,7 +236,7 @@ export default function CaseStudies() {
           onClick={() => setActive(null)}
         >
           <div 
-            className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-3xl" 
+            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl"
             style={{ 
               background: "var(--bg-secondary)", 
               border: `1px solid ${active.color}33`, 

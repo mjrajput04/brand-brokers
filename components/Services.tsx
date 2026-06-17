@@ -95,7 +95,7 @@ export default function Services() {
         <div className="section-inner">
 
           {/* Heading */}
-          <div className="reveal text-center mb-16">
+          <div className="reveal text-center mb-10 md:mb-16">
             <span className="section-label" style={{ color: "var(--t-text)" }}>What We Do</span>
             <h2 className="section-heading" style={{ color: "var(--t-text)" }}>OUR SERVICES</h2>
           </div>
@@ -140,7 +140,7 @@ export default function Services() {
                     style={{ background: `radial-gradient(ellipse at 50% 0%, ${displayColor}18 0%, transparent 70%)` }}
                   />
 
-                  <div className="relative flex flex-col flex-1 p-8 gap-6">
+                  <div className="relative flex flex-col flex-1 p-6 md:p-8 gap-6">
 
                     {/* Number + Tag row */}
                     <div className="flex items-center justify-between">

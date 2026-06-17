@@ -38,7 +38,7 @@ export default function WorkShowcase() {
       <section id="our-work" className="section-wrap" style={{ background: isDark ? "#0a0a0a" : "#f0f0f0" }}>
         <div className="section-inner">
           {/* Header */}
-          <div className="reveal text-center mb-12">
+          <div className="reveal text-center mb-8 md:mb-12">
             <span className="section-label" style={{ color: "var(--t-text)" }}>Our Work</span>
             <h2 className="section-heading" style={{ color: "var(--t-text)" }}>BRANDS WE&apos;VE WORKED WITH</h2>
             <p className="mt-4 text-base md:text-lg max-w-2xl mx-auto" style={{ color: "var(--t-text-muted)" }}>
@@ -55,7 +55,7 @@ export default function WorkShowcase() {
               maskImage: "linear-gradient(to right, transparent, #000 5%, #000 95%, transparent)",
             }}
           >
-            <div className="reel-track flex gap-6 py-2" style={{ width: "max-content", animation: "marquee 45s linear infinite" }}>
+            <div className="reel-track flex gap-4 md:gap-6 py-2" style={{ width: "max-content" }}>
               {loop.map((w, i) => (
                 <ReelCard key={`${w.brand}-${i}`} w={w} onOpen={() => w.video && setActive(w)} />
               ))}
@@ -71,11 +71,11 @@ export default function WorkShowcase() {
           style={{ background: isDark ? "rgba(0,0,0,0.9)" : "rgba(255,255,255,0.92)", backdropFilter: "blur(14px)" }}
           onClick={() => setActive(null)}
         >
-          <div className="relative" style={{ width: "min(90vw, 420px)" }} onClick={(e) => e.stopPropagation()}>
+          <div className="relative" style={{ width: "min(90vw, 420px)", maxHeight: "90vh" }} onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setActive(null)}
               aria-label="Close"
-              className="absolute -top-12 right-0 w-10 h-10 rounded-full flex items-center justify-center"
+              className="absolute -top-12 right-0 w-11 h-11 rounded-full flex items-center justify-center"
               style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)" }}
             >
               <X className="w-5 h-5" style={{ color: "var(--t-text)" }} />
@@ -87,7 +87,7 @@ export default function WorkShowcase() {
               autoPlay
               playsInline
               className="w-full rounded-2xl"
-              style={{ aspectRatio: "9 / 16", background: "#000", border: `1px solid ${active.accent}55` }}
+              style={{ aspectRatio: "9 / 16", maxHeight: "72vh", background: "#000", border: `1px solid ${active.accent}55` }}
             />
             <div className="mt-4 text-center">
               <h3 className="font-black text-lg" style={{ color: "var(--t-text)" }}>{active.brand}</h3>
@@ -107,7 +107,7 @@ function ReelCard({ w, onOpen }: { w: Work; onOpen: () => void }) {
   return (
     <div
       className="group relative flex-shrink-0 rounded-3xl overflow-hidden cursor-pointer transition-transform duration-300 hover:-translate-y-1.5"
-      style={{ width: 260, aspectRatio: "9 / 16" }}
+      style={{ width: "clamp(200px, 60vw, 260px)", aspectRatio: "9 / 16" }}
       onClick={onOpen}
       onMouseEnter={() => { if (hasVideo) vref.current?.play().catch(() => {}); }}
       onMouseLeave={() => {

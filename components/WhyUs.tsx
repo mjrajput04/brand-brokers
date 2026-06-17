@@ -21,7 +21,7 @@ export default function WhyUs() {
   return (
     <section id="why-us" className="section-wrap why-us-section">
       <div className="section-inner">
-        <div className="reveal text-center mb-16">
+        <div className="reveal text-center mb-10 md:mb-16">
           <span className="section-label" style={{ color: "var(--t-text)" }}>Our Edge</span>
           <h2 className="section-heading" style={{ color: "var(--t-text)" }}>WHY BRANDS CHOOSE US</h2>
         </div>

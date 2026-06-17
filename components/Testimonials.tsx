@@ -85,20 +85,20 @@ export default function Testimonials() {
     <section id="testimonials" className="section-wrap" style={{ background: bg }}>
       <div className="section-inner">
         {/* Heading */}
-        <div className="reveal text-center mb-16">
+        <div className="reveal text-center mb-10 md:mb-16">
           <span className="section-label" style={{ color: "var(--t-text)" }}>
             Testimonials
           </span>
           <h2 className="section-heading" style={{ color: "var(--t-text)" }}>
             FEEDBACK FROM OUR CLIENTS
           </h2>
-          <p className="mt-4 text-lg max-w-xl mx-auto" style={{ color: "var(--t-text-muted)" }}>
+          <p className="mt-4 text-base md:text-lg max-w-xl mx-auto" style={{ color: "var(--t-text-muted)" }}>
             Real words from the brands we have scaled.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 stagger">
           {testimonials.map((t) => {
             const accent = t.accent;
             const featured = !!t.featured;
@@ -113,7 +113,7 @@ export default function Testimonials() {
             return (
               <article
                 key={t.name}
-                className={`reveal group relative overflow-hidden rounded-3xl p-7 md:p-8 flex flex-col ${
+                className={`reveal group relative overflow-hidden rounded-3xl p-6 md:p-8 flex flex-col ${
                   featured ? "lg:col-span-2" : ""
                 }`}
                 style={{
@@ -164,7 +164,7 @@ export default function Testimonials() {
 
                   {/* Quote */}
                   <p
-                    className={`leading-relaxed font-medium flex-1 ${
+                    className={`leading-relaxed font-medium flex-1 break-words ${
                       featured ? "text-lg md:text-xl" : "text-base md:text-[17px]"
                     }`}
                     style={{ color: "var(--t-text)" }}

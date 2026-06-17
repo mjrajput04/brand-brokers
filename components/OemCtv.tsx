@@ -11,24 +11,24 @@ export default function OemCtv() {
   return (
     <section id="oem-&-ctv" className="section-wrap oem-ctv-section">
       <div className="section-inner">
-        <div className="reveal text-center mb-16">
+        <div className="reveal text-center mb-10 md:mb-16">
           <span className="section-label" style={{ color: "var(--t-text)" }}>Inventory</span>
           <h2 className="section-heading" style={{ color: "var(--t-text)" }}>OEM & CTV ADS INVENTORY</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-10 items-center mb-12 md:mb-16">
           <div className="reveal-left">
-            <h3 className="font-black text-xl mb-8 tracking-widest uppercase" style={{ color: "var(--t-text)" }}>Partners:</h3>
-            <div className="grid grid-cols-3 gap-5">
+            <h3 className="font-black text-xl mb-6 md:mb-8 tracking-widest uppercase" style={{ color: "var(--t-text)" }}>Partners:</h3>
+            <div className="grid grid-cols-3 gap-3 md:gap-5">
               {partners.map((p, i) => (
-                <div key={p} className="reveal card-hover p-6 rounded-2xl flex items-center justify-center font-black text-lg min-h-[70px]" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)", color: "var(--t-text)", transitionDelay: `${i * 0.1}s` }}>
+                <div key={p} className="reveal card-hover p-4 md:p-6 rounded-2xl flex items-center justify-center font-black text-base md:text-lg min-h-[70px]" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)", color: "var(--t-text)", transitionDelay: `${i * 0.1}s` }}>
                   {p}
                 </div>
               ))}
             </div>
-            <div className="mt-8 p-5 rounded-2xl flex items-center justify-between gap-4" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)" }}>
+            <div className="mt-6 md:mt-8 p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{ background: "var(--t-card-bg2)", border: "1px solid var(--t-card-border)" }}>
               <p className="font-bold text-sm tracking-widest uppercase" style={{ color: "var(--t-text-muted)" }}>Available Models:</p>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 {["CPI", "CPC", "CPM"].map(m => (
                   <span key={m} className="px-4 py-2 rounded-full font-black text-sm" style={{ background: isDark ? "#ffffff" : "#000000", color: isDark ? "#000" : "#fff" }}>{m}</span>
                 ))}
@@ -78,7 +78,7 @@ export default function OemCtv() {
         </div>
 
         <div className="reveal p-8 md:p-12 rounded-3xl" style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}>
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             {/* Preferred by */}
             <div>
               <h3 className="font-black text-sm tracking-[0.2em] uppercase mb-6" style={{ color: "var(--t-text)" }}>
@@ -111,7 +111,7 @@ export default function OemCtv() {
           </div>
         </div>
 
-        <div className="mt-16 grid md:grid-cols-2 gap-10 items-center">
+        <div className="mt-12 md:mt-16 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
           <div className="reveal-left">
             <span className="section-label" style={{ color: "var(--t-text)" }}>More Offerings – OEM AD</span>
             <h3 className="font-black text-2xl mt-2 mb-4" style={{ color: "var(--t-text)" }}>PRE INSTALLED APP INVENTORY (PAI)</h3>

@@ -121,10 +121,10 @@ export default function Roster() {
   return (
     <section id="roster" className="section-wrap roster-section">
       <div className="section-inner">
-        <div className="reveal text-center mb-14">
+        <div className="reveal text-center mb-10 md:mb-14">
           <span className="section-label" style={{ color: "var(--t-text)" }}>Creator Network</span>
           <h2 className="section-heading" style={{ color: "var(--t-text)" }}>OUR ROSTER</h2>
-          <p className="mt-4 text-lg max-w-2xl mx-auto" style={{ color: "var(--t-text-muted)" }}>
+          <p className="mt-4 text-base md:text-lg max-w-2xl mx-auto" style={{ color: "var(--t-text-muted)" }}>
             A curated network of high impact creators across every major niche, ready to amplify your brand.
           </p>
         </div>
@@ -349,32 +349,32 @@ export default function Roster() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl"
-              style={{ 
-                background: isDark ? "#0a0a0a" : "#ffffff", 
-                border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}` 
+              className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl"
+              style={{
+                background: isDark ? "#0a0a0a" : "#ffffff",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`
               }}
             >
               <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, transparent, ${isDark ? "#ffffff" : "#000000"}, transparent)` }} />
               
               <button 
                 onClick={() => setSelectedCreator(null)}
-                className="absolute top-4 right-4 p-2 rounded-full transition-colors z-10"
+                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full transition-colors z-10"
                 style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)" }}
               >
                 <X className="w-5 h-5" style={{ color: "var(--t-text)" }} />
               </button>
 
-              <div className="p-8">
-                <div className="flex items-center gap-5 mb-8">
-                  <div 
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" 
+              <div className="p-5 sm:p-8">
+                <div className="flex items-center gap-4 sm:gap-5 mb-6 sm:mb-8">
+                  <div
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
                     style={{ background: "var(--t-icon-bg)", border: "1px solid var(--t-card-border)" }}
                   >
                     <selectedCreator.Icon className="w-8 h-8" style={{ color: "var(--t-text)" }} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-black" style={{ color: "var(--t-text)" }}>{selectedCreator.handle}</h3>
+                    <h3 className="text-xl sm:text-2xl font-black break-words" style={{ color: "var(--t-text)" }}>{selectedCreator.handle}</h3>
                     <p className="font-medium" style={{ color: "var(--t-text-muted)" }}>{selectedCreator.niche}</p>
                   </div>
                 </div>

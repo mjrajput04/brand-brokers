@@ -12,10 +12,10 @@ const modules = [
 export default function DashboardPage() {
   return (
     <div>
-      <h1 className="text-white font-black text-3xl mb-2">Dashboard</h1>
-      <p className="text-gray-500 text-sm mb-10">Welcome back, Brand Brokers Admin</p>
+      <h1 className="text-white font-black text-2xl md:text-3xl mb-2">Dashboard</h1>
+      <p className="text-gray-500 text-sm mb-6 md:mb-10">Welcome back, Brand Brokers Admin</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
         {modules.map(({ label, href, icon: Icon, desc }) => (
           <Link
             key={href} href={href}

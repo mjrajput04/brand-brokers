@@ -5,8 +5,12 @@ import { useTheme } from "@/contexts/ThemeContext";
 export default function AnimationInit() {
   const { isDark } = useTheme();
 
-  // ── Custom cursor — set up once ──
+  // ── Custom cursor — set up once, pointer-capable devices only ──
   useEffect(() => {
+    // Skip entirely on touch / coarse-pointer devices: the cursor and the
+    // a/button hover-scaling are pointer-only and waste work on phones.
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
     const dot = document.createElement("div");
     dot.className = "custom-cursor";
     const ring = document.createElement("div");

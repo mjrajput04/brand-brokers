@@ -52,22 +52,18 @@ function LogoCard({
 }) {
   return (
     <div
-      className="flex-shrink-0 flex items-center justify-center rounded-2xl transition-all duration-300 hover:scale-105 hover:brightness-110"
+      className="flex-shrink-0 flex items-center justify-center rounded-2xl transition-all duration-300 hover:scale-105 hover:brightness-110 w-[130px] h-[64px] px-4 md:w-[170px] md:h-[76px] md:px-6"
       style={{
         background: bgColor,
         border: `1px solid ${borderColor}`,
-        minWidth: "170px",
-        height: "76px",
-        padding: "0 24px",
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={client.logo}
         alt={client.name}
+        className="max-h-[38px] max-w-[100px] md:max-h-[46px] md:max-w-[138px]"
         style={{
-          maxHeight: "46px",
-          maxWidth: "138px",
           objectFit: "contain",
           display: "block",
         }}
@@ -82,19 +78,19 @@ export default function Clients() {
   return (
     <section id="clients" className="section-wrap clients-section">
       <div className="section-inner">
-        <div className="reveal text-center mb-16">
+        <div className="reveal text-center mb-10 md:mb-16">
           <span className="section-label" style={{ color: "var(--t-text-muted)" }}>Our Work</span>
           <h2 className="section-heading" style={{ color: "var(--t-text)" }}>CLIENT PORTFOLIO</h2>
-          <p className="mt-4 text-lg" style={{ color: "var(--t-text-muted)" }}>
+          <p className="mt-4 text-base md:text-lg" style={{ color: "var(--t-text-muted)" }}>
             Trusted by India&apos;s top gaming &amp; tech brands
           </p>
         </div>
       </div>
 
       {/* ── Row 1: scrolls left ── */}
-      <div className="relative mb-5 overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+      <div className="relative mb-4 md:mb-5 overflow-hidden" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
         <div
-          className="flex gap-5"
+          className="flex gap-3 md:gap-5"
           style={{ width: "max-content", animation: "marquee 28s linear infinite" }}
         >
           {[...row1, ...row1, ...row1].map((c, i) => (
@@ -110,11 +106,11 @@ export default function Clients() {
 
       {/* ── Row 2: scrolls right ── */}
       <div
-        className="relative overflow-hidden mb-16"
+        className="relative overflow-hidden mb-10 md:mb-16"
         style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}
       >
         <div
-          className="flex gap-5"
+          className="flex gap-3 md:gap-5"
           style={{ width: "max-content", animation: "marquee 24s linear infinite reverse" }}
         >
           {[...row2, ...row2, ...row2].map((c, i) => (
@@ -130,11 +126,11 @@ export default function Clients() {
 
       {/* ── Stats ── */}
       <div className="section-inner">
-        <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-6 stagger">
+        <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 stagger">
           {statsBar.map((s) => (
             <div
               key={s.label}
-              className="reveal-scale text-center p-6 rounded-2xl"
+              className="reveal-scale text-center p-4 md:p-6 rounded-2xl"
               style={{
                 background: "var(--t-card-bg)",
                 border: "1px solid var(--t-card-border)",

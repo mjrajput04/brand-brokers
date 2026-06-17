@@ -25,8 +25,8 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: "#0a0a0a" }}>
-      <div className="w-full max-w-md p-8 rounded-3xl" style={{ background: "#111", border: "1px solid rgba(255,255,255,0.08)" }}>
+    <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ background: "#0a0a0a" }}>
+      <div className="w-full max-w-md p-6 sm:p-8 rounded-3xl" style={{ background: "#111", border: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="text-center mb-8">
           <div className="font-black text-white text-2xl tracking-tight mb-1">BRAND BROKERS</div>
           <p className="text-gray-500 text-sm">Admin Panel</p>

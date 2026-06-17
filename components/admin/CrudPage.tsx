@@ -60,20 +60,20 @@ export default function CrudPage({ title, apiPath, fields }: Props) {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-white font-black text-3xl">{title}</h1>
-        <button onClick={openCreate} className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-black text-sm" style={{ background: "#fff" }}>
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-6 md:mb-8">
+        <h1 className="text-white font-black text-2xl md:text-3xl">{title}</h1>
+        <button onClick={openCreate} className="flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl font-bold text-black text-sm" style={{ background: "#fff" }}>
           <Plus className="w-4 h-4" /> Add New
         </button>
       </div>
 
       {/* Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "rgba(0,0,0,0.8)" }}>
-          <div className="w-full max-w-lg p-6 rounded-2xl" style={{ background: "#111", border: "1px solid rgba(255,255,255,0.1)" }}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4" style={{ background: "rgba(0,0,0,0.8)" }}>
+          <div className="w-full max-w-lg p-4 sm:p-6 rounded-2xl max-h-[90vh] overflow-y-auto" style={{ background: "#111", border: "1px solid rgba(255,255,255,0.1)" }}>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-white font-black text-lg">{editId ? "Edit" : "Create"} {title}</h2>
-              <button onClick={() => setShowForm(false)}><X className="w-5 h-5 text-gray-400" /></button>
+              <button onClick={() => setShowForm(false)} aria-label="Close" className="flex items-center justify-center w-11 h-11 -mr-2 rounded-xl hover:bg-white/10 transition-colors"><X className="w-5 h-5 text-gray-400" /></button>
             </div>
             <div className="flex flex-col gap-4 max-h-[60vh] overflow-y-auto pr-1">
               {fields.map(f => (
@@ -99,11 +99,11 @@ export default function CrudPage({ title, apiPath, fields }: Props) {
                 </div>
               ))}
             </div>
-            <div className="flex gap-3 mt-6">
-              <button onClick={handleSave} disabled={loading} className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-black text-sm disabled:opacity-50" style={{ background: "#fff" }}>
+            <div className="flex flex-col sm:flex-row gap-3 mt-6">
+              <button onClick={handleSave} disabled={loading} className="flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl font-bold text-black text-sm disabled:opacity-50" style={{ background: "#fff" }}>
                 <Check className="w-4 h-4" /> {loading ? "Saving..." : "Save"}
               </button>
-              <button onClick={() => setShowForm(false)} className="px-5 py-2.5 rounded-xl font-bold text-gray-400 text-sm" style={{ background: "rgba(255,255,255,0.05)" }}>
+              <button onClick={() => setShowForm(false)} className="px-5 py-2.5 min-h-[44px] rounded-xl font-bold text-gray-400 text-sm" style={{ background: "rgba(255,255,255,0.05)" }}>
                 Cancel
               </button>
             </div>
@@ -112,8 +112,8 @@ export default function CrudPage({ title, apiPath, fields }: Props) {
       )}
 
       {/* Table */}
-      <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-        <table className="w-full text-sm">
+      <div className="rounded-2xl overflow-hidden overflow-x-auto" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
+        <table className="w-full min-w-[640px] text-sm">
           <thead>
             <tr style={{ background: "#111", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
               {fields.map(f => (
@@ -134,11 +134,11 @@ export default function CrudPage({ title, apiPath, fields }: Props) {
                   </td>
                 ))}
                 <td className="px-5 py-3 text-right">
-                  <div className="flex items-center justify-end gap-2">
-                    <button onClick={() => openEdit(item)} className="p-1.5 rounded-lg hover:bg-white/10 text-gray-400 hover:text-white transition-colors">
+                  <div className="flex items-center justify-end gap-1">
+                    <button onClick={() => openEdit(item)} aria-label="Edit" className="flex items-center justify-center w-11 h-11 rounded-lg hover:bg-white/10 text-gray-400 hover:text-white transition-colors">
                       <Pencil className="w-4 h-4" />
                     </button>
-                    <button onClick={() => handleDelete(item._id)} className="p-1.5 rounded-lg hover:bg-red-500/10 text-gray-400 hover:text-red-400 transition-colors">
+                    <button onClick={() => handleDelete(item._id)} aria-label="Delete" className="flex items-center justify-center w-11 h-11 rounded-lg hover:bg-red-500/10 text-gray-400 hover:text-red-400 transition-colors">
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>

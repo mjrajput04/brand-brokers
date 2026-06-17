@@ -28,19 +28,19 @@ export default function OurProducts() {
   return (
     <section id="our-products" className="section-wrap" style={{ background: bg }}>
       <div className="section-inner">
-        <div className="reveal text-center mb-14">
+        <div className="reveal text-center mb-10 md:mb-14">
           <span className={`section-label ${textMain}`}>Gaming Portfolio</span>
           <h2 className={`section-heading ${textMain}`}>OUR PRODUCTS</h2>
-          <p className="mt-4 text-lg max-w-2xl mx-auto" style={{ color: textMuted }}>
+          <p className="mt-4 text-base md:text-lg max-w-2xl mx-auto" style={{ color: textMuted }}>
             Games and platforms we've partnered with — built for the next generation of players.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 stagger">
           {games.map((g, i) => (
             <div
               key={g.title}
-              className="reveal group p-6 rounded-2xl border cursor-default transition-all duration-300"
+              className="reveal group p-5 md:p-6 rounded-2xl border cursor-default transition-all duration-300"
               style={{ borderColor: cardBorder, background: cardBg, transitionDelay: `${i * 0.08}s` }}
             >
               <div className="flex items-start justify-between mb-5">

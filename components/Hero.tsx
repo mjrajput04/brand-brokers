@@ -204,7 +204,7 @@ export default function Hero() {
           </div>
 
           {/* Tagline — typewriter then per-letter interactive */}
-          <p className="font-medium tracking-[0.3em] text-sm md:text-base mb-4 animate-fade-up delay-200" style={{ minHeight: "1.5em" }}>
+          <p className="font-medium tracking-[0.15em] sm:tracking-[0.3em] text-xs sm:text-sm md:text-base mb-4 animate-fade-up delay-200 max-w-full break-words" style={{ minHeight: "1.5em" }}>
             {typed.length < tagline.length ? (
               <span style={{ color: isDark ? "#aaa" : "#555" }}>
                 {typed}
@@ -215,7 +215,7 @@ export default function Hero() {
             )}
           </p>
 
-          <p className="text-lg md:text-xl font-light max-w-2xl mx-auto mb-12 animate-fade-up delay-300" style={{ color: isDark ? "#888" : "#555", letterSpacing: "0.05em" }}>
+          <p className="text-base sm:text-lg md:text-xl font-light max-w-2xl mx-auto mb-8 md:mb-12 px-2 animate-fade-up delay-300" style={{ color: isDark ? "#888" : "#555", letterSpacing: "0.05em" }}>
             WHERE CREATORS MEET PERFORMANCE.<br />
             WHERE BRANDS MEET RESULTS.
           </p>

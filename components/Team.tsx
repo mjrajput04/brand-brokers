@@ -48,19 +48,19 @@ export default function Team() {
   return (
     <section id="team" className="section-wrap team-section">
       <div className="section-inner">
-        <div className="reveal text-center mb-16">
+        <div className="reveal text-center mb-10 md:mb-16">
           <span className="section-label" style={{ color: "var(--t-text)" }}>The People</span>
           <h2 className="section-heading" style={{ color: "var(--t-text)" }}>OUR TEAM</h2>
-          <p className="mt-4 text-lg max-w-xl mx-auto" style={{ color: "var(--t-text-muted)" }}>A young Gen-Z team building transparent & Performance Driven campaigns.</p>
+          <p className="mt-4 text-base md:text-lg max-w-xl mx-auto" style={{ color: "var(--t-text-muted)" }}>A young Gen-Z team building transparent & Performance Driven campaigns.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 stagger">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 stagger">
           {team.map((member, i) => {
             const displayColor = getDisplayColor(member.color);
             return (
               <div 
                 key={member.name} 
-                className="reveal card-hover group relative overflow-hidden rounded-3xl p-8 text-center cursor-default transition-all duration-500 hover:-translate-y-2" 
+                className="reveal card-hover group relative overflow-hidden rounded-3xl p-6 md:p-8 text-center cursor-default transition-all duration-500 hover:-translate-y-2"
                 style={{ background: "var(--t-card-bg)", border: "1px solid var(--t-card-border)" }}
               >
                 {/* Animated Background Highlight */}
@@ -78,7 +78,7 @@ export default function Team() {
                 <p className="font-medium text-sm mb-8" style={{ color: "var(--t-text-muted)" }}>{member.role}</p>
 
                 {/* Hover Buttons Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 flex-col gap-3 p-6">
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] opacity-100 translate-y-0 md:opacity-0 group-hover:opacity-100 transition-all duration-500 md:translate-y-4 group-hover:translate-y-0 flex-col gap-3 p-6">
                   <button 
                     onClick={() => setSelectedMember(member)}
                     className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-black text-sm transition-all hover:scale-105 active:scale-95"
@@ -130,7 +130,7 @@ export default function Team() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl"
+              className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl"
               style={{ background: "var(--bg-secondary)", border: "1px solid var(--t-card-border)" }}
             >
               <div className="h-1.5 w-full" style={{ background: `linear-gradient(90deg, transparent, ${getDisplayColor(selectedMember.color)}, transparent)` }} />
@@ -143,14 +143,14 @@ export default function Team() {
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="p-8">
-                <div className="flex items-center gap-5 mb-8">
+              <div className="p-6 md:p-8">
+                <div className="flex items-center gap-4 md:gap-5 mb-6 md:mb-8">
                   <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ background: `${getDisplayColor(selectedMember.color)}11`, border: `1px solid ${getDisplayColor(selectedMember.color)}22` }}>
                     <selectedMember.Icon className="w-8 h-8" style={{ color: getDisplayColor(selectedMember.color) }} />
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-black" style={{ color: "var(--t-text)" }}>{selectedMember.name}</h3>
-                    <p className="font-medium" style={{ color: "var(--t-text-muted)" }}>{selectedMember.role}</p>
+                  <div className="min-w-0">
+                    <h3 className="text-xl md:text-2xl font-black break-words pr-8" style={{ color: "var(--t-text)" }}>{selectedMember.name}</h3>
+                    <p className="font-medium text-sm md:text-base" style={{ color: "var(--t-text-muted)" }}>{selectedMember.role}</p>
                   </div>
                 </div>
 
@@ -162,12 +162,12 @@ export default function Team() {
                     </p>
                   </div>
 
-                  <div className="pt-6 border-t flex items-center justify-between gap-4" style={{ borderColor: "var(--t-card-border)" }}>
-                    <a 
+                  <div className="pt-6 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{ borderColor: "var(--t-card-border)" }}>
+                    <a
                       href={selectedMember.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 font-bold text-sm hover:text-blue-400 transition-colors"
+                      className="flex items-center justify-center sm:justify-start gap-2 font-bold text-sm hover:text-blue-400 transition-colors min-h-[44px]"
                       style={{ color: "var(--t-text)" }}
                     >
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -176,9 +176,9 @@ export default function Team() {
                       View Full Profile
                     </a>
                     
-                    <button 
+                    <button
                       onClick={() => setSelectedMember(null)}
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95 shadow-lg"
+                      className="flex items-center justify-center gap-2 px-5 py-2.5 min-h-[44px] rounded-xl font-bold text-sm transition-all hover:scale-105 active:scale-95 shadow-lg"
                       style={{ 
                         background: isDark ? "linear-gradient(135deg, #ffffff, #d1d5db)" : "linear-gradient(135deg, #000000, #374151)",
                         color: isDark ? "#000000" : "#ffffff"

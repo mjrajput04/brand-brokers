@@ -17,12 +17,12 @@ export default function Contact() {
   return (
     <>
       <section id="contact" className="section-wrap contact-section relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" 
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] aspect-square rounded-full pointer-events-none"
           style={{ background: isDark ? "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)" : "radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%)" }} 
         />
 
         <div className="section-inner relative z-10">
-          <div className="reveal text-center mb-14">
+          <div className="reveal text-center mb-10 md:mb-14">
             <span className="section-label" style={{ color: "var(--t-text)" }}>Get In Touch</span>
             <h2 className="section-heading" style={{ lineHeight: 1, color: "var(--t-text)" }}>
               LET'S BUILD YOUR<br />
@@ -88,7 +88,7 @@ export default function Contact() {
           </div>
 
           {/* Footer */}
-          <div className="mt-16 pt-8 flex flex-col gap-8" style={{ borderTop: "1px solid var(--t-card-border)" }}>
+          <div className="mt-12 md:mt-16 pt-8 flex flex-col gap-8" style={{ borderTop: "1px solid var(--t-card-border)" }}>
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-2">
                 <video src="/logo/logo-anim.webm" autoPlay loop muted playsInline
@@ -120,9 +120,9 @@ export default function Contact() {
             </div>
 
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left pt-8" style={{ borderTop: "1px solid var(--t-card-border)" }}>
-              <div className="flex items-center gap-2 text-sm" style={{ color: "var(--t-text-faint)" }}>
-                <MapPin className="w-4 h-4" />
-                <span>123, Creator Hub, Digital Street, Mumbai, India - 400001</span>
+              <div className="flex items-center justify-center md:justify-start gap-2 text-sm min-w-0" style={{ color: "var(--t-text-faint)" }}>
+                <MapPin className="w-4 h-4 flex-shrink-0" />
+                <span className="break-words">123, Creator Hub, Digital Street, Mumbai, India - 400001</span>
               </div>
               <p className="text-sm" style={{ color: "var(--t-text-faint)" }}>© 2026 Brand Brokers. For The Creators, By The Creators.</p>
             </div>
@@ -138,7 +138,7 @@ export default function Contact() {
           onClick={() => setShowBooking(false)}
         >
           <div
-            className="relative w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl overflow-hidden"
+            className="relative w-full sm:max-w-lg max-h-[90vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl"
             style={{ background: "var(--bg-secondary)", border: "1px solid var(--t-card-border)", boxShadow: isDark ? "0 40px 100px rgba(0,0,0,0.9)" : "0 40px 100px rgba(0,0,0,0.1)" }}
             onClick={e => e.stopPropagation()}
           >

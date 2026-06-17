@@ -172,7 +172,7 @@ export default function Navbar() {
 
       {/* Floating Action Bar - appears when scrolled */}
       <div
-        className={`fixed top-6 right-6 z-50 flex items-center gap-3 transition-all duration-500 ${buttonVisible && !menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"}`}
+        className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-50 flex items-center gap-3 transition-all duration-500 ${buttonVisible && !menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"}`}
       >
         <button
           onClick={() => setMenuOpen(true)}
@@ -189,16 +189,16 @@ export default function Navbar() {
 
       {/* Floating Menu Overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-[60] flex items-start justify-end p-6">
+        <div className="fixed inset-0 z-[60] flex items-start justify-end p-4 sm:p-6">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setMenuOpen(false)}
           />
-          
+
           {/* Menu Card */}
           <div
-            className="relative bg-[#1a1a1a] rounded-2xl p-6 min-w-[280px] max-w-[320px] shadow-2xl"
+            className="relative bg-[#1a1a1a] rounded-2xl p-5 sm:p-6 w-full max-w-[320px] sm:min-w-[280px] max-h-[90vh] overflow-y-auto shadow-2xl"
             style={{
               boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)",
             }}
@@ -208,7 +208,9 @@ export default function Navbar() {
               <span className="text-[#ffffff] font-bold text-lg">Menu</span>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="p-2 rounded-full hover:bg-white/10 transition-colors"
+                className="p-2.5 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
+                style={{ minWidth: 44, minHeight: 44 }}
+                aria-label="Close menu"
               >
                 <X className="w-5 h-5 text-[#ffffff]" />
               </button>
