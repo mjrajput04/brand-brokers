@@ -170,6 +170,9 @@ body::before {
 .animate-spin-slow  { animation: spin-slow 12s linear infinite; }
 .animate-marquee    { animation: marquee 25s linear infinite; }
 
+/* Work reels: pause the auto-scroll while hovering so the hovered reel can play */
+.reel-marquee:hover .reel-track { animation-play-state: paused; }
+
 .delay-100 { animation-delay: 0.1s; }
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }

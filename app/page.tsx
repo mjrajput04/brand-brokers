@@ -11,6 +11,8 @@ import UGC from "@/components/UGC";
 import Roster from "@/components/Roster";
 import OurProducts from "@/components/OurProducts";
 import Clients from "@/components/Clients";
+import WorkShowcase from "@/components/WorkShowcase";
+import Testimonials from "@/components/Testimonials";
 import Team from "@/components/Team";
 import Contact from "@/components/Contact";
 
@@ -31,6 +33,8 @@ export default function Home() {
         <OurProducts />
         <Roster />
         <Clients />
+        <WorkShowcase />
+        <Testimonials />
         <Team />
         <Contact />
       </main>
