@@ -16,6 +16,11 @@ import Testimonials from "@/components/Testimonials";
 import Team from "@/components/Team";
 import Contact from "@/components/Contact";
 
+// The DB-driven sections read from MongoDB per request, so the homepage must be
+// dynamic — this makes admin edits show on the live site immediately (even in a
+// production build), instead of being frozen at build time.
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <>

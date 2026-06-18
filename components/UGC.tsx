@@ -365,7 +365,7 @@ export default function UGC() {
             </div>
           </div>
         </div>
-      )})}
+      )})()}
     </>
   );
 }

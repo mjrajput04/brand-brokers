@@ -28,25 +28,25 @@ export default function AdminLoginPage() {
     <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ background: "#0a0a0a" }}>
       <div className="w-full max-w-md p-6 sm:p-8 rounded-3xl" style={{ background: "#111", border: "1px solid rgba(255,255,255,0.08)" }}>
         <div className="text-center mb-8">
-          <div className="font-black text-white text-2xl tracking-tight mb-1">BRAND BROKERS</div>
-          <p className="text-gray-500 text-sm">Admin Panel</p>
+          <div className="font-black text-2xl tracking-tight mb-1" style={{ color: "#ffffff" }}>BRAND BROKERS</div>
+          <p className="text-sm" style={{ color: "#9ca3af" }}>Admin Panel</p>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
-            <label className="text-gray-400 text-xs font-bold uppercase tracking-widest block mb-2">Email</label>
+            <label className="text-xs font-bold uppercase tracking-widest block mb-2" style={{ color: "#9ca3af" }}>Email</label>
             <input
               type="email" value={email} onChange={e => setEmail(e.target.value)} required
-              className="w-full px-4 py-3 rounded-xl text-white text-sm outline-none focus:border-white transition-colors"
-              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+              className="w-full px-4 py-3 rounded-xl text-sm outline-none focus:border-white transition-colors"
+              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#ffffff" }}
             />
           </div>
           <div>
-            <label className="text-gray-400 text-xs font-bold uppercase tracking-widest block mb-2">Password</label>
+            <label className="text-xs font-bold uppercase tracking-widest block mb-2" style={{ color: "#9ca3af" }}>Password</label>
             <input
               type="password" value={password} onChange={e => setPassword(e.target.value)} required
-              className="w-full px-4 py-3 rounded-xl text-white text-sm outline-none focus:border-white transition-colors"
-              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+              className="w-full px-4 py-3 rounded-xl text-sm outline-none focus:border-white transition-colors"
+              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "#ffffff" }}
             />
           </div>
           {error && <p className="text-red-400 text-sm text-center">{error}</p>}

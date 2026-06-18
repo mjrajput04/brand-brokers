@@ -121,6 +121,10 @@ body::before {
   from { opacity: 0; transform: scale(0.7); }
   to   { opacity: 1; transform: scale(1); }
 }
+@keyframes progressGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -335,6 +339,15 @@ html::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 3px; }
 .light-mode .text-gray-600 { color: #777 !important; }
 .light-mode .text-gray-300 { color: #333 !important; }
 .light-mode .section-label { color: #555 !important; }
+
+/* The admin panel is always dark — neutralize the public light-mode text
+   overrides inside it so its white/gray text stays visible when the public
+   site is toggled to light mode. (Higher specificity beats the rules above.) */
+.light-mode .admin-root .text-white    { color: #ffffff !important; }
+.light-mode .admin-root .text-gray-300 { color: #d1d5db !important; }
+.light-mode .admin-root .text-gray-400 { color: #9ca3af !important; }
+.light-mode .admin-root .text-gray-500 { color: #6b7280 !important; }
+.light-mode .admin-root .text-gray-600 { color: #4b5563 !important; }
 
 .light-mode .custom-cursor { background: #1a1a1a; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
 .light-mode .custom-cursor-ring { border-color: rgba(0,0,0,0.4); }

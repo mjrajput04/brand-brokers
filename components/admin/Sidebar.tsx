@@ -34,8 +34,8 @@ export default function AdminSidebar() {
         style={{ width: 64, height: 64, objectFit: "contain", flexShrink: 0, mixBlendMode: "screen" }}
       />
       <div>
-        <div className="font-black text-white text-xs tracking-tight leading-tight">BRAND BROKERS</div>
-        <div className="text-gray-500 text-xs mt-0.5">Admin Panel</div>
+        <div className="font-black text-xs tracking-tight leading-tight" style={{ color: "#ffffff" }}>BRAND BROKERS</div>
+        <div className="text-xs mt-0.5" style={{ color: "#9ca3af" }}>Admin Panel</div>
       </div>
     </div>
   );
@@ -65,7 +65,8 @@ export default function AdminSidebar() {
     <div className="px-3 py-4 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
       <button
         onClick={logout}
-        className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium w-full transition-all hover:bg-red-500/10 text-gray-500 hover:text-red-400"
+        className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium w-full transition-all hover:bg-red-500/10"
+        style={{ color: "#9ca3af" }}
       >
         <LogOut className="w-4 h-4" /> Logout
       </button>
@@ -85,12 +86,13 @@ export default function AdminSidebar() {
             autoPlay loop muted playsInline
             style={{ width: 40, height: 40, objectFit: "contain", flexShrink: 0, mixBlendMode: "screen" }}
           />
-          <div className="font-black text-white text-xs tracking-tight">BRAND BROKERS</div>
+          <div className="font-black text-xs tracking-tight" style={{ color: "#ffffff" }}>BRAND BROKERS</div>
         </div>
         <button
           onClick={() => setOpen(true)}
           aria-label="Open menu"
-          className="flex items-center justify-center w-11 h-11 -mr-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+          className="flex items-center justify-center w-11 h-11 -mr-2 rounded-xl hover:bg-white/10 transition-colors"
+          style={{ color: "#d1d5db" }}
         >
           <Menu className="w-6 h-6" />
         </button>
@@ -113,7 +115,8 @@ export default function AdminSidebar() {
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close menu"
-                className="flex items-center justify-center w-11 h-11 -mr-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+                className="flex items-center justify-center w-11 h-11 -mr-2 rounded-xl hover:bg-white/10 transition-colors"
+                style={{ color: "#9ca3af" }}
               >
                 <X className="w-6 h-6" />
               </button>
