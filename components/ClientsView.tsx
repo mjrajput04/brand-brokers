@@ -1,6 +1,3 @@
-"use client";
-import { useTheme } from "@/contexts/ThemeContext";
-
 interface Client {
   name: string;
   logo: string;
@@ -8,40 +5,21 @@ interface Client {
   bg?: string;
 }
 
-function LogoCard({
-  client,
-  borderColor = "rgba(255,255,255,0.09)",
-  bgColor = "rgba(255,255,255,0.04)",
-}: {
-  client: Client;
-  borderColor?: string;
-  bgColor?: string;
-}) {
+function LogoCard({ client }: { client: Client }) {
   return (
-    <div
-      className="flex-shrink-0 flex items-center justify-center rounded-2xl transition-all duration-300 hover:scale-105 hover:brightness-110 w-[130px] h-[64px] px-4 md:w-[170px] md:h-[76px] md:px-6"
-      style={{
-        background: bgColor,
-        border: `1px solid ${borderColor}`,
-      }}
-    >
+    <div className="flex-shrink-0 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:brightness-110 w-[130px] h-[64px] px-4 md:w-[170px] md:h-[76px] md:px-6">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={client.logo}
         alt={client.name}
         className="max-h-[38px] max-w-[100px] md:max-h-[46px] md:max-w-[138px]"
-        style={{
-          objectFit: "contain",
-          display: "block",
-        }}
+        style={{ objectFit: "contain", display: "block" }}
       />
     </div>
   );
 }
 
 export default function ClientsView({ items }: { items: any[] }) {
-  const { isDark } = useTheme();
-
   const data = items || [];
 
   // Row 1 — client logos flagged row 1
@@ -74,12 +52,7 @@ export default function ClientsView({ items }: { items: any[] }) {
           style={{ width: "max-content", animation: "marquee 28s linear infinite" }}
         >
           {[...row1, ...row1, ...row1].map((c, i) => (
-            <LogoCard
-              key={i}
-              client={c}
-              bgColor={isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.04)"}
-              borderColor={isDark ? "rgba(255,255,255,0.09)" : "rgba(0,0,0,0.08)"}
-            />
+            <LogoCard key={i} client={c} />
           ))}
         </div>
       </div>
@@ -94,12 +67,7 @@ export default function ClientsView({ items }: { items: any[] }) {
           style={{ width: "max-content", animation: "marquee 24s linear infinite reverse" }}
         >
           {[...row2, ...row2, ...row2].map((c, i) => (
-            <LogoCard
-              key={i}
-              client={c}
-              bgColor={isDark ? "rgba(168,85,247,0.06)" : "rgba(168,85,247,0.04)"}
-              borderColor={isDark ? "rgba(168,85,247,0.18)" : "rgba(168,85,247,0.15)"}
-            />
+            <LogoCard key={i} client={c} />
           ))}
         </div>
       </div>

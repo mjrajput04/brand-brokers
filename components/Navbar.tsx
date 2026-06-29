@@ -42,6 +42,34 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
+  // Reusable light/dark switch — lives inside the menu/sidebar now.
+  const themeSwitch = (
+    <button
+      onClick={toggleTheme}
+      className="relative w-14 h-7 rounded-full transition-all duration-300 flex items-center p-1 flex-shrink-0"
+      style={{
+        background: isDark
+          ? "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)"
+          : "linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ff6b6b 100%)",
+        boxShadow: isDark
+          ? "inset 0 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(100,150,255,0.3)"
+          : "inset 0 2px 4px rgba(0,0,0,0.1), 0 0 10px rgba(255,200,100,0.4)",
+      }}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+    >
+      <div
+        className="w-5 h-5 rounded-full flex items-center justify-center transition-all duration-300"
+        style={{
+          transform: isDark ? "translateX(0)" : "translateX(28px)",
+          background: isDark ? "linear-gradient(135deg, #e0e0e0, #ffffff)" : "linear-gradient(135deg, #fff8dc, #ffd700)",
+          boxShadow: isDark ? "0 2px 4px rgba(0,0,0,0.3)" : "0 2px 4px rgba(0,0,0,0.2)",
+        }}
+      >
+        {isDark ? <Moon className="w-3 h-3" style={{ color: "#1a1a2e" }} /> : <Sun className="w-3 h-3" style={{ color: "#ff8c00" }} />}
+      </div>
+    </button>
+  );
+
 
   return (
     <>
@@ -73,42 +101,20 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden lg:flex items-center gap-4">
-            {/* Theme Toggle Switch */}
+            {/* Our Products — sits next to Let's Talk */}
             <button
-              onClick={toggleTheme}
-              className="relative w-14 h-7 rounded-full transition-all duration-300 flex items-center p-1"
+              onClick={() => scrollTo("Our Products")}
+              className="px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 hover:scale-105"
               style={{
-                background: isDark 
-                  ? "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)" 
-                  : "linear-gradient(135deg, #ffd700 0%, #ff8c00 50%, #ff6b6b 100%)",
-                boxShadow: isDark 
-                  ? "inset 0 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(100,150,255,0.3)" 
-                  : "inset 0 2px 4px rgba(0,0,0,0.1), 0 0 10px rgba(255,200,100,0.4)",
+                color: isDark ? "#ffffff" : "#0a0a0a",
+                background: isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)",
+                border: `1px solid ${isDark ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.15)"}`,
               }}
-              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
             >
-              {/* Toggle Circle with Icon */}
-              <div
-                className="w-5 h-5 rounded-full flex items-center justify-center transition-all duration-300"
-                style={{
-                  transform: isDark ? "translateX(0)" : "translateX(28px)",
-                  background: isDark 
-                    ? "linear-gradient(135deg, #e0e0e0, #ffffff)" 
-                    : "linear-gradient(135deg, #fff8dc, #ffd700)",
-                  boxShadow: isDark 
-                    ? "0 2px 4px rgba(0,0,0,0.3)" 
-                    : "0 2px 4px rgba(0,0,0,0.2)",
-                }}
-              >
-                {isDark ? (
-                  <Moon className="w-3 h-3" style={{ color: "#1a1a2e" }} />
-                ) : (
-                  <Sun className="w-3 h-3" style={{ color: "#ff8c00" }} />
-                )}
-              </div>
+              Our Products
             </button>
-            
-            <div className="ml-2 relative">
+
+            <div className="relative">
               <span className="absolute inset-0 rounded-full" style={{ animation: "navbar-pulse 2s ease-out infinite", background: "rgba(255,255,255,0.2)", zIndex: 0 }} />
               <span className="absolute inset-0 rounded-full" style={{ animation: "navbar-pulse 2s ease-out infinite", animationDelay: "0.6s", background: "rgba(255,255,255,0.1)", zIndex: 0 }} />
               <button onClick={() => scrollTo("Contact")}
@@ -159,6 +165,14 @@ export default function Navbar() {
                 {l}
               </button>
             ))}
+            {/* Light / Dark toggle */}
+            <div className="flex items-center justify-between py-3 mt-1 border-t border-white/10" style={{ minHeight: 52 }}>
+              <span className="text-white text-base font-medium flex items-center gap-2">
+                {isDark ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+                {isDark ? "Dark Mode" : "Light Mode"}
+              </span>
+              {themeSwitch}
+            </div>
             <button
               onClick={() => scrollTo("Contact")}
               className="mt-3 w-full py-3.5 rounded-full text-sm font-bold"
@@ -215,10 +229,19 @@ export default function Navbar() {
                 <X className="w-5 h-5 text-[#ffffff]" />
               </button>
             </div>
-            
-            {/* Menu Links */}
+
+            {/* Light / Dark toggle */}
+            <div className="flex items-center justify-between mb-5 pb-5 border-b border-white/10">
+              <span className="text-white/70 text-sm font-medium flex items-center gap-2">
+                {isDark ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+                {isDark ? "Dark Mode" : "Light Mode"}
+              </span>
+              {themeSwitch}
+            </div>
+
+            {/* Menu Links — Our Products now lives in the navbar */}
             <div className="flex flex-col gap-2">
-              {links.map((l, i) => (
+              {links.filter((l) => l !== "Our Products").map((l, i) => (
                 <button
                   key={l}
                   onClick={() => scrollTo(l)}
